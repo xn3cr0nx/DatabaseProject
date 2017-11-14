@@ -1,0 +1,30 @@
+
+ASSOCIAZIONI:
+Analizzando lo schema concettuale ristrutturato si nota che tutte le associazioni presenti sono in forma normale di 
+Boyce e Codd in quanto tutte binarie.
+
+
+\begin{table}[H]
+\centering
+\label{my-label}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Entità}  & \textbf{Commento}                                                                                                                                             \\ \hline
+Utente           & \begin{tabular}[c]{@{}l@{}}E' in terza forma normale,\\ email ? username nome cognome indirizzo\\ username è la chiave di Utente.\end{tabular}                 \\ \hline
+Prodotto         & \begin{tabular}[c]{@{}l@{}}E' in forma normale di Boyce-Codd,\\ descrizione ? prezzo\\ descrizione è superchiave.\end{tabular}                                 \\ \hline
+Sottoscrizione   & Non esistono dipendenze non banali fra gli attributi.                                                                                                         \\ \hline
+PacchettoOggetti & Non esistono dipendenze non banali fra gli attributi.                                                                                                         \\ \hline
+Espansione       & Non esistono dipendenze non banali fra gli attributi.                                                                                                         \\ \hline
+Personaggio      & Non esistono dipendenze non banali fra gli attributi.                                                                                                         \\ \hline
+Transazione      & Non esistono dipendenze non banali fra gli attributi.                                                                                                         \\ \hline
+Consumo          & Non esistono dipendenze non banali fra gli attributi.                                                                                                         \\ \hline
+Oggetto          & Non esistono dipendenze non banali fra gli attributi.                                                                                                         \\ \hline
+Equipaggiamento  & Non esistono dipendenze non banali fra gli attributi.                                                                                                         \\ \hline
+Consumabili      & Non esistono dipendenze non banali fra gli attributi.                                                                                                         \\ \hline
+OggettiMissione  & Non esistono dipendenze non banali fra gli attributi.                                                                                                         \\ \hline
+Missione         & \begin{tabular}[c]{@{}l@{}}E' in forma normale di Boyce-Codd\\ descrizione ? livello ? (tutti gli altri attributi)\\ descrizione è superchiave.\end{tabular}   \\ \hline
+Abilità          & \begin{tabular}[c]{@{}l@{}}E' in forma normale di Boyce-Codd \\ descrizione ? livello ? (tutti gli altri attributi) \\ descrizione è superchiave.\end{tabular} \\ \hline
+NPCAmichevole    & Non esistono dipendenze non banali fra gli attributi.                                                                                                         \\ \hline
+NPCOstile        & Non esistono dipendenze non banali fra gli attributi.                                                                                                         \\ \hline
+\end{tabular}
+\end{table}

@@ -1,0 +1,218 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Template Progetto Basi Di Dati
+% LaTeX 
+%
+% Questo template prende spunto dal template Saggio Breve:
+% http://www.latextemplates.com
+%
+% 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	CONFIGURAZIONE PACCHETTI
+%----------------------------------------------------------------------------------------
+
+\documentclass[12pt]{article} % Default font size 12pt si puo cambiare da qui
+
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{rotating}
+\usepackage{lscape}
+\usepackage{pdflscape} %per inserire una singola pagina landscape
+\usepackage{geometry} % Required to change the page size to A4 [showframe=true,margin=3cm] 
+\geometry{a4paper} % Set the page size to be A4 as opposed to the default US Letter
+\usepackage{xcolor} %necessario per il testo evidenziato
+\usepackage{pdfpages} %permette di aggiungere pagine o interi documenti pdf
+\usepackage[italian]{babel} %necessario per cambiare i nomi predefiniti tipo indice, bibliografia
+\usepackage{graphicx} % serve a includere immagini
+\usepackage[latin1]{inputenc} %serve a poter scrivere con gli accenti italiani ma funziona male
+\usepackage{float} % Allows putting an [H] in \begin{figure} to specify the exact location of the figure
+\usepackage{wrapfig} % Allows in-line images 
+\usepackage{booktabs} %per le tabelle
+\usepackage{adjustbox}
+\usepackage{soul} %per usare l'evidenziatore \hl{testo evidenziato}
+\usepackage{enumitem} %necessario per liste numerate con spaziatura standard
+\setlist[enumerate]{noitemsep}
+\setlist[itemize]{noitemsep}
+\setlist[description]{noitemsep}
+
+\linespread{1.2} % Line spacing
+
+
+
+\setlist[description]{ %
+  topsep=30pt,               %
+  itemsep=4pt,               % spazio tra risposta e domanda successiva
+  font={\small  \textit}, % setta il font delle domande
+}
+
+
+%IMPORTANTISSIMISSIMO, usando il programma TeXstudio ricordate di andare su edit e cambiare  Setup Encoding 
+%in iso8859.....latin1 altrimenti fate i macelli come ho fatto io a mettere
+% le à/è/ò/ù accentate e perdete un sacco di tempo, con questa impostazione da ripetere
+% anche in ogni file inputtato non ci saranno problemi.
+
+
+\begin{document} %Apertura Contenitore Documento
+
+%----------------------------------------------------------------------------------------
+%	PAGINA TITOLO
+%----------------------------------------------------------------------------------------
+
+
+%per mettere in input un file latex questa è la forma
+
+\input{./Sezioni/paginatitolo}
+
+
+%----------------------------------------------------------------------------------------
+%	INDICE
+%----------------------------------------------------------------------------------------
+
+% Include un indice che viene creato automaticamente, senza il pacchetto babel latin si chiamerà contents
+\tableofcontents 
+
+\newpage 
+
+%----------------------------------------------------------------------------------------
+%	TESTO VERO E PROPRIO
+%----------------------------------------------------------------------------------------
+
+	\section{Analisi dei Requisiti} 
+
+	\input{./Sezioni/analisireqintro}
+
+
+
+		\subsection{Raccolta Informazioni} % Sotto-sezione
+
+		\input{./Sezioni/raccoltainfo}
+
+		%-----------------------------------------------------------------------
+		\subsection{Requisiti Espressi nel Linguaggio Naturale} 
+
+		\input{./Sezioni/linguaggionaturale}
+
+		%------------------------------------------------
+		\subsection{Glossario dei Termini}
+
+		\input{./Sezioni/glossariotermini}
+		\newpage 
+		%------------------------------------------------
+		\subsection{Eliminazione delle Ambiguit\'{a} Presenti} 
+
+		L'unica Ambiguità presente sembra essere la definizione delle Statistiche del personaggio, che sono le stesse anche per gli NPC e per le abilità che le modificano, per non fare confusione con la definizione di Attributo dei database abbiamo scelto di usare Statistiche.
+
+
+
+		%------------------------------------------------
+		\subsection{Strutturazione dei Requisiti} 
+
+		\input{./Sezioni/strutturazreq}
+
+		%------------------------------------------------
+		\subsection{Specifica delle Operazioni} 
+
+		\input{./Sezioni/specificaop}
+
+		\newpage
+%------------------------------------------------
+	\section{Progettazione Concettuale} 
+
+
+		\subsection{Strategia di Progetto }
+			Svilupperemo lo schema concettuale con un approccio misto, cioè partiremo da dei concetti astratti principali che descrivono le specifiche in modo blando e andremo a raffinarli (strategia top-down), procederemo nella raffinazione fino ad arrivare ad un soddisfacente grado di dettaglio per poi correggere lo schema secondo una strategia inside-out.
+
+
+		%------------------------------------------------
+		\subsection{Individuazione Entit\'{a} e Relazioni Principali}
+
+		\input{./Sezioni/individuazentit}
+
+		%------------------------------------------------
+		\begin{landscape}
+
+		\subsection{Scheletro dello Schema ER} 
+			Possiamo unire le Componenti principali nel seguente schema scheletro:
+
+			\begin{figure}[H]
+			\centering
+			\includegraphics[width=\linewidth]{./immagini/SCHEMASCHELETRO.png}
+		\end{figure}
+
+		\end{landscape}
+
+\newpage
+		%------------------------------------------------
+		\subsection{Sviluppo delle Componenti dello Schema}
+
+		\input{./Sezioni/sviluppocompschema}
+
+			\subsubsection{Raffinamenti successivi} 
+
+				\input{./Sezioni/raffinsucc}
+
+		%------------------------------------------------
+		\subsection{Analisi Qualitativa dello Schema ER}
+
+		\input{./Sezioni/analisiqualit}
+
+		%------------------------------------------------
+		\subsection{Dizionario Dei Dati}
+
+			\subsubsection{Entità}
+			
+				\input{./Sezioni/sezentita}
+		%------------------------------------------------
+		\subsection{Regole Di Vincolo}
+
+		\input{./Sezioni/regolevincolo}
+		%------------------------------------------------
+		\subsection{Vincoli Non Esprimibili}
+
+		\include{./Sezioni/vincolinonesp}
+
+%------------------------------------------------
+
+	\section{Progettazione Logica} 
+
+		\subsection{Tavola dei Volumi e Delle Operazioni}
+	
+		\input{./Sezioni/volumieop}
+		%------------------------------------------------
+		\subsection{Ristrutturazione Schema Concettuale}
+
+		\input{./Sezioni/ristrutturazione}
+		%------------------------------------------------
+		\subsection{Elenco Identificatori Principali}
+
+		\input{./Sezioni/elencoideprinc}
+		%------------------------------------------------
+		\subsection{Normalizzazione}
+
+		\input{./Sezioni/normalizzazione}
+		%------------------------------------------------
+		\subsection{Traduzione verso il Modello Relazionale}
+
+		\input{./Sezioni/tradumodellorelaz}
+
+
+%------------------------------------------------
+	\section{Codifica SQL e Test} 
+
+		\subsection{Definizione dello Schema e Screenshot Successivo all'Inserimento Dati}
+		\input{./Sezioni/defschema}
+
+		%------------------------------------------------
+
+		\subsection{Codifica delle Operazioni}
+
+		\input{./Sezioni/codificaop}
+
+		%------------------------------------------------
+
+
+\end{document}
+
+%There is something about yourself that you don't know. Something that you will deny even exists, until it's too late to do anything about it. It's the only reason you get up in the morning.....
