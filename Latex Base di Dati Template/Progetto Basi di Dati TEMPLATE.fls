@@ -1,10 +1,10 @@
-PWD /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg
+PWD /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template
 INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/Progetto Basi di Dati TEMPLATE.tex
-OUTPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/Progetto Basi di Dati TEMPLATE.log
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/Progetto Basi di Dati TEMPLATE.tex
+OUTPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/Progetto Basi di Dati TEMPLATE.log
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
@@ -70,8 +70,14 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/latin1.def
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/latin1.def
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu
 INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty
@@ -101,11 +107,11 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/soul/soul.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/soul/soul.sty
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ectt1000.tfm
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/Progetto Basi di Dati TEMPLATE.aux
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/Progetto Basi di Dati TEMPLATE.aux
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./Sezioni/vincolinonesp.aux
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./Sezioni/vincolinonesp.aux
-OUTPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/Progetto Basi di Dati TEMPLATE.aux
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/Progetto Basi di Dati TEMPLATE.aux
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/Progetto Basi di Dati TEMPLATE.aux
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./Sezioni/vincolinonesp.aux
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./Sezioni/vincolinonesp.aux
+OUTPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/Progetto Basi di Dati TEMPLATE.aux
 INPUT /usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 INPUT /usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 INPUT /usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
@@ -134,9 +140,9 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./immagini/logo.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./immagini/logo.png
 INPUT ./immagini/logo.png
-OUTPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/Progetto Basi di Dati TEMPLATE.pdf
+OUTPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/Progetto Basi di Dati TEMPLATE.pdf
 INPUT ./immagini/logo.png
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmti12.tfm
@@ -151,10 +157,10 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/Progetto Basi di Dati TEMPLATE.toc
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/Progetto Basi di Dati TEMPLATE.toc
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/Progetto Basi di Dati TEMPLATE.toc
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/Progetto Basi di Dati TEMPLATE.toc
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-OUTPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/Progetto Basi di Dati TEMPLATE.toc
+OUTPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/Progetto Basi di Dati TEMPLATE.toc
 INPUT ./Sezioni/analisireqintro.tex
 INPUT ./Sezioni/analisireqintro.tex
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
@@ -162,24 +168,24 @@ INPUT ./Sezioni/raccoltainfo.tex
 INPUT ./Sezioni/raccoltainfo.tex
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbxti10.tfm
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/sprocint.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/sprocint.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/sprocint.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/sprocint.pdf
 INPUT ./pdf/sprocint.pdf
 INPUT ./pdf/sprocint.pdf
 INPUT ./pdf/sprocint.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/sprocint.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/sprocint.pdf
 INPUT ./pdf/sprocint.pdf
 INPUT ./pdf/sprocint.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/sprocint.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/sprocint.pdf
 INPUT ./pdf/sprocint.pdf
 INPUT ./pdf/sprocint.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/sprocint.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/sprocint.pdf
 INPUT ./pdf/sprocint.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/sprocint.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/sprocint.pdf
 INPUT ./pdf/sprocint.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/sprocint.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/sprocint.pdf
 INPUT ./pdf/sprocint.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/sprocint.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/sprocint.pdf
 INPUT ./pdf/sprocint.pdf
 INPUT ./Sezioni/linguaggionaturale.tex
 INPUT ./Sezioni/linguaggionaturale.tex
@@ -193,38 +199,38 @@ INPUT ./Sezioni/specificaop.tex
 INPUT ./Sezioni/specificaop.tex
 INPUT ./Sezioni/individuazentit.tex
 INPUT ./Sezioni/individuazentit.tex
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./immagini/PERSONAGGIOPROPROGETTO.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./immagini/PERSONAGGIOPROPROGETTO.png
 INPUT ./immagini/PERSONAGGIOPROPROGETTO.png
 INPUT ./immagini/PERSONAGGIOPROPROGETTO.png
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmtt12.tfm
 INPUT ./Sezioni/sviluppocompschema.tex
 INPUT ./Sezioni/sviluppocompschema.tex
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./immagini/personaggiodef.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./immagini/personaggiodef.png
 INPUT ./immagini/personaggiodef.png
 INPUT ./immagini/personaggiodef.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./immagini/untentedef.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./immagini/untentedef.png
 INPUT ./immagini/untentedef.png
 INPUT ./immagini/untentedef.png
 INPUT ./Sezioni/raffinsucc.tex
 INPUT ./Sezioni/raffinsucc.tex
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/sbizz.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/sbizz.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/sbizz.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/sbizz.pdf
 INPUT ./pdf/sbizz.pdf
 INPUT ./pdf/sbizz.pdf
 INPUT ./pdf/sbizz.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/sbizz.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/sbizz.pdf
 INPUT ./pdf/sbizz.pdf
 INPUT ./pdf/sbizz.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/sbizz.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/sbizz.pdf
 INPUT ./pdf/sbizz.pdf
 INPUT ./pdf/sbizz.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/sbizz.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/sbizz.pdf
 INPUT ./pdf/sbizz.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/sbizz.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/sbizz.pdf
 INPUT ./pdf/sbizz.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/sbizz.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/sbizz.pdf
 INPUT ./pdf/sbizz.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/sbizz.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/sbizz.pdf
 INPUT ./pdf/sbizz.pdf
 INPUT ./Sezioni/analisiqualit.tex
 INPUT ./Sezioni/analisiqualit.tex
@@ -232,55 +238,55 @@ INPUT ./Sezioni/sezentita.tex
 INPUT ./Sezioni/sezentita.tex
 INPUT ./Sezioni/regolevincolo.tex
 INPUT ./Sezioni/regolevincolo.tex
-OUTPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./Sezioni/vincolinonesp.aux
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./Sezioni/vincolinonesp.tex
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./Sezioni/vincolinonesp.tex
+OUTPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./Sezioni/vincolinonesp.aux
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./Sezioni/vincolinonesp.tex
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./Sezioni/vincolinonesp.tex
 INPUT ./Sezioni/volumieop.tex
 INPUT ./Sezioni/volumieop.tex
 INPUT ./Sezioni/ristrutturazione.tex
 INPUT ./Sezioni/ristrutturazione.tex
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/ristrutturatosenzacarta.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/ristrutturatosenzacarta.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/ristrutturatosenzacarta.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/ristrutturatosenzacarta.pdf
 INPUT ./pdf/ristrutturatosenzacarta.pdf
 INPUT ./pdf/ristrutturatosenzacarta.pdf
 INPUT ./pdf/ristrutturatosenzacarta.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/ristrutturatosenzacarta.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/ristrutturatosenzacarta.pdf
 INPUT ./pdf/ristrutturatosenzacarta.pdf
 INPUT ./pdf/ristrutturatosenzacarta.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/ristrutturatosenzacarta.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/ristrutturatosenzacarta.pdf
 INPUT ./pdf/ristrutturatosenzacarta.pdf
 INPUT ./pdf/ristrutturatosenzacarta.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/ristrutturatosenzacarta.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/ristrutturatosenzacarta.pdf
 INPUT ./pdf/ristrutturatosenzacarta.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/ristrutturatosenzacarta.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/ristrutturatosenzacarta.pdf
 INPUT ./pdf/ristrutturatosenzacarta.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/ristrutturatosenzacarta.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/ristrutturatosenzacarta.pdf
 INPUT ./pdf/ristrutturatosenzacarta.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/ristrutturatosenzacarta.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/ristrutturatosenzacarta.pdf
 INPUT ./pdf/ristrutturatosenzacarta.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./immagini/schemetto.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./immagini/schemetto.png
 INPUT ./immagini/schemetto.png
 INPUT ./immagini/schemetto.png
 INPUT ./Sezioni/elencoideprinc.tex
 INPUT ./Sezioni/elencoideprinc.tex
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/ristrutturatocarta.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/ristrutturatocarta.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/ristrutturatocarta.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/ristrutturatocarta.pdf
 INPUT ./pdf/ristrutturatocarta.pdf
 INPUT ./pdf/ristrutturatocarta.pdf
 INPUT ./pdf/ristrutturatocarta.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/ristrutturatocarta.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/ristrutturatocarta.pdf
 INPUT ./pdf/ristrutturatocarta.pdf
 INPUT ./pdf/ristrutturatocarta.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/ristrutturatocarta.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/ristrutturatocarta.pdf
 INPUT ./pdf/ristrutturatocarta.pdf
 INPUT ./pdf/ristrutturatocarta.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/ristrutturatocarta.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/ristrutturatocarta.pdf
 INPUT ./pdf/ristrutturatocarta.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/ristrutturatocarta.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/ristrutturatocarta.pdf
 INPUT ./pdf/ristrutturatocarta.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/ristrutturatocarta.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/ristrutturatocarta.pdf
 INPUT ./pdf/ristrutturatocarta.pdf
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./pdf/ristrutturatocarta.pdf
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./pdf/ristrutturatocarta.pdf
 INPUT ./pdf/ristrutturatocarta.pdf
 INPUT ./Sezioni/normalizzazione.tex
 INPUT ./Sezioni/normalizzazione.tex
@@ -288,128 +294,128 @@ INPUT ./Sezioni/tradumodellorelaz.tex
 INPUT ./Sezioni/tradumodellorelaz.tex
 INPUT ./Sezioni/defschema.tex
 INPUT ./Sezioni/defschema.tex
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/1.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/1.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/1.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/2.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/2.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/2.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/3.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/3.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/3.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/4.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/4.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/4.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/5.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/5.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/5.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/6.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/6.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/6.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/7.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/7.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/7.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/8.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/8.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/8.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/9.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/9.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/9.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/10.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/10.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/10.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/11.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/11.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/11.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/12.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/12.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/12.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/13.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/13.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/13.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/14.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/14.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/14.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/15.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/15.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/15.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/16.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/16.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/16.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/17.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/17.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/17.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/18.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/18.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/18.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/19.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/19.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/19.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/20.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/20.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/20.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/21.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/21.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/21.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/22.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/22.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/22.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/23.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/23.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/23.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/24.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/24.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/24.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/25.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/25.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/25.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/26.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/26.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/26.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/27.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/27.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/27.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/28.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/28.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/28.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/29.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/29.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/29.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/30.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/30.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/immagini/30.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/1.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/1.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/1.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/2.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/2.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/2.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/3.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/3.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/3.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/4.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/4.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/4.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/5.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/5.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/5.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/6.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/6.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/6.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/7.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/7.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/7.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/8.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/8.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/8.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/9.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/9.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/9.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/10.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/10.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/10.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/11.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/11.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/11.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/12.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/12.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/12.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/13.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/13.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/13.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/14.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/14.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/14.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/15.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/15.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/15.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/16.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/16.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/16.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/17.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/17.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/17.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/18.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/18.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/18.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/19.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/19.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/19.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/20.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/20.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/20.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/21.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/21.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/21.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/22.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/22.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/22.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/23.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/23.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/23.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/24.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/24.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/24.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/25.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/25.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/25.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/26.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/26.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/26.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/27.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/27.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/27.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/28.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/28.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/28.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/29.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/29.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/29.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/30.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/30.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/immagini/30.png
 INPUT ./Sezioni/codificaop.tex
 INPUT ./Sezioni/codificaop.tex
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./immagini/immquery/1-statopersonaggio.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./immagini/immquery/1-statopersonaggio.png
 INPUT ./immagini/immquery/1-statopersonaggio.png
 INPUT ./immagini/immquery/1-statopersonaggio.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./immagini/immquery/2-missioniintraprese.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./immagini/immquery/2-missioniintraprese.png
 INPUT ./immagini/immquery/2-missioniintraprese.png
 INPUT ./immagini/immquery/2-missioniintraprese.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./immagini/immquery/3-missionicompletate.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./immagini/immquery/3-missionicompletate.png
 INPUT ./immagini/immquery/3-missionicompletate.png
 INPUT ./immagini/immquery/3-missionicompletate.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./immagini/immquery/3-abilitaapprese.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./immagini/immquery/3-abilitaapprese.png
 INPUT ./immagini/immquery/3-abilitaapprese.png
 INPUT ./immagini/immquery/3-abilitaapprese.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./immagini/immquery/5-carrelloutente.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./immagini/immquery/5-carrelloutente.png
 INPUT ./immagini/immquery/5-carrelloutente.png
 INPUT ./immagini/immquery/5-carrelloutente.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./immagini/immquery/6-prodottidisponibili.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./immagini/immquery/6-prodottidisponibili.png
 INPUT ./immagini/immquery/6-prodottidisponibili.png
 INPUT ./immagini/immquery/6-prodottidisponibili.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./immagini/immquery/7-prodottiaquistati.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./immagini/immquery/7-prodottiaquistati.png
 INPUT ./immagini/immquery/7-prodottiaquistati.png
 INPUT ./immagini/immquery/7-prodottiaquistati.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./immagini/immquery/9-abilitainsegnate.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./immagini/immquery/9-abilitainsegnate.png
 INPUT ./immagini/immquery/9-abilitainsegnate.png
 INPUT ./immagini/immquery/9-abilitainsegnate.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./immagini/immquery/10-consumati.png
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./immagini/immquery/10-consumati.png
 INPUT ./immagini/immquery/10-consumati.png
 INPUT ./immagini/immquery/10-consumati.png
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/Progetto Basi di Dati TEMPLATE.aux
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./Sezioni/vincolinonesp.aux
-INPUT /home/xn3cr0nx/Dropbox/Università/3° Anno/1° Ciclo/Sistemi Informativi e Basi di Dati/Progetto/esempi/Template Latex Base di dati MMorpg/./Sezioni/vincolinonesp.aux
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/Progetto Basi di Dati TEMPLATE.aux
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./Sezioni/vincolinonesp.aux
+INPUT /home/xn3cr0nx/Code/Git/DatabaseProject/Latex Base di Dati Template/./Sezioni/vincolinonesp.aux
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
