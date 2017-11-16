@@ -79,67 +79,67 @@ Alcune informazioni specifiche sono state allegate, approfondite da fonti estern
     \end{description}
 
 
-\newpage
-%------------------------------------------------
+% \newpage
+% %------------------------------------------------
 
-\subsubsection{Seconda Intervista Lead - Programmer}
-\medskip
+% \subsubsection{Seconda Intervista Lead - Programmer}
+% \medskip
 
-\begin{description}[style=nextline]
-    \item[Ciao sappiamo che siete al lavoro sul lato software del gioco, il nostro interesse \'{e} rivolto ai dati e vorremmo farti alcune domande]Chiedi pure.
+% \begin{description}[style=nextline]
+%     \item[Ciao sappiamo che siete al lavoro sul lato software del gioco, il nostro interesse \'{e} rivolto ai dati e vorremmo farti alcune domande]Chiedi pure.
 
-	\item[Prima potresti descriverci in poche parole il software che state sviluppando?]Il nostro software \'{e} costituito da due parti. Il lato client che contiene tutto ci\`{o} che riguarda la gestione locale del gioco:caratteristiche mondo di gioco, modelli poligonali di personaggi e NPC, interfaccia grafica del giocatore. La parte server che si occupa dello scambio di informazioni con il client di gioco. Quindi tutto ci\`{o} che riguarda il combattimento, la compravendita di oggetti e le interazioni tra i giocatori ad esempio la chat di gioco.
+% 	\item[Prima potresti descriverci in poche parole il software che state sviluppando?]Il nostro software \'{e} costituito da due parti. Il lato client che contiene tutto ci\`{o} che riguarda la gestione locale del gioco:caratteristiche mondo di gioco, modelli poligonali di personaggi e NPC, interfaccia grafica del giocatore. La parte server che si occupa dello scambio di informazioni con il client di gioco. Quindi tutto ci\`{o} che riguarda il combattimento, la compravendita di oggetti e le interazioni tra i giocatori ad esempio la chat di gioco.
 
-	\item[Mi chiedevo se dati come le statistiche di base, l'esperienza ed il livello dei personaggi venissero aggiornati dall'applicazione quando per esempio si consuma qualcosa]Se intendi che lo fa il software si, prima lo faceva l'applicazione sul PC ma questo ci esponeva alle Cheat ora lo fa sempre il software ma sul server.
+% 	\item[Mi chiedevo se dati come le statistiche di base, l'esperienza ed il livello dei personaggi venissero aggiornati dall'applicazione quando per esempio si consuma qualcosa]Se intendi che lo fa il software si, prima lo faceva l'applicazione sul PC ma questo ci esponeva alle Cheat ora lo fa sempre il software ma sul server.
 
-	\item[Ci faresti una breve descrizione dell'interfaccia grafica?] L'interfaccia grafica \'{e} composta, ai margini dal  ritratto del personaggio con il livello, la barra dei punti vita e punti mana. C'\'{e} una mini-mappa e le icone delle abilit\'{a} , sopra di loro troviamo la barra dell'esperienza. Ci sono pulsanti per accedere alla schermata dell'equipaggiamento, la schermata delle missioni e quella relativa all'inventario. Nella prima troviamo tutti gli oggetti indossati dal personaggio; al centro c'\'{e} anche un riepilogo delle statistiche del personaggio. Nella seconda troviamo un riassunto di tutti gli incarichi intrapresi e completati dal personaggio. Infine nello zaino possiamo visualizzare tutti gli oggetti immagazzinati e non utilizzati
+% 	\item[Ci faresti una breve descrizione dell'interfaccia grafica?] L'interfaccia grafica \'{e} composta, ai margini dal  ritratto del personaggio con il livello, la barra dei punti vita e punti mana. C'\'{e} una mini-mappa e le icone delle abilit\'{a} , sopra di loro troviamo la barra dell'esperienza. Ci sono pulsanti per accedere alla schermata dell'equipaggiamento, la schermata delle missioni e quella relativa all'inventario. Nella prima troviamo tutti gli oggetti indossati dal personaggio; al centro c'\'{e} anche un riepilogo delle statistiche del personaggio. Nella seconda troviamo un riassunto di tutti gli incarichi intrapresi e completati dal personaggio. Infine nello zaino possiamo visualizzare tutti gli oggetti immagazzinati e non utilizzati
 
-	\item[Hai detto che il server si occupa della fase di combattimento, precisamente cosa fa?] Il combattimento consiste in una serie di calcoli che viene svolta dal nostro software sul server. Tuttavia il programma ha bisogno di alcuni dati per svolgere i conti, come le statistiche del personaggio e dell'attaccante, sia esso un altro giocatore o un NPC. Le statistiche del personaggio vengono ricavate dall'equipaggiamento che questo indossa,dalle abilit\`{a} utilizzate e da eventuali pozioni utilizzate. Una volta raccolte tutte queste informazioni il software fa la differenza tra l'attacco dell'attaccante e la difesa del suo obiettivo, il risultato viene tolto ai punti vita di quest'ultimo. E far\`{a} la stessa cosa per l'obiettivo contro l'attaccante
+% 	\item[Hai detto che il server si occupa della fase di combattimento, precisamente cosa fa?] Il combattimento consiste in una serie di calcoli che viene svolta dal nostro software sul server. Tuttavia il programma ha bisogno di alcuni dati per svolgere i conti, come le statistiche del personaggio e dell'attaccante, sia esso un altro giocatore o un NPC. Le statistiche del personaggio vengono ricavate dall'equipaggiamento che questo indossa,dalle abilit\`{a} utilizzate e da eventuali pozioni utilizzate. Una volta raccolte tutte queste informazioni il software fa la differenza tra l'attacco dell'attaccante e la difesa del suo obiettivo, il risultato viene tolto ai punti vita di quest'ultimo. E far\`{a} la stessa cosa per l'obiettivo contro l'attaccante
 
-	\item[Il Director ci ha gi\`{a} dato un accenno alle statistiche di base del personaggio, ovvero forza intelligenza e destrezza. Ci chiedevamo se esistesse anche un attacco base nel caso il personaggio non possieda nessun arma.] Si, esiste un attacco base che in sostanza corrisponde all'attacco a mani nude del personaggio. Quando si trova senza armi per\`{o}, il personaggio non pu\`{o} utilizzare abilit\`{a}.
+% 	\item[Il Director ci ha gi\`{a} dato un accenno alle statistiche di base del personaggio, ovvero forza intelligenza e destrezza. Ci chiedevamo se esistesse anche un attacco base nel caso il personaggio non possieda nessun arma.] Si, esiste un attacco base che in sostanza corrisponde all'attacco a mani nude del personaggio. Quando si trova senza armi per\`{o}, il personaggio non pu\`{o} utilizzare abilit\`{a}.
 
-	\item[Ma l'equipaggiamento e le pozioni quali statistiche vanno a influenzare?]Quando parliamo di equipaggiamento parliamo di armi e armature. Le armi vanno ad aumentare l'attacco, possono anche modificare forza,intelligenza e destrezza. Le armature incrementano la difesa e, come le armi, possono modificare forza,intelligenza e destrezza. Mentre le pozioni influenzano una o pi\`{u} statistiche del personaggio, quindi potenzialmente tutte.
+% 	\item[Ma l'equipaggiamento e le pozioni quali statistiche vanno a influenzare?]Quando parliamo di equipaggiamento parliamo di armi e armature. Le armi vanno ad aumentare l'attacco, possono anche modificare forza,intelligenza e destrezza. Le armature incrementano la difesa e, come le armi, possono modificare forza,intelligenza e destrezza. Mentre le pozioni influenzano una o pi\`{u} statistiche del personaggio, quindi potenzialmente tutte.
 
-	\item[Ci chiedevamo se fosse necessario salvare la posizione dei personaggi e gli NPC?]Si,\'{e} molto importante. In questa maniera quando l'utente effettua il logout oppure il server va in crash, al successivo login potr\`{a} ricominciare dove si trovava. Mentre gli NPC ripartiranno da posizione iniziale che decidiamo noi; che comunque sia deve essere memorizzata
+% 	\item[Ci chiedevamo se fosse necessario salvare la posizione dei personaggi e gli NPC?]Si,\'{e} molto importante. In questa maniera quando l'utente effettua il logout oppure il server va in crash, al successivo login potr\`{a} ricominciare dove si trovava. Mentre gli NPC ripartiranno da posizione iniziale che decidiamo noi; che comunque sia deve essere memorizzata
 
-	\item[Ci puoi spiegare come vengono trattate le missioni dal lato software?]Il software si limita a contare gli oggetti missione raccolti dal giocatore o i mostri uccisi. Inoltre manda un messaggio a schermo quando la missione viene completata. Anche qui risulta importante salvare il progresso e il completamento delle missioni per lo stesso discorso delle posizioni.
+% 	\item[Ci puoi spiegare come vengono trattate le missioni dal lato software?]Il software si limita a contare gli oggetti missione raccolti dal giocatore o i mostri uccisi. Inoltre manda un messaggio a schermo quando la missione viene completata. Anche qui risulta importante salvare il progresso e il completamento delle missioni per lo stesso discorso delle posizioni.
 
-	\item[Le missioni possono avere pi\`{u} obiettivi?]Si. Possono chiedere di uccidere diverse variet\`{a} di mostri oppure di raccogliere svariati oggetti.
+% 	\item[Le missioni possono avere pi\`{u} obiettivi?]Si. Possono chiedere di uccidere diverse variet\`{a} di mostri oppure di raccogliere svariati oggetti.
 
-	\item[Quali oggetti posso trovare nel bottino di un NPC ostile?]Puoi trovare equipaggiamento,pozioni e anche oggetti missione se il mostro \'{e} un obiettivo di una missione.
+% 	\item[Quali oggetti posso trovare nel bottino di un NPC ostile?]Puoi trovare equipaggiamento,pozioni e anche oggetti missione se il mostro \'{e} un obiettivo di una missione.
 
-	\item[Posso avere oggetti uguali nel mio inventario?]Certo che si. Quando si trova un oggetto che si possiede gi\`{a} questi verranno accumulati
+% 	\item[Posso avere oggetti uguali nel mio inventario?]Certo che si. Quando si trova un oggetto che si possiede gi\`{a} questi verranno accumulati
 
-	\item[Gli NPC e gli oggetti hanno un livello?]Si lo hanno. Il livello degli NPC serve a far capire al giocatore se l'avversario \'{e} troppo forte o pure no. Mentre il livello negli oggetti viene inserito per un problema di bilanciamento. L'utilizzo di un oggetto molto forte a livelli basi andrebbe ad rovinare l'esperienza di gioco dell'utente
+% 	\item[Gli NPC e gli oggetti hanno un livello?]Si lo hanno. Il livello degli NPC serve a far capire al giocatore se l'avversario \'{e} troppo forte o pure no. Mentre il livello negli oggetti viene inserito per un problema di bilanciamento. L'utilizzo di un oggetto molto forte a livelli basi andrebbe ad rovinare l'esperienza di gioco dell'utente
 
-	\item[Parlando con il game director abbiamo capito che gli NPC amichevoli possono assegnare incarichi,vendere oggetti o insegnare abilit\`{a}. Possono svolgere pi\`{u} di una funzione alla volta?]Si,certo.
+% 	\item[Parlando con il game director abbiamo capito che gli NPC amichevoli possono assegnare incarichi,vendere oggetti o insegnare abilit\`{a}. Possono svolgere pi\`{u} di una funzione alla volta?]Si,certo.
 
-	\item[Se acquisto un oggetto da un NPC, poi lo rivendo allo stesso prezzo?]No, lo rivenderai ad un prezzo inferiore. Ogni oggetto avrà  il suo prezzo di acquisto e di vendita
+% 	\item[Se acquisto un oggetto da un NPC, poi lo rivendo allo stesso prezzo?]No, lo rivenderai ad un prezzo inferiore. Ogni oggetto avrà  il suo prezzo di acquisto e di vendita
 
-	\item[Rimanendo nel settore della compravendita. \'{E} necessario tenere conto delle varie transazioni tra Giocatore-NPC e Giocatore-Giocatore?]Si, perch\'{e} offriamo al giocatore la possibilit\`{a} di annullare una transazione con un NPC. \'{E} possibile annullare uno scambio con un giocatore solo se vi è stata una truffa. In quel caso sar\`{a} un moderatore del gioco che si occuperà  della cosa quindi pu\`{o} far comodo sapere quando questa fosse avvenuta. Non è comunque necessario tenere traccia di tutte le transazione della vita di un personaggio, bastano quelle di una sessione di gioco.
+% 	\item[Rimanendo nel settore della compravendita. \'{E} necessario tenere conto delle varie transazioni tra Giocatore-NPC e Giocatore-Giocatore?]Si, perch\'{e} offriamo al giocatore la possibilit\`{a} di annullare una transazione con un NPC. \'{E} possibile annullare uno scambio con un giocatore solo se vi è stata una truffa. In quel caso sar\`{a} un moderatore del gioco che si occuperà  della cosa quindi pu\`{o} far comodo sapere quando questa fosse avvenuta. Non è comunque necessario tenere traccia di tutte le transazione della vita di un personaggio, bastano quelle di una sessione di gioco.
 
-	\item[Ci sono delle operazioni che dovete compiere periodicamente sul database?] Certo, ogni mese rilasciamo delle patch correttive per bilanciare le meccaniche di gioco. Quindi andiamo a regolare le statistiche di oggetti,NPC e abilità.
+% 	\item[Ci sono delle operazioni che dovete compiere periodicamente sul database?] Certo, ogni mese rilasciamo delle patch correttive per bilanciare le meccaniche di gioco. Quindi andiamo a regolare le statistiche di oggetti,NPC e abilità.
 
-    \end{description}
+%     \end{description}
 
-\newpage
+% \newpage
 
-\subsubsection{Terza Intervista - Site Manager}
-
-
-Abbiamo intervistato il manager di un sito che fornisce l'accesso al proprio gioco di ruolo e gestisce i giocatori e i loro acquisti e per acquisire conoscenze in merito alle modalità di gestione della parte esterna al gioco
-
-\begin{description}[style=nextline]
-    \item[Ciao, qual è il tuo ruolo nell?amministrazione del gioco?]Io mi occupo principalmente del settore marketing e gestisco l?interfaccia dell?utente con questo settore, in pratica definisco il business plan del gioco e come i giocatori vi entrano in contatto e eventualmente spendono soldi
-
-	\item[Sappiamo che ci sono diversi modi di gestire un  gioco online, qual è il vostro piano?]Abbiamo scelto un piano ?pay to play?, ovvero gli utenti devono pagare una quota mensile per avere accesso ai server di gioco. Inoltre l'utente è tenuto ad acquistare la copia fisica o digitale del gioco e le sue eventuali espansioni per poter iniziare a giocare. Al fine di aumentare gli introiti abbiamo pensato di introdurre un item shop che mette a disposizione dei giocatori dei pacchetti di oggetti(equipaggiamento,consumabili). Questi oggetti vanno ad influenzare solamente l'estetica del personaggio, quindi non è possibile acquisire vantaggi rispetto ad altri giocatori come nei ?free to play
-
-	\item[Cosa sono le espansioni?]Le espansioni sono delle aggiunte al gioco di base che possono essere nuove missioni nuovi, nuove abilità, nuovi oggetti, nuovi NPC. Rilasciamo nuove espansioni ogni 3 anni per invogliare i nostri utenti a rimanere sul gioco
-
-	\item[Cosa puoi dirci invece della parte di gestione del sito?]Il sito \'{e} il primo luogo dove l'utente si reca per acquisire informazioni riguardanti il gioco ed eventualmente iscriversi. Una volta iscritto pu\`{o} collegarsi al nostro store online dove acquista i nostri prodotti. Tutto ci\'{o} comporta il tenere traccia di ogni giocatore, con i suoi dati utente, di fatturazione e delle sue carte di credito, nonch\'{e} dei suoi acquisti che, come nel caso della sottoscrizione possono avere una scadenza. E' necessario tenere traccia delle transazioni con gli utenti per calcolare le entrate con cui paghiamo il mantenimento dei server, che paghiamo mensilmente, nonch\'{e} i nostri stipendi.
+% \subsubsection{Terza Intervista - Site Manager}
 
 
-	\item[E come gestisci questa mole di dati?]Abbiamo una base di dati che poi è la stessa a cui si appoggia il gioco, le nostre operazioni tuttavia sono  simili a quelle di un e-commerce, l?utente accede al sito e immette i suoi dati e fa i suoi acquisti, noi ci occupiamo di controllare questi dati immessi in caso di errori, aggiungiamo offerte e codici promozionali, revisioniamo i conti, il gioco si occupa dei pacchetti oggetto che un utente acquista che diventano di proprietà dei suoi giocatori.
+% Abbiamo intervistato il manager di un sito che fornisce l'accesso al proprio gioco di ruolo e gestisce i giocatori e i loro acquisti e per acquisire conoscenze in merito alle modalità di gestione della parte esterna al gioco
+
+% \begin{description}[style=nextline]
+%     \item[Ciao, qual è il tuo ruolo nell?amministrazione del gioco?]Io mi occupo principalmente del settore marketing e gestisco l?interfaccia dell?utente con questo settore, in pratica definisco il business plan del gioco e come i giocatori vi entrano in contatto e eventualmente spendono soldi
+
+% 	\item[Sappiamo che ci sono diversi modi di gestire un  gioco online, qual è il vostro piano?]Abbiamo scelto un piano ?pay to play?, ovvero gli utenti devono pagare una quota mensile per avere accesso ai server di gioco. Inoltre l'utente è tenuto ad acquistare la copia fisica o digitale del gioco e le sue eventuali espansioni per poter iniziare a giocare. Al fine di aumentare gli introiti abbiamo pensato di introdurre un item shop che mette a disposizione dei giocatori dei pacchetti di oggetti(equipaggiamento,consumabili). Questi oggetti vanno ad influenzare solamente l'estetica del personaggio, quindi non è possibile acquisire vantaggi rispetto ad altri giocatori come nei ?free to play
+
+% 	\item[Cosa sono le espansioni?]Le espansioni sono delle aggiunte al gioco di base che possono essere nuove missioni nuovi, nuove abilità, nuovi oggetti, nuovi NPC. Rilasciamo nuove espansioni ogni 3 anni per invogliare i nostri utenti a rimanere sul gioco
+
+% 	\item[Cosa puoi dirci invece della parte di gestione del sito?]Il sito \'{e} il primo luogo dove l'utente si reca per acquisire informazioni riguardanti il gioco ed eventualmente iscriversi. Una volta iscritto pu\`{o} collegarsi al nostro store online dove acquista i nostri prodotti. Tutto ci\'{o} comporta il tenere traccia di ogni giocatore, con i suoi dati utente, di fatturazione e delle sue carte di credito, nonch\'{e} dei suoi acquisti che, come nel caso della sottoscrizione possono avere una scadenza. E' necessario tenere traccia delle transazioni con gli utenti per calcolare le entrate con cui paghiamo il mantenimento dei server, che paghiamo mensilmente, nonch\'{e} i nostri stipendi.
+
+
+% 	\item[E come gestisci questa mole di dati?]Abbiamo una base di dati che poi è la stessa a cui si appoggia il gioco, le nostre operazioni tuttavia sono  simili a quelle di un e-commerce, l?utente accede al sito e immette i suoi dati e fa i suoi acquisti, noi ci occupiamo di controllare questi dati immessi in caso di errori, aggiungiamo offerte e codici promozionali, revisioniamo i conti, il gioco si occupa dei pacchetti oggetto che un utente acquista che diventano di proprietà dei suoi giocatori.
 
 \end{description}
 
