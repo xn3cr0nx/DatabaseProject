@@ -1,63 +1,37 @@
 
-Dopo aver analizzato le interviste effettuate e il diagramma  dei processi interni è stato possibile stabilire gli obbiettivi che  effettivamente vorremmo che la nostra base di dati raggiunga.
-Lo scopo prefissato è pertanto realizzare una base di dati che sia di supporto a un gioco di ruolo online.
-\\
-Tale gioco è diviso in due parti: 
-Il lato client che viene scaricato dall'utente sul PC e  che contiene il software di gioco; 
-Il lato server  che si occupa di inviare/ricevere dati dal client. 
-\\
-La nostra base di dati è fondamentale per il funzionamento del gioco, quindi deve coesistere con esso per tutta la sua durata, garantire efficienza e risultare flessibile per successive aggiunte o modifiche delle modalità di gioco.
-\\
-Si dovranno gestire i dati relativi agli utenti, ai personaggi da essi creati, agli NPC , agli oggetti di gioco, alle abilità, e alle missioni.
-Si necessita inoltre di memorizzare:
+Dopo aver analizzato le interviste effettuate e i documenti allegati, è stato possibile stabilire gli obiettivi che effettivamente vorremmo che la nostra base di dati raggiunga.
+Il nostro scopo è realizzare un database che organizzi i dati di una azienda che vende prodotti e servizi a \hl{pubbliche amministrazioni} partecipando a gare pubbliche.
 
-\begin{itemize}
-\item	I prodotti che l'utente ha acquistato con valuta reale; 
-\item	Le transazioni , riguardanti la compravendita di oggetti, che coinvolgono personaggi e/o NPC;
-\item	Gli oggetti che il personaggio ha comprato;
-\item	Gli oggetti che il personaggio indossa;
-\item	Le abilità che il personaggio ha appreso;
-\item	Le missioni che il personaggio ha accettato e lo stato delle stesse.
-\end{itemize}
+% Pensiamo che la nostra base dati duri almeno X anni, perchè bla bla ..
 
-Per quel che riguarda gli \hl{utenti} sar\`{a} necessario sapere  l'user name e la password con i quali si sono iscritti al sito di gioco e i  dati relativi alla ragione sociale quindi nome, cognome, indirizzo e indirizzo e-mail. Si dovr\`{a} inoltre immagazzinare il codice di una o pi\`{u} carte di credito dell' utente, indispensabili per il  pagamento della sottoscrizione mensile o di eventuali espansioni o pacchetti oggetto.
+\noindent
+\newline
+Quindi si dovranno gestire i dati relativi a gare pubbliche del mercato elettronico, ai clienti (pubbliche amministrazioni), ai fornitori esterni, ai prodotti, ai servizi offerti, alle stipule di contratto.
 
-Le sottoscrizioni e i pacchetti oggetti, come le espansioni saranno definite con le relative caratteristiche come livello massimo per le espansioni, la durata per le sottoscrizioni, e dovranno essere elencati gli oggetti dei vari pacchetti oggetti.\\
+\noindent
+\newline
+Siamo interessati a tenere traccia di tutte le \hl{gare pubbliche} a cui si partecipa (sia vinte, sia perse), per verificare la "forza economica" dell'azienda sul mercato e per conoscere i prezzi di vendita dei concorrenti.
+Inoltre vogliamo tenere traccia dei prodotti e dei servizi più venduti dall'azienda stessa, per scopi statistici.
 
-Ogni utente pu\'{o} poi creare pi\`{u} \hl{personaggi}. Di questi si necessita conoscere il nome che deve essere univoco e composto solamente da caratteri letterali, la razza che l'utente pu\`{o} scegliere fra elfo, nano e umano e la classe di gioco che deve essere una fra arciere, guerriero e mago, tenendo per\`{o} conto  che un nano potr\`{a} essere solo un arciere o un guerriero, un elfo potr\`{a} essere solo un arciere o un mago mentre un umano potr\`{a} sceglier fra  tutte e tre le opzioni. L'utente deve inoltre scegliere alcuni attributi fisici quali capelli, volto, barba e colore della pelle. Con la creazione al personaggio vengono assegnati un livello e dei punti esperienza. Vengono anche  fissati  alcune parametri o per meglio dire  \hl{statistiche} quali punti vita, punti mana, punti d'attacco, punti di difesa, forza, intelligenza e destrezza. Tali attributi influiscono sull'esito delle battaglie pertanto il giocatore avr\'{a} interesse, col progredire del gioco, a cercare di incrementarli al massimo. Un modo per far ci\'{o} consiste nell'acquisire pi\`{u} esperienza possibile. Infatti raggiunto un determinato quantitativo di \hl{esperienza} il personaggio sale di \hl{livello} e a ci\'{o} segue un aumento delle statistiche precedentemente citate. 
-Di ogni personaggio sar\'{a} poi importante registrare la posizione sulla mappa nella quale si trova quando l'utente decide di uscire dal gioco in modo tale che da quella stessa posizione si possa poi riprendere quando il giocatore ri-effettuer\'{a} l'accesso.
-\\
-\\
-Col naturale svolgersi  del gioco un personaggio  sarà portato a interagire con degli \hl{NPC (Non Playable Character)}. Questi sono personaggi gestiti dal computer e si distinguono in due grandi famiglie \hl{NPC amichevoli} e \hl{NPC ostili}. I primi sono in grado di aiutare il giocatore nel combattimento, di vendere o acquistare determinati oggetti o abilità al o dal personaggio e di assegnargli missioni. I secondi invece hanno lo scopo di combattere contro i personaggi.
-Gli NPC hanno quindi un nome, un livello, una posizione nella quale è possibile trovarli dei punti di attacco e dei punti di difesa. Hanno poi a causa della distinzione precedentemente fatta alcune peculiarità dipendenti dal fatto che  siano essi amichevoli o ostili. Gli NPC ostili se sconfitti ci daranno una ricompensa sia in oggetti sia in esperienza che in  denaro.\\
+\noindent
+\newline
+Per quanto riguarda le gare pubbliche, si vogliono inserire dati relativamente ai prodotti/servizi richiesti, al tetto massimo di spesa, all'\hl{aggiudicatario della gara}, e al prezzo proposto dall'aggiudicatario della gara.
 
-Nel gioco è inserita una valuta fittizia l'oro il cui scopo è quello di permettere al personaggio di comperare oggetti.\\
+\noindent
+\newline
+Relativamente ai \hl{clienti}, che nel nostro caso sono solo pubbliche amministrazioni, si registreranno dati relativi alla ragione sociale e recapiti, in particolare verrà inserito il codice PA associato ad ogni cliente.
 
-Gli \hl{oggetti} si suddividono  in tre grandi categorie: 
-\begin{itemize}
-\item	oggetti equipaggiamento;
-\item	oggetti consumabili;
-\item	oggetti missione.
-\end{itemize}
+\noindent
+\newline
+Riguardo ai \hl{fornitori} dell'azienda, si vogliono inserire dati relativi alla ragione sociale, i recapiti, il \hl{catalogo prodotti} e la tabella per il calcolo delle \hl{spese di spedizione}.
+Di ogni \hl{prodotto} vogliamo conoscere il codice prodotto, le caratteristiche generali (per poter partecipare a gare in cui non sono richiesti prodotti specifici), il prezzo (relativo a un dato fornitore), il peso e le dimensioni per il calcolo dei costi di spedizione.
 
-Gli \hl{oggetti equipaggiamento} servono nella fase di battaglia e per essere utilizzati hanno bisogno di essere indossati dal personaggio. Essi si dividono in armi: spade, asce, mazze, bastoni, bacchette, archi, balestre; e in armature: stivali, guanti, corazza, elmo. Le armature hanno tutte un ulteriore classificazione. A seconda del peso infatti si possono distinguere : armature leggere ,utilizzabili solo dagli arcieri, armature medie, utilizzabili solo dai maghi  e armature pesanti, utilizzabili solo dai guerrieri. Tutti gli equipaggiamenti hanno un nome, una descrizione  e  un livello che indica il livello minimo che deve avere il personaggio affinch\'{e} possa usare l'oggetto. Posseggono per di pi\`{u} dei punti d'attacco, dei punti di difesa, forza, destrezza e intelligenza  questi attributi in fase di battaglia si sommano a quelli del personaggio influendone sull'esito. Questi  oggetti, possono essere ottenuti acquistandoli da NPC o da altri personaggi o come ricompensa di  qualche missione e possono  essere venduti a NPC o a altri personaggi, hanno quindi un prezzo di acquisto e uno di vendita (solitamente inferiore).
-\\
+\noindent
+\newline
+Relativamente ai \hl{servizi}, si vuole tenere traccia della lista dei servizi offerti, e, dove possibile, del costo di una prestazione standard (ad esempio: formattazione di 1 PC: 50€, sostituzione di 1 hard disk: 35€) (rivedere meglio questo punto)
 
-Gli \hl{oggetti consumabili} si dividono in pozioni curative e pozioni potenzianti. L'utilizzo permette di recuperare punti vita o punti mana per quel che riguarda le prime e di aumentare per un determinato periodo di tempo tutte o alcune statistiche le seconde. Anche i consumabili come gli equipaggiamento hanno un nome una descrizione e un livello. Identiche agli equipaggiamento sono le modalità di acquisto o vendita.\\
+\noindent
+\newline
+Per ognuno dei \hl{contratti} stipulati, si vuole conoscere la controparte con cui questi vengono stipulati (pubblica amministrazione), la data, la tipologia (vendita prodotto, assistenza), l'importo, e, nel caso di contratti di assistenza on center, la data di scadenza del contratto.
 
-Gli \hl{oggetti missione} hanno un nome e una descrizione. All'interno del gioco hanno l'unica funzione di dover essere recuperati al fine di poter completare una missione (vedi missioni). Essi quindi non possono essere ne acquistati ne tanto meno indossati o usati.\\
-Tutti gli oggetti una volta ottenuti finiscono nello zaino.\\
-
-Ruolo di grande rilevanza durante la fase di battaglia è ricoperto dalle \hl{abilità}.
-Ovvero tecniche speciali che per essere utilizzate hanno bisogno di punti mana e che  incrementano il valore di una o pi\`{u} statistiche del personaggio quali attacco, difesa, forza, destrezza e intelligenza. Ogni abilit\`{a} pu\`{o} essere utilizzata solo da personaggi aventi determinate classi di gioco e che hanno raggiunto determinati valori di livello.
-\\
-									
-Come precedentemente accennato ogni personaggio pu\'{o} intraprendere una o pi\'{u} \hl{missioni} ,fino a un numero massimo stabilito dal gioco.
-Le missioni , che vengono assegnate da un NPC, hanno un nome, una descrizione, e un livello. (inteso come livello che il personaggio deve avere per poter accettare la missione)
-Abbiamo due tipi di missione: le missioni esplorazione e  le missioni combattimento. Le missioni esplorazione  consistono nel visitare determinate zone della mappa o recuperare determinati oggetti missione. Le missioni  combattimento riguardano l'abbattimento o il recupero di uno o pi\'{u} oggetti a seguito di una battaglia con un NPC ostile.
-Qualsiasi  missione ha una \hl{ricompensa} sia in oro che in punti esperienza e talvolta anche in oggetti e per ottenerla \'{e} necessario, una volta raggiunti gli obiettivi della missione, ritornare dal NPC che la missione l'ha assegnata.\\
-
-Si è detto che bisogna tener traccia delle \hl{transazioni} effettuate  dal personaggio. In particolare si vuole sapere quale oggetto viene acquistato o venduto, chi è l'acquirente e chi invece il venditore.
-Tendendo presente inoltre che queste informazioni andranno perse una volta effettuato il logout da parte dell'utente.
-
-\newpage 
+\newpage
