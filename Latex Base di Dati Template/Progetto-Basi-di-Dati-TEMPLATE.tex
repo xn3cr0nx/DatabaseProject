@@ -86,7 +86,6 @@
 	\input{./Sezioni/analisireqintro}
 
 
-
 		\subsection{Raccolta Informazioni} % Sotto-sezione
 
 		\input{./Sezioni/raccoltainfo}
@@ -116,64 +115,71 @@
 
 		\input{./Sezioni/specificaop}
 
-% 		\newpage
-% %------------------------------------------------
-% 	\section{Progettazione Concettuale}
-%
-%
-% 		\subsection{Strategia di Progetto }
-% 			Svilupperemo lo schema concettuale con un approccio misto, cio� partiremo da dei concetti astratti principali che descrivono le specifiche in modo blando e andremo a raffinarli (strategia top-down), procederemo nella raffinazione fino ad arrivare ad un soddisfacente grado di dettaglio per poi correggere lo schema secondo una strategia inside-out.
-%
-%
-% 		%------------------------------------------------
-% 		\subsection{Individuazione Entit\'{a} e Relazioni Principali}
-%
-% 		\input{./Sezioni/individuazentit}
-%
-% 		%------------------------------------------------
-% 		\begin{landscape}
-%
-% 		\subsection{Scheletro dello Schema ER}
-% 			Possiamo unire le Componenti principali nel seguente schema scheletro:
-%
-% 			\begin{figure}[H]
-% 			\centering
-% 			\includegraphics[width=\linewidth]{./immagini/SCHEMASCHELETRO.png}
-% 		\end{figure}
-%
-% 		\end{landscape}
-%
-% \newpage
-% 		%------------------------------------------------
-% 		\subsection{Sviluppo delle Componenti dello Schema}
-%
-% 		\input{./Sezioni/sviluppocompschema}
-%
-% 			\subsubsection{Raffinamenti successivi}
-%
-% 				\input{./Sezioni/raffinsucc}
-%
-% 		%------------------------------------------------
-% 		\subsection{Analisi Qualitativa dello Schema ER}
-%
-% 		\input{./Sezioni/analisiqualit}
-%
-% 		%------------------------------------------------
-% 		\subsection{Dizionario Dei Dati}
-%
-% 			\subsubsection{Entit�}
-%
-% 				\input{./Sezioni/sezentita}
-% 		%------------------------------------------------
-% 		\subsection{Regole Di Vincolo}
-%
-% 		\input{./Sezioni/regolevincolo}
-% 		%------------------------------------------------
-% 		\subsection{Vincoli Non Esprimibili}
-%
-% 		\include{./Sezioni/vincolinonesp}
-%
-% %------------------------------------------------
+		\newpage
+		
+%------------------------------------------------
+	\section{Progettazione Concettuale}
+
+
+		\subsection{Strategia di Progetto }
+			Analizzando nel loro insieme l'inservista e lo schema delle azioni e dei processi interni, abbiamo potuto estrapolare il flusso aziendale, così da capire esattamente le problematiche e le aree in cui intervenire, implementando la nostra base di dati.\newline \newline
+			In questo modo abbiamo potuto concepire l'approccio migliore da seguire, sfruttando un approccio misto tra il TOP-DOWN, e il BOTTOM-UP, sbilanciato però verso il primo dei due. Le  fasi sono state:
+			\begin{enumerate}
+			\item Analisi intervista e processi interni per l'analisi generale del flusso aziendale
+			\item Creazione schema scheletro composto dalle entità principali
+			\item Approccio TOP-DOWN: sviluppo dettagliato delle principali entità presenti
+			\item Approccio BOTTOM-UP: generalizzazione e accorpamento delle varie entità nello schema completo
+			\end{enumerate}
+
+		%------------------------------------------------
+		\subsection{Individuazione Entit\'{a} e Relazioni Principali}
+
+		\input{./Sezioni/individuazentit}
+
+		%------------------------------------------------
+		\begin{landscape}
+
+		\subsection{Scheletro dello Schema ER}
+			Possiamo unire le Componenti principali nel seguente schema scheletro:
+
+			\begin{figure}[H]
+			\centering
+			\includegraphics[width=\linewidth]{./immagini/SCHEMASCHELETRO.png}
+		\end{figure}
+
+		\end{landscape}
+
+\newpage
+		%------------------------------------------------
+		\subsection{Sviluppo delle Componenti dello Schema}
+
+		\input{./Sezioni/sviluppocompschema}
+
+			\subsubsection{Raffinamenti successivi}
+
+				\input{./Sezioni/raffinsucc}
+
+		%------------------------------------------------
+		\subsection{Analisi Qualitativa dello Schema ER}
+
+		\input{./Sezioni/analisiqualit}
+
+		%------------------------------------------------
+		\subsection{Dizionario Dei Dati}
+
+			\subsubsection{Entit�}
+
+				\input{./Sezioni/sezentita}
+		%------------------------------------------------
+		\subsection{Regole Di Vincolo}
+
+		\input{./Sezioni/regolevincolo}
+		%------------------------------------------------
+		\subsection{Vincoli Non Esprimibili}
+
+		\include{./Sezioni/vincolinonesp}
+
+%------------------------------------------------
 %
 % 	\section{Progettazione Logica}
 %
