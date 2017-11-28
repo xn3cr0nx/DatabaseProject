@@ -1,11 +1,18 @@
 
 \begin{itemize}
-\item Gli NPc insegnanti insegna no le abilit\'{a} scelte per loro dal programmatore
-\item Non tutti gli ogggetti possono essere venduti da un NPC ma ogni oggetto pu\`{o} essere venduto a un npc
-\item La durata della sottoscrizione \'{e} in mesi
-\item La durata dei consumabili \'{e} minuti
-\item Il livello del personaggio, di defailt \`{e} 1
-\item Le armi non hanno peso
-
+\item Gli attributi "Emittente" e "Destinatario" relativi all'entità "Fattura" possono essere "Rimini Service" oppure l'attributo "Nome" di "PA, Persona o Azienda". "Emittente" e "Destinatario" devono essere diversi.
+\item "Tipologia" relativo a "Servizio" può essere "Riparazione software", "Sostituzione componente", "Configurazione programma", "Formattazione pc", "Installazione rete WiFi"
+\item "Colore" relativo alle entità "Cartuccia d'inchiostro" e "Toner" può essere "Nero", "Giallo", "Ciano", "Magenta"
+\item "Tecnologia" relativo all'entità "Stampante" può essere "Inkjet" o "Laser"
+\item "Formato massimo" relativo all'entità "Stampante" può essere "A3", "A4", "A5"
+\item "Connettività" relativo all'entità "Stampante" può essere "USB", "WiFi" o una combinazione di questi
+\item "Risoluzione" relativo all'entità "Monitor" può essere "800x600", "1024x768", "1280x720", "1280x800", "1440x900", "1650x1080", "1920x1080", "1920x1200", "2560x1600"
+\item "Sistema operativo" relativo alle entità "Pc Desktop" e "Notebook" può essere "Windows 10", "Windows 7", "Mac OS X", "Linux", "Free Dos"
+\item "Data scadenza" relativo all'entità "Fattura" deve essere maggiore di "Data emissione" relativo sempre all'entità "Fattura"
+\item "Data emissione" relativo all'entità "Fattura" deve essere maggiore o uguale a "Data" relativo all'entità "Contratto"
+\item "Data termine offerte" relativo all'entità "Gara pubblica" deve essere maggiore di "Data inizio offerte" relativo sempre all'entità "Gara pubblica"
+\item "Aggiudicatario" relativo all'entità "Gara pubblica", nel caso la vincitrice della gara sia l'azienda in questione, deve essere "Rimini Service"
+\item "Quantità" relativo alle relationship "Elencazione acquisto" e "Elencazione vendita" deve essere maggiore di zero.
+\item "Prezzo" relativo alla relationship "Elencazione vendita" deve essere maggiore di zero.
 
 \end{itemize}
