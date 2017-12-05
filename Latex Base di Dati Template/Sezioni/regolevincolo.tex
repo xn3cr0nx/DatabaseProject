@@ -1,6 +1,7 @@
 
 \begin{itemize}
 \item Gli attributi "Emittente" e "Destinatario" relativi all'entità "Fattura" possono essere "Rimini Service" oppure l'attributo "Nome" di "PA, Persona o Azienda". "Emittente" e "Destinatario" devono essere diversi.
+\item "Data scadenza" relativo all'entità "Fattura" deve essere maggiore di "Data emissione" relativo sempre all'entità "Fattura"
 \item "Tipologia" relativo a "Servizio" può essere "Riparazione software", "Sostituzione componente", "Configurazione programma", "Formattazione pc", "Installazione rete WiFi"
 \item "Colore" relativo alle entità "Cartuccia d'inchiostro" e "Toner" può essere "Nero", "Giallo", "Ciano", "Magenta"
 \item "Tecnologia" relativo all'entità "Stampante" può essere "Inkjet" o "Laser"
@@ -8,11 +9,9 @@
 \item "Connettività" relativo all'entità "Stampante" può essere "USB", "WiFi" o una combinazione di questi
 \item "Risoluzione" relativo all'entità "Monitor" può essere "800x600", "1024x768", "1280x720", "1280x800", "1440x900", "1650x1080", "1920x1080", "1920x1200", "2560x1600"
 \item "Sistema operativo" relativo alle entità "Pc Desktop" e "Notebook" può essere "Windows 10", "Windows 7", "Mac OS X", "Linux", "Free Dos"
-\item "Data scadenza" relativo all'entità "Fattura" deve essere maggiore di "Data emissione" relativo sempre all'entità "Fattura"
-\item "Data emissione" relativo all'entità "Fattura" deve essere maggiore o uguale a "Data" relativo all'entità "Contratto"
-\item "Data termine offerte" relativo all'entità "Gara pubblica" deve essere maggiore di "Data inizio offerte" relativo sempre all'entità "Gara pubblica"
+\item "Data termine offerte" relativo all'entità "Richieste sul MEPA" deve essere maggiore di "Data inizio offerte" relativo sempre all'entità "Richieste sul MEPA"
 \item "Aggiudicatario" relativo all'entità "Gara pubblica", nel caso la vincitrice della gara sia l'azienda in questione, deve essere "Rimini Service"
-\item "Quantità" relativo alle relationship "Elencazione acquisto" e "Elencazione vendita" deve essere maggiore di zero.
-\item "Prezzo" relativo alla relationship "Elencazione vendita" deve essere maggiore di zero.
+\item "Quantità" relativo alle relationship "Stipulazione acquisto" e "Stipulazione vendita" deve essere maggiore di zero.
+\item "Prezzo" relativo alla relationship "Catalogo" deve essere maggiore di zero.
 
 \end{itemize}
