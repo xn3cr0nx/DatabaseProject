@@ -199,39 +199,47 @@ Alla luce della di quanto visto precedentemente abbiamo riscontrato un aumento d
 
 \subsubsection{Eliminazione Delle Gerarchie}
 
-Nel nostro schema concettuale sono presenti 3 generalizzazioni. Le Entità coinvolte sono Prodotto, oggetto ed NPC abbiamo deciso di procedere nel seguente modo:
+Nel nostro schema concettuale sono presenti 5 generalizzazioni. Le Entità coinvolte sono "PA, Azienda o Persona", "Cliente", "Richiesta sul Mepa", "Prodotto o servizio", "Prodotto".
+\newline
+Abbiamo deciso di procedere nel seguente modo:
 
+\paragraph{PA, Azienda o Persona}
+Per quanto riguarda l'entità PA, Azienda o Persona, abbiamo scelto di accorpare il genitore della generalizzazione nelle entità figlie. Questo perchè i clienti e i fornitori hanno rapporti con l'azienda piuttosto diversi tra loro, quindi la separazione comporta una suddivisione concettuale che migliora la chiarezza dello schema.
+\paragraph{Cliente}
+Anche per l'entità Cliente si è optato di eliminare il genitore e mantenere le entità figlie, in quanto l'entità padre non ha nessun attributo e quindi la sua rimozione semplifica lo schema.
+\paragraph{Richiesta sul Mepa}
+In merito all'entità Richiesta sul Mepa, si è scelto l'accorpamento del genitore della generalizzazione nelle entità figlie. Si avrebbe potuto accorpare le entità figlie nel genitore, utilizzando degli attributi che possono assumere il valore NULL per poter distinguire appunto le due entità, ma ci sembra più opportuno mantenere distinte le entità Gara pubblica e Trattativa diretta in quanto esse sono, nella realtà pratica, due concetti logicamente separati. Il mantenimento della loro suddivisione permette quindi una maggior comprensibilità dello schema.
+\paragraph{Prodotto o Servizio}
+Per quanto riguarda l'entità Prodotto o Servizio, abbiamo deciso di mantenere le entità figlie ed eliminare il genitore, in quanto ogni operazione che coinvolge il padre comprende almeno uno dei figli.
 \paragraph{Prodotto}
-Per il prodotto abbiamo mantenuto i Figli e il padre in quanto entrambi erano coinvolti in relazioni, soprattutto il padre, cosa che avrebbe comportato una duplicazione di molte relazioni.
-\paragraph{Oggetto} 
-Anche per l'Oggetto abbiamo mantenuto i Figli e il padre in quanto entrambi erano coinvolti in relazioni e avrebbe comportato una duplicazione di molte relazioni.
-\paragraph{NPC}Per gli NPC abbiamo deciso di accorpare il Genitore della Generalizzazione nei Figli, questo perchè quasi la totalità delle operazioni si riferiscono alle occorrenze dei figli.
-Questa scelta comporta un risparmio notevole di Memoria rispetto alle alternative.
+Per l'entità Prodotto si è scelto di mantenere sia il padre che le entità figlie, dato che queste ultime hanno tanti attributi diversi, e l'accorpamento nell'entità genitore significherebbe avere tanti valori con valore NULL. Inoltre, un eventuale accorpamento del genitore nelle entità figlie risulterebbe piuttosto complicato, date le numerose relazioni che ha il padre e visto che le entità figlie sono molteplici.
+Quindi, si è scelto di sostituire la generalizzazione con delle relazioni, una per ogni entità figlia. Le nuove relazioni sono denominate "Specificazione" più il nome dell'entità a cui si riferiscono.
+
+(Notare che, per non appesantire lo schema, si è scelto di togliere alcune componenti e di mantere solo "Notebook", "Pc Desktop", "Monitor", "Stampante".)
 
 
 
-\newpage
+
+% \newpage
+%
+%
+% \begin{landscape} %inizia un foglio landscape
+%
+% %include un file pdf che contiene lo schema
+% \includepdf[width=270mm, height=210mm, angle=90, keepaspectratio]{./pdf/ristrutturatosenzacarta.pdf}
+%
+% \end{landscape}
 
 
-\begin{landscape} %inizia un foglio landscape
 
-%include un file pdf che contiene lo schema 
-\includepdf[width=270mm, height=210mm, angle=90, keepaspectratio]{./pdf/ristrutturatosenzacarta.pdf}
-
-\end{landscape}
-
-
-
-\subsubsection{Eliminazione Attributi Multivalore}
-
-Abbiamo individuato un attributo multivalore nella Carta di Credito e abbiamo eseguito una ristrutturazione
-
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\linewidth]{./immagini/schemetto}
-\caption{}
-\label{fig:schemetto}
-\end{figure}
-
-
+% \subsubsection{Eliminazione Attributi Multivalore}
+%
+% Abbiamo individuato un attributo multivalore nella Carta di Credito e abbiamo eseguito una ristrutturazione
+%
+%
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.7\linewidth]{./immagini/schemetto}
+% \caption{}
+% \label{fig:schemetto}
+% \end{figure}
