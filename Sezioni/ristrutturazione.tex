@@ -215,6 +215,12 @@ Per quanto riguarda l'entità Prodotto o Servizio, abbiamo deciso di mantenere l
 Per l'entità Prodotto si è scelto di mantenere sia il padre che le entità figlie, dato che queste ultime hanno tanti attributi diversi, e l'accorpamento nell'entità genitore significherebbe avere tanti valori con valore NULL. Inoltre, un eventuale accorpamento del genitore nelle entità figlie risulterebbe piuttosto complicato, date le numerose relazioni che ha il padre e visto che le entità figlie sono molteplici.
 Quindi, si è scelto di sostituire la generalizzazione con delle relazioni, una per ogni entità figlia. Le nuove relazioni sono denominate "Specificazione" più il nome dell'entità a cui si riferiscono.
 
+In seguito a quest'ultima eliminazione di generalizzazione è necessario imporre una nuova regola di vincolo, per evitare errori logici:
+
+\begin{itemize}
+  \item Ogni occorrenza di "Prodotto" deve essere occorrenza o di "Notebook" o di "Pc Desktop" o di "Monitor" o di "Stampante". Non potrà essere occorrenza contemporaneamente di due o più di queste entità.
+\end{itemize}
+
 (Notare che, per non appesantire lo schema, si è scelto di togliere alcune componenti e di mantere solo "Notebook", "Pc Desktop", "Monitor", "Stampante".)
 
 
