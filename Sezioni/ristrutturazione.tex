@@ -1,7 +1,7 @@
 
 \subsubsection{Analisi Derivazioni e Ridondanze}
 In questa prima fase analizziamo le ridondanze già presenti. L' unica riscontrata riguarda l'attributo importo ridondante per le entità Contratto di Assistenza on Center e Fattura legate dalla relazione Esecuzione Contratto (operazioni 6, 10, 24, 30, 39), dove l'importo è presente in entrambe le entità.
-L'attributo importo nell'entità Fattura è vincolato dalla decisione di non conservare tutti i cataloghi dei fornitori per questioni di spazio. Quindi aggiornando mensilmente i prezzi dei cataloghi si perde la possibilità di andare a cercare il valore di un prodotto in un certo arco temporale se non quello attuale, e questo renderebbe impossibile calcolare l'importo di una fattura a posteriori. Per questo motivo l'attributo importo deve essere presente e lo si considera ridondante nell'entità del contratto di assistenza on center piuttosto che nella fattura. 
+L'attributo importo nell'entità Fattura è vincolato dalla decisione di non conservare tutti i cataloghi dei fornitori per questioni di spazio. Quindi aggiornando mensilmente i prezzi dei cataloghi si perde la possibilità di andare a cercare il valore di un prodotto in un certo arco temporale se non quello attuale, e questo renderebbe impossibile calcolare l'importo di una fattura a posteriori. Per questo motivo l'attributo importo deve essere presente e lo si considera ridondante nell'entità del contratto di assistenza on center piuttosto che nella fattura.
 \newline\newline
 \centerline{\textbf{ATTRIBUTO IMPORTO IN CONTRATTO DI ASSISTENZA ON CENTER}}
 \newline
@@ -24,7 +24,7 @@ L'attributo importo nell'entità Fattura è vincolato dalla decisione di non con
 \begin{tabular}{llll}
 \\ \hline
 \multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
-\multicolumn{1}{|l|}{Contratto di assistenza on center}      
+\multicolumn{1}{|l|}{Contratto di assistenza on center}
 & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{L}             \\ \hline
 \multicolumn{1}{|l|}{Fattura}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{L}             \\ \hline
 \multicolumn{1}{|l|}{Esecuzione Contratto}     & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{2}                & \multicolumn{1}{l|}{S}             \\ \hline
@@ -235,16 +235,12 @@ In seguito all'eliminazione delle generalizzazioni di Cliente e Prodotto, è nec
 
 
 
+\newpage
+\begin{landscape} %inizia un foglio landscape
 
-% \newpage
-%
-%
-% \begin{landscape} %inizia un foglio landscape
-%
-% %include un file pdf che contiene lo schema
-% \includepdf[width=270mm, height=210mm, angle=90, keepaspectratio]{./pdf/ristrutturatosenzacarta.pdf}
-%
-% \end{landscape}
+\includepdf[angle=90]{./immagini/modello_er_v3.pdf}
+
+\end{landscape}
 
 
 \newpage
