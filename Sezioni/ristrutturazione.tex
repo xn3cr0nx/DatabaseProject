@@ -1,12 +1,11 @@
 
 \subsubsection{Analisi Derivazioni e Ridondanze}
-In questa prima fase analizziamo le ridondanze già presenti. Le uniche riscontrate riguardano l'attributo importo ridondante per le entità Contratto di Assistenza on Center e Fattura legate dalla relazione Esecuzione Contratto (operazioni 6, 10, 24, 30, 39), dove l'importo è presente in entrambe le entità.
-L'attributo importo nell'entità Fattura è vincolato dalla decisione di non conservare tutti i cataloghi dei fornitori per questioni di spazio. Quindi aggiornando mensilmente i prezzi dei cataloghi si perde la possibilità di andare a cercare il valore di un prodotto in un certo arco temporale se non quello attuale, e questo renderebbe impossibile calcolare l'importo di una fattura a posteriori. Per questo motivo l'attributo importo deve essere presente e lo si considera ridondante nell'entità del contratto di assistenza on center. 
-\newline
-ATTRIBUTO IMPORTO IN CONTRATTO DI ASSISTENZA 
-ON CENTER
+In questa prima fase analizziamo le ridondanze già presenti. L' unica riscontrata riguarda l'attributo importo ridondante per le entità Contratto di Assistenza on Center e Fattura legate dalla relazione Esecuzione Contratto (operazioni 6, 10, 24, 30, 39), dove l'importo è presente in entrambe le entità.
+L'attributo importo nell'entità Fattura è vincolato dalla decisione di non conservare tutti i cataloghi dei fornitori per questioni di spazio. Quindi aggiornando mensilmente i prezzi dei cataloghi si perde la possibilità di andare a cercare il valore di un prodotto in un certo arco temporale se non quello attuale, e questo renderebbe impossibile calcolare l'importo di una fattura a posteriori. Per questo motivo l'attributo importo deve essere presente e lo si considera ridondante nell'entità del contratto di assistenza on center piuttosto che nella fattura. 
 \newline\newline
-CON RIDONDANZA
+\centerline{\textbf{ATTRIBUTO IMPORTO IN CONTRATTO DI ASSISTENZA ON CENTER}}
+\newline
+\centerline{\textbf{CON RIDONDANZA}}
 \begin{table}[H]
 \centering
 \caption{Operazione 6}
@@ -79,10 +78,7 @@ CON RIDONDANZA
 \end{table}
 
 
-
-
-\newline\newline
-SENZA RIDONDANZA
+\newline\newline\centerline{\textbf{SENZA RIDONDANZA}}
 \begin{table}[H]
 \centering
 \caption{Operazione 6}
@@ -104,7 +100,7 @@ SENZA RIDONDANZA
 \multicolumn{1}{|l|}{Fattura}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{L}             \\ \hline
 \multicolumn{1}{|l|}{Esecuzione Contratto}     & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{S}             \\ \hline
 \multicolumn{1}{|l|}{Esecuzione Contratto}
-& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{2}                & \multicolumn{1}{l|}{L}             \\ \hline
+& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{L}             \\ \hline
 \end{tabular}
 \end{table}
 
@@ -163,13 +159,19 @@ SENZA RIDONDANZA
 \begin{tabular}{|l|l|l|l|}
 \hline
 \textbf{OPERAZIONE}               & \textbf{COSTO} & \textbf{FREQUENZA} & \textbf{TOTALE} \\ \hline
-6                                & 10             & 100000             & 1000000         \\ \hline
-10                                & 6              & 87500              & 525000          \\ \hline
-24                                & 4              & 100000             & 400000          \\ \hline
-25                                & 3              & 87500              & 262500          \\ \hline
-30                                & 3              & 100000             & 300000          \\ \hline
-39                                & 10             & 100000             & 1000000         \\ \hline
-COSTO OPERAZIONI CON RIDONDANZA & \hl{2487500}        &                    &                 \\ \hline
+6                                & 1             & 90             & 90
+\\ \hline
+10                                & 6              & 1              & 6
+\\ \hline
+24                                & 1              & 8             & 8
+\\ \hline
+25                                & 1              & 2              & 2
+\\ \hline
+30                                & 1              & 30             & 30
+\\ \hline
+39                                & 12             & 1             & 12
+\\ \hline
+COSTO OPERAZIONI CON RIDONDANZA & 22        &                    &   \hl{148}             \\ \hline
 \end{tabular}
 }
 \end{table}
@@ -183,16 +185,24 @@ COSTO OPERAZIONI CON RIDONDANZA & \hl{2487500}        &                    &    
 \begin{tabular}{|l|l|l|l|}
 \hline
 \textbf{OPERAZIONE}             & \textbf{COSTO} & \textbf{FREQUENZA} & \textbf{TOTALE} \\ \hline
-10                              & 13             & 100000             & 1300000         \\ \hline
-10                              & 9              & 87500              & 787500          \\ \hline
-24                              & 7              & 100000             & 700000          \\ \hline
-25                              & 6              & 87500              & 525000          \\ \hline
-30                              & 6              & 100000             & 600000          \\ \hline
-39                                & 10             & 100000             & 1000000         \\ \hline
-COSTO OPERAZIONI SENZA RIDONDANZA & \hl{3912500}        &                    &                 \\ \hline
+6                                & 1             & 90             & 90
+\\ \hline
+10                                & 3              & 1              & 3
+\\ \hline
+24                                & 2              & 8             & 16
+\\ \hline
+25                                & 2              & 2              & 4
+\\ \hline
+30                                & 1              & 30             & 30          \\ \hline
+39                                & 12             & 1             & 12
+\\ \hline
+COSTO OPERAZIONI SENZA RIDONDANZA & 21        &                    &  \hl{155}               \\ \hline
 \end{tabular}
 }
 \end{table}
+
+\newline Quindi da questa analisi non cambia un cazzo facciamo come ci pare.
+Non sono state riscontrate possibili ridondanze da inserire.
 
 
 \newpage
