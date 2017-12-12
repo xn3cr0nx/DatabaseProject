@@ -1,199 +1,198 @@
 
 \subsubsection{Analisi Derivazioni e Ridondanze}
-
-\paragraph[H]{Attributo Difesa}L'unico dato derivabile che viene utilizzato dalle nostre operazione  la Difesa del Personaggio (operazioni 13,14,19,20,46). L'attributo in questione pu\`{o} essere ricavato dalla somma della difesa degli oggetti indossati e dalla somma della difesa delle occorrenze dell'entit\`{a} consumo. Di seguito si valuta la convenienza di utilizzo del dato difesa.
-
-
-
+In questa prima fase analizziamo le ridondanze già presenti. Le uniche riscontrate riguardano l'attributo importo ridondante per le entità Contratto di Assistenza on Center e Fattura legate dalla relazione Esecuzione Contratto (operazioni 6, 10, 24, 30, 39), dove l'importo è presente in entrambe le entità.
+L'attributo importo nell'entità Fattura è vincolato dalla decisione di non conservare tutti i cataloghi dei fornitori per questioni di spazio. Quindi aggiornando mensilmente i prezzi dei cataloghi si perde la possibilità di andare a cercare il valore di un prodotto in un certo arco temporale se non quello attuale, e questo renderebbe impossibile calcolare l'importo di una fattura a posteriori. Per questo motivo l'attributo importo deve essere presente e lo si considera ridondante nell'entità del contratto di assistenza on center. 
+\newline
+ATTRIBUTO IMPORTO IN CONTRATTO DI ASSISTENZA 
+ON CENTER
+\newline\newline
+CON RIDONDANZA
 \begin{table}[H]
 \centering
-\caption{Operazione 13}
+\caption{Operazione 6}
 \begin{tabular}{llll}
 \\ \hline
 \multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
-\multicolumn{1}{|l|}{Indossamento}      & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{L}             \\ \hline
-\multicolumn{1}{|l|}{Stock}             & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{L}             \\ \hline
-\multicolumn{1}{|l|}{Indossamento}      & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{2}                & \multicolumn{1}{l|}{S}             \\ \hline
-\multicolumn{1}{|l|}{Stock}             & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{2}                & \multicolumn{1}{l|}{S}             \\ \hline
+\multicolumn{1}{|l|}{FATTURA}
+& \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{S}             \\ \hline
 \end{tabular}
 \end{table}
 
 
 \begin{table}[H]
 \centering
-\caption{Operazione 14}
-\label{my-label}
-\begin{tabular}{|l|l|l|l|}
-\hline
-\textbf{CONCETTO} & \textbf{COSTRUTTO} & \textbf{ACCESSI} & \textbf{TIPO} \\ \hline
-Consumo           & E                  & 1                & S             \\ \hline
-Consumante        & R                  & 1                & S             \\ \hline
-Consunto          & R                  & 1                & S             \\ \hline
-\end{tabular}
-\end{table}
-
-
-\begin{table}[H]
-\centering
-\caption{Operazione 19}
-\label{my-label}
-\begin{tabular}{|l|l|l|l|}
-\hline
-\textbf{CONCETTO} & \textbf{COSTRUTTO} & \textbf{ACCESSI} & \textbf{TIPO} \\ \hline
-Personaggio       & E                  & 1                & L             \\ \hline
-Equipaggiamento   & E                  & 1                & L             \\ \hline
-Indossamento      & R                  & 1                & S             \\ \hline
+\caption{Operazione 10}
+\begin{tabular}{llll}
+\\ \hline
+\multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
+\multicolumn{1}{|l|}{Contratto di assistenza on center}      
+& \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{L}             \\ \hline
+\multicolumn{1}{|l|}{Fattura}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{L}             \\ \hline
+\multicolumn{1}{|l|}{Esecuzione Contratto}     & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{2}                & \multicolumn{1}{l|}{S}             \\ \hline
+\multicolumn{1}{|l|}{Esecuzione Contratto}
+& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{2}                & \multicolumn{1}{l|}{L}             \\ \hline
 \end{tabular}
 \end{table}
 
 \begin{table}[H]
 \centering
-\caption{Operazione 20}
-\label{my-label}
-\begin{tabular}{|l|l|l|l|}
-\hline
-\textbf{CONCETTO} & \textbf{COSTRUTTO} & \textbf{ACCESSI} & \textbf{TIPO} \\ \hline
-Consumo           & E                  & 1                & L             \\ \hline
-Consumo           & E                  & 1                & S             \\ \hline
-\end{tabular}
-\end{table}
-
-
-\begin{table}[H]
-\centering
-\caption{Operazione 46}
-\label{my-label}
-\begin{tabular}{|l|l|l|l|}
-\hline
-\textbf{CONCETTO} & \textbf{COSTRUTTO} & \textbf{ACCESSI} & \textbf{TIPO} \\ \hline
-Consunto          & R                  & 1                & L             \\ \hline
-Consumabili       & E                  & 1                & L             \\ \hline
-Consumo           & E                  & 1                & L             \\ \hline
-\end{tabular}
-\end{table}
-
-
-
-
-\begin{table}[H]
-\centering
-\caption{Operazione 13}
-\label{my-label}
-\begin{tabular}{|l|l|l|l|}
-\hline
-\textbf{CONCETTO} & \textbf{COSTRUTTO} & \textbf{ACCESSI} & \textbf{TIPO} \\ \hline
-Indossamento      & R                  & 1                & L             \\ \hline
-Stock             & R                  & 1                & L             \\ \hline
-Indossamento      & R                  & 2                & S             \\ \hline
-Stock             & R                  & 2                & S             \\ \hline
-Personaggio       & E                  & 1                & L             \\ \hline
-Personaggio       & E                  & 1                & L             \\ \hline
-\end{tabular}
-\end{table}
-
-
-
-\begin{table}[H]
-\centering
-\caption{Operazione 14}
-\label{my-label}
-\begin{tabular}{|l|l|l|l|}
-\hline
-\textbf{CONCETTO} & \textbf{COSTRUTTO} & \textbf{ACCESSI} & \textbf{TIPO} \\ \hline
-Consumo           & E                  & 1                & S             \\ \hline
-Consumante        & R                  & 1                & S             \\ \hline
-Consunto          & R                  & 1                & S             \\ \hline
-Personaggio       & E                  & 1                & L             \\ \hline
-Personaggio       & E                  & 1                & L             \\ \hline
-\end{tabular}
-\end{table}
-
-
-\begin{table}[H]
-\centering
-\caption{Operazione 19}
-\label{my-label}
-\begin{tabular}{|l|l|l|l|}
-\hline
-\textbf{CONCETTO} & \textbf{COSTRUTTO} & \textbf{ACCESSI} & \textbf{TIPO} \\ \hline
-Personaggio       & E                  & 1                & L             \\ \hline
-Equipaggiamento   & E                  & 1                & L             \\ \hline
-Indossamento      & R                  & 1                & S             \\ \hline
-Personaggio       & E                  & 1                & L             \\ \hline
-Personaggio       & E                  & 1                & L             \\ \hline
-\end{tabular}
-\end{table}
-
-
-\begin{table}[H]
-\centering
-\caption{Operazione 20}
-\label{my-label}
-\begin{tabular}{|l|l|l|l|}
-\hline
-\textbf{CONCETTO} & \textbf{COSTRUTTO} & \textbf{ACCESSI} & \textbf{TIPO} \\ \hline
-Consumo           & E                  & 1                & L             \\ \hline
-Consumo           & E                  & 1                & S             \\ \hline
-Personaggio       & E                  & 1                & L             \\ \hline
-Personaggio       & E                  & 1                & L             \\ \hline
+\caption{Operazione 24}
+\begin{tabular}{llll}
+\\ \hline
+\multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
+\multicolumn{1}{|l|}{Esecuzione Contratto}
+& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{L}             \\ \hline
 \end{tabular}
 \end{table}
 
 \begin{table}[H]
 \centering
-\caption{Operazione 46}
-\label{my-label}
-\begin{tabular}{|l|l|l|l|}
-\hline
-\textbf{CONCETTO} & \textbf{COSTRUTTO} & \textbf{ACCESSI} & \textbf{TIPO} \\ \hline
-Consunto          & R                  & 1                & L             \\ \hline
-Consumabili       & E                  & 1                & L             \\ \hline
-Consumo           & E                  & 1                & L             \\ \hline
-Personaggio       & E                  & 1                & L             \\ \hline
-Personaggio       & E                  & 1                & L             \\ \hline
+\caption{Operazione 25}
+\begin{tabular}{llll}
+\\ \hline
+\multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
+\multicolumn{1}{|l|}{Esecuzione Contratto}
+& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1*1=1}                & \multicolumn{1}{l|}{L}             \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Operazione 30}
+\begin{tabular}{llll}
+\\ \hline
+\multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
+\multicolumn{1}{|l|}{Fattura}
+& \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{L}             \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Operazione 39}
+\begin{tabular}{llll}
+\\ \hline
+\multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
+\multicolumn{1}{|l|}{Fattura}
+& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1*12=12}                & \multicolumn{1}{l|}{L}             \\ \hline
 \end{tabular}
 \end{table}
 
 
 
 
+\newline\newline
+SENZA RIDONDANZA
 \begin{table}[H]
 \centering
-\caption{Costo Operazioni senza ridondanza}
+\caption{Operazione 6}
+\begin{tabular}{llll}
+\\ \hline
+\multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
+\multicolumn{1}{|l|}{FATTURA}
+& \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{S}             \\ \hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{Operazione 10}
+\begin{tabular}{llll}
+\\ \hline
+\multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
+\multicolumn{1}{|l|}{Fattura}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{L}             \\ \hline
+\multicolumn{1}{|l|}{Esecuzione Contratto}     & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{S}             \\ \hline
+\multicolumn{1}{|l|}{Esecuzione Contratto}
+& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{2}                & \multicolumn{1}{l|}{L}             \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Operazione 24}
+\begin{tabular}{llll}
+\\ \hline
+\multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
+\multicolumn{1}{|l|}{Esecuzione Contratto}
+& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{L}             \\ \hline
+\multicolumn{1}{|l|}{Fattura}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{L}             \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Operazione 25}
+\begin{tabular}{llll}
+\\ \hline
+\multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
+\multicolumn{1}{|l|}{Esecuzione Contratto}
+& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1*1=1}                & \multicolumn{1}{l|}{L}             \\ \hline
+\multicolumn{1}{|l|}{Fattura}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1*1=1}                & \multicolumn{1}{l|}{L}             \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Operazione 30}
+\begin{tabular}{llll}
+\\ \hline
+\multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
+\multicolumn{1}{|l|}{Fattura}
+& \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{L}             \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Operazione 39}
+\begin{tabular}{llll}
+\\ \hline
+\multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
+\multicolumn{1}{|l|}{Fattura}
+& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1*12=12}                & \multicolumn{1}{l|}{L}             \\ \hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{Costo Operazioni con ridondanza}
 \label{my-label}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|l|l|l|l|}
 \hline
 \textbf{OPERAZIONE}               & \textbf{COSTO} & \textbf{FREQUENZA} & \textbf{TOTALE} \\ \hline
-13                                & 10             & 100000             & 1000000         \\ \hline
-14                                & 6              & 87500              & 525000          \\ \hline
-19                                & 4              & 100000             & 400000          \\ \hline
-20                                & 3              & 87500              & 262500          \\ \hline
-46                                & 3              & 100000             & 300000          \\ \hline
-COSTO OPERAZIONI SENZA RIDONDANZA & \hl{2487500}        &                    &                 \\ \hline
+6                                & 10             & 100000             & 1000000         \\ \hline
+10                                & 6              & 87500              & 525000          \\ \hline
+24                                & 4              & 100000             & 400000          \\ \hline
+25                                & 3              & 87500              & 262500          \\ \hline
+30                                & 3              & 100000             & 300000          \\ \hline
+39                                & 10             & 100000             & 1000000         \\ \hline
+COSTO OPERAZIONI CON RIDONDANZA & \hl{2487500}        &                    &                 \\ \hline
 \end{tabular}
 }
 \end{table}
 
+
 \begin{table}[H]
 \centering
-\caption{Costo Operazioni con Ridondanza}
+\caption{Costo Operazioni senza Ridondanza}
 \label{my-label}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|l|l|l|l|}
 \hline
 \textbf{OPERAZIONE}             & \textbf{COSTO} & \textbf{FREQUENZA} & \textbf{TOTALE} \\ \hline
-13                              & 13             & 100000             & 1300000         \\ \hline
-14                              & 9              & 87500              & 787500          \\ \hline
-19                              & 7              & 100000             & 700000          \\ \hline
-20                              & 6              & 87500              & 525000          \\ \hline
-46                              & 6              & 100000             & 600000          \\ \hline
-COSTO OPERAZIONI CON RIDONDANZA & \hl{3912500}        &                    &                 \\ \hline
+10                              & 13             & 100000             & 1300000         \\ \hline
+10                              & 9              & 87500              & 787500          \\ \hline
+24                              & 7              & 100000             & 700000          \\ \hline
+25                              & 6              & 87500              & 525000          \\ \hline
+30                              & 6              & 100000             & 600000          \\ \hline
+39                                & 10             & 100000             & 1000000         \\ \hline
+COSTO OPERAZIONI SENZA RIDONDANZA & \hl{3912500}        &                    &                 \\ \hline
 \end{tabular}
 }
 \end{table}
-
-Alla luce della di quanto visto precedentemente abbiamo riscontrato un aumento del costo delle operazioni con la Ridondanza di circa il 40\%, si rende quindi necessario eliminare tale Dato.
 
 
 \newpage
