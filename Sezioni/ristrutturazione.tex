@@ -215,20 +215,22 @@ Abbiamo deciso di procedere nel seguente modo:
 \paragraph{PA, Azienda o Persona}
 Per quanto riguarda l'entità PA, Azienda o Persona, abbiamo scelto di accorpare il genitore della generalizzazione nelle entità figlie. Questo perchè i clienti e i fornitori hanno rapporti con l'azienda piuttosto diversi tra loro, quindi la separazione comporta una suddivisione concettuale che migliora la chiarezza dello schema.
 \paragraph{Cliente}
-Per l'entità Cliente si è optato di mantenere il genitore e mantenere le entità figlie, in quanto un eventuale accorpamento del genitore nelle entità figlie complicherebbe lo schema, viste le numerose relazioni che ha il genitore. Abbiamo sostituito la generalizzazione con delle relazioni, denominate "Specificazione Privato" e "Specificazione PA".
+Per l'entità Cliente si è adottata una soluzione ibrida. Abbiamo optato di mantenere il genitore l'entità figlia Pubblica Amministrazione, mentre l'entità Privato è stata accorpata nel genitore aggiungendo un nuovo attributo "Tipo", che indica appunto se il Cliente è un Privato o una PA. Un eventuale accorpamento del genitore nelle entità figlie avrebbe complicato lo schema, viste le numerose relazioni che ha il genitore.
+\newline
+La relazione tra Cliente e PA è denominata "Specificazione PA".
 \paragraph{Richiesta sul Mepa}
-In merito all'entità Richiesta sul Mepa, si è scelto l'accorpamento del genitore della generalizzazione nelle entità figlie. Si avrebbe potuto accorpare le entità figlie nel genitore, utilizzando degli attributi che possono assumere il valore NULL per poter distinguire appunto le due entità, ma ci sembra più opportuno mantenere distinte le entità Gara pubblica e Trattativa diretta in quanto esse sono, nella realtà pratica, due concetti logicamente separati. Il mantenimento della loro suddivisione permette quindi una maggior comprensibilità dello schema.
+In merito all'entità Richiesta sul Mepa, si è deciso di sostituire la generalizzazione con delle relazioni. Si avrebbe potuto accorpare le entità figlie nel genitore, utilizzando degli attributi che possono assumere il valore NULL per poter distinguire appunto le due entità, ma ci sembra più opportuno mantenere distinte le entità Gara pubblica e Trattativa diretta in quanto esse sono, nella realtà pratica, due concetti logicamente separati.
+Le nuove relazioni sono denominate "Specificazione gara" e "Specificazione trattativa".
 \paragraph{Prodotto o Servizio}
-Per quanto riguarda l'entità Prodotto o Servizio, abbiamo deciso di mantenere le entità figlie ed eliminare il genitore, in quanto ogni operazione che coinvolge il padre comprende almeno uno dei figli.
+Anche con l'entità Prodotto o Servizio abbiamo scelto di mantenere il genitore e le entità figlie, sostituendo la generalizzazione con delle relazioni. Le nuove relazioni sono "Specificazione prodotto" e "Specificazione Servizio".
 \paragraph{Prodotto}
 Per l'entità Prodotto si è scelto di mantenere sia il padre che le entità figlie, dato che queste ultime hanno tanti attributi diversi, e l'accorpamento nell'entità genitore significherebbe avere tanti valori con valore NULL. Inoltre, un eventuale accorpamento del genitore nelle entità figlie risulterebbe piuttosto complicato, date le numerose relazioni che ha il padre e visto che le entità figlie sono molteplici.
 Quindi, si è scelto di sostituire la generalizzazione con delle relazioni, una per ogni entità figlia. Le nuove relazioni sono denominate "Specificazione" più il nome dell'entità a cui si riferiscono.
 \newline\newline
-In seguito all'eliminazione delle generalizzazioni di Cliente e Prodotto, è necessario imporre delle nuove regole di vincolo, per evitare errori logici:
+In seguito all'aggiunta dell'attributo "Tipo" all'entità "Cliente", è necessario introdurre una nuova regola di vincolo:
 
 \begin{itemize}
-  \item Ogni occorrenza di "Cliente" deve essere occorrenza o di "Privato" o di "Pubblica Amministrazione". Non potrà essere occorrenza contemporaneamente di entrambe queste entità.
-  \item Ogni occorrenza di "Prodotto" deve essere occorrenza o di "Notebook" o di "Pc Desktop" o di "Monitor" o di "Stampante". Non potrà essere occorrenza contemporaneamente di due o più di queste entità.
+  \item L'attributo "Tipo" relativo all'entità "Cliente" può essere "Privato" oppure "PA".
 \end{itemize}
 \noindent
 \textit{(Facciamo notare che, per non appesantire ulteriormente lo schema, abbiamo scelto di togliere alcuni prodotti e di mantenere solo "Notebook", "Pc Desktop", "Monitor", "Stampante".)}
