@@ -4,7 +4,8 @@ create table RichiestaMEPA (
 	OffertaProposta INT(11) not null,
 	LimiteSpesa INT(11) not null,
 	InizioOfferte DATE not null,
-	TermineOfferte DATE not null
+	TermineOfferte DATE not null,
+	check(TermineOfferte > InizioOfferte)
 )ENGINE=InnoDB;
 
 create table Gara (
@@ -19,8 +20,8 @@ create table Trattativa (
 )ENGINE=InnoDB;
 
 create table Cliente (
-	Codice INT(11) primary key auto_increment,
-	Tipo VARCHAR(15) not null,
+	Codice VARCHAR(16) primary key,
+	Tipo VARCHAR(7) not null,
 	IndirizzoPEC VARCHAR(45),
 	Nome VARCHAR(45) not null,
 	Email VARCHAR(45),
@@ -32,7 +33,7 @@ create table Cliente (
 )ENGINE=InnoDB;
 
 create table Fornitore (
-	Codice INT(11) primary key auto_increment,
+	Codice VARCHAR(16) primary key,
 	IndirizzoPEC VARCHAR(45),
 	Nome VARCHAR(45) not null,
 	Email VARCHAR(45),
@@ -63,9 +64,9 @@ create table CostoSpedizione (
 create table ContrattoAssistenza (
 	Codice INT(11) primary key auto_increment,
 	Importo INT(11) not null,
-	Cliente INT(11) not null,
-	Inizio DATE,
-	Termine DATE,
+	Cliente INT(11) not null references Cliente(Codice),
+	Inizio DATE not null,
+	Termine DATE not null,
 	Fattura INT(11) not null references Fattura(Codice)
 )ENGINE=InnoDB;
 
@@ -75,32 +76,33 @@ create table Fattura (
 	Destinatario VARCHAR(45) not null,
 	Importo INT(11) not null,
 	Emissione DATE not null,
-	Scadenza DATE,
+	Scadenza DATE not null,
 	DataPagamento DATE,
-	Spedizione INT(11) references Spedizione(Codice)
+	Spedizione INT(11) references Spedizione(Codice),
+	check (Scadenza > Emissione)
 )ENGINE=InnoDB;
 
 create table ProdottoServizio (
-	Codice INT(11) primary key auto_increment
+	Codice VARCHAR(20) primary key
 )ENGINE=InnoDB;
 
 create table Prodotto (
-	Codice INT(11) primary key references ProdottoServizio(Codice),
+	Codice VARCHAR(20) primary key references ProdottoServizio(Codice),
 	Produttore VARCHAR(45) not null,
 	Modello VARCHAR(45) not null
 )ENGINE=InnoDB;
 
 create table Notebook (
-	Codice INT(11) primary key references Prodotto(Codice),
+	Codice VARCHAR(20) primary key references Prodotto(Codice),
 	Processore VARCHAR(11) not null,
 	RAM INT(11) not null,
 	Storage INT(11) not null,
-	Schermo VARCHAR(11) not null,
+	Schermo FLOAT(2,1) not null,
 	SistemaOperativo VARCHAR(45) not null
 )ENGINE=InnoDB;
 
 create table PCDesktop (
-	Codice INT(11) primary key references Prodotto(Codice),
+	Codice VARCHAR(20) primary key references Prodotto(Codice),
 	Processore VARCHAR(11) not null,
 	RAM INT(11) not null,
 	Storage INT(11) not null,
@@ -108,29 +110,34 @@ create table PCDesktop (
 )ENGINE=InnoDB;
 
 create table Monitor (
-	Codice INT(11) primary key references Prodotto(Codice),
-	Dimensione VARCHAR(11) not null,
+	Codice VARCHAR(20) primary key references Prodotto(Codice),
+	Dimensione FLOAT(3,1) not null,
 	Risoluzione VARCHAR(11) not null
 )ENGINE=InnoDB;
 
 create table Stampante (
-	Codice INT(11) primary key references Prodotto(Codice),
-	Tecnologia VARCHAR(45) not null,
-	FormatoMax VARCHAR(11) not null,
-	Velocità VARCHAR(11) not null,
-	Connettività VARCHAR(45) not null
+	Codice VARCHAR(20) primary key references Prodotto(Codice),
+	Tecnologia VARCHAR(6) not null,
+	FormatoMax CHAR(2) not null,
+	Velocità INT(11) not null,
+	Connettività VARCHAR(9) not null,
+	check(Tecnologia='Inkjet' or Tecnologia='Laser'),
+	check(FormatoMax='A3' or FormatoMax='A4' or FormatoMax='A5'),
+	check(Connettività='USB' or Connettività='WiFi' or Connettività='USB, WiFi')
 )ENGINE=InnoDB;
 
 create table Servizio (
-	Codice INT(11) primary key references ProdottoServizio(Codice),
-	Tipologia VARCHAR(45) not null,
+	Codice VARCHAR(20) primary key references ProdottoServizio(Codice),
+	Tipologia VARCHAR(24) not null,
 	Costo INT(11) not null,
-	check(Tipologia='Manutenzione' or Tipologia='Installazione')
+	check(Tipologia='Riparazione software' or Tipologia='Sostituzione componente'
+		or Tipologia='Configurazione programma' or Tipologia='Formattazione pc'
+		or Tipologia='Installazione rete WiFi')
 )ENGINE=InnoDB;
 
 create table Catalogo (
-	Fornitore INT(11) references Fornitore(Codice),
-	Prodotto INT(11) references Prodotto(Codice),
+	Fornitore VARCHAR(16) references Fornitore(Codice),
+	Prodotto VARCHAR(20) references Prodotto(Codice),
 	primary key (Fornitore, Prodotto),
 	Prezzo INT(11) not null,
 	InizioValidità DATE not null,
@@ -138,34 +145,33 @@ create table Catalogo (
 )ENGINE=InnoDB;
 
 create table ElencazioneCostiSpedizione (
-	Fornitore INT(11) references Fornitore(Codice),
-	Costo INT(11) references CostoSpedizione(Codice),	
+	Fornitore VARCHAR(16) references Fornitore(Codice),
+	Costo INT(11) references CostoSpedizione(Codice),
 	primary key (Fornitore, Costo)
 )ENGINE=InnoDB;
 
 create table ElencazioneAssistenza (
-	Contratto INT(11) references ContrattoAssistenza(Codice),	
-	Servizio INT(11) references Servizio(Codice),	
+	Contratto INT(11) references ContrattoAssistenza(Codice),
+	Servizio VARCHAR(20) references Servizio(Codice),
 	primary key (Contratto, Servizio)
 )ENGINE=InnoDB;
 
 create table DescrizioneRichiesta (
-	RichiestaMEPA INT(11) references RichiestaMEPA(Numero),	
-	ProdottoServizio INT(11) references ProdottoServizio(Codice),
+	RichiestaMEPA INT(11) references RichiestaMEPA(Numero),
+	ProdottoServizio VARCHAR(20) references ProdottoServizio(Codice),
 	primary key (RichiestaMEPA, ProdottoServizio)
 )ENGINE=InnoDB;
 
 create table Acquisto (
-	Fattura INT(11) references Fattura(Codice),	
-	Prodotto INT(11) references Prodotto(Codice),	
+	Fattura INT(11) references Fattura(Codice),
+	Prodotto VARCHAR(20) references Prodotto(Codice),
 	primary key (Fattura, Prodotto),
 	Quantità INT(11) not null default 1
 )ENGINE=InnoDB;
 
 create table Vendita (
-	Fattura INT(11) references Fattura(Codice),	
-	ProdottoServizio INT(11) references ProdottoServizio(Codice),	
+	Fattura INT(11) references Fattura(Codice),
+	ProdottoServizio VARCHAR(20) references ProdottoServizio(Codice),
 	primary key (Fattura, ProdottoServizio),
 	Quantità INT(11) not null default 1
 )ENGINE=InnoDB;
-
