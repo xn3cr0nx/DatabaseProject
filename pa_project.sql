@@ -1,3 +1,5 @@
+/*** CREAZIONE TABELLE ***/
+
 create table RichiestaMEPA (
 	Numero INT(11) primary key,
 	CodicePA VARCHAR(11) not null,
@@ -175,3 +177,29 @@ create table Vendita (
 	primary key (Fattura, ProdottoServizio),
 	Quantità INT(11) not null default 1
 )ENGINE=InnoDB;
+
+
+
+/*** OPERAZIONI ***/
+
+-- 1)
+insert into Cliente(Codice, Tipo, Indirizzo PEC, Nome, Email, Via, NumCivico, Città, CAP)
+	values(...);
+
+insert into TelefonoCliente(Numero, Cliente)
+	values(...);
+
+-- 2)
+insert into RichiestaMEPA(Numero, CodicePA, OffertaProposta, LimiteSpesa, InizioOfferte, TermineOfferte)
+	values(...);
+
+insert into Gara(RichiestaMEPA, Aggiudicatario, OffertaVincitore)
+	values(...);
+
+insert into Trattativa(RichiestaMEPA, Stipulata)
+	values(...);
+
+
+-- 6)
+insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
+	values(null, ...);
