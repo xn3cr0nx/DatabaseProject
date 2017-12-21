@@ -228,10 +228,18 @@ update Catalogo
 
 -- 18) rischiamo di perdere dei dati nelle fatture, è però vero che i codici prodotto sono universali
 delete from Prodotto
-	where Codice = <codice_prodotto>
+	where Codice = <codice_prodotto>;
 
 -- 20) siamo sicuri di volerlo fare? perdiamo dei dati nelle varie stipule
 delete from Fornitore
-	where Codice = <codice_fornitore>
+	where Codice = <codice_fornitore>;
 
 -- discorso analogo per la cancellazione di un servizio
+
+-- 22)
+select * from Cliente where Codice = <codice_cliente>;
+
+-- 24) DA TESTARE
+select Cliente, Importo, Inizio, Termine, DataPagamento
+	from ContrattoAssistenza, Fattura
+	where ContrattoAssistenza.Codice = <codice_contratto> and Fattura.Codice = ContrattoAssistenza.Fattura;
