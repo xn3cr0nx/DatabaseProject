@@ -196,6 +196,10 @@ insert into RichiestaMEPA(Numero, CodicePA, OffertaProposta, LimiteSpesa, Inizio
 insert into Gara(RichiestaMEPA, Aggiudicatario, OffertaVincitore)
 	values(...);
 
+-- 3)
+insert into RichiestaMEPA(Numero, CodicePA, OffertaProposta, LimiteSpesa, InizioOfferte, TermineOfferte)
+	values(...);
+
 insert into Trattativa(RichiestaMEPA, Stipulata)
 	values(...);
 
@@ -203,3 +207,31 @@ insert into Trattativa(RichiestaMEPA, Stipulata)
 -- 6)
 insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
 	values(null, ...);
+
+-- 10)
+insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
+	values(null, 'Rimini Service', ...); -- usiamo i nomi dei clienti o il loro codice?????
+
+-- Fattura corrisponde al codice creato nell'operazione qui sopra
+-- L'importo dela fattura e del contratto devono essere gli stessi
+insert into ContrattoAssistenza(Codice, Importo, Cliente, Inizio, Termine, Fattura)
+	values(null, ...);
+
+-- 11)
+update Gara set Aggiudicatario = <vincitore>, OffertaVincitore = <offerta>
+	where RichiestaMEPA = <codice_gara>;
+
+-- 13)
+update Catalogo
+	set Prezzo = <nuovo_prezzo>, InizioValidità = <nuovo_inizio>,	FineValidità = <nuovo_termine>
+	where Fornitore = <fornitore> and Prodotto = <prodotto>;
+
+-- 18) rischiamo di perdere dei dati nelle fatture, è però vero che i codici prodotto sono universali
+delete from Prodotto
+	where Codice = <codice_prodotto>
+
+-- 20) siamo sicuri di volerlo fare? perdiamo dei dati nelle varie stipule
+delete from Fornitore
+	where Codice = <codice_fornitore>
+
+-- discorso analogo per la cancellazione di un servizio
