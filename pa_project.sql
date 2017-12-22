@@ -47,12 +47,12 @@ create table Fornitore (
 
 create table TelefonoCliente (
 	Numero INT(11) primary key,
-	Cliente INT(11) not null references Cliente(Codice)
+	Cliente INT(11) not null references Cliente(Codice) on update cascade on delete no action
 )ENGINE=InnoDB;
 
 create table TelefonoFornitore (
 	Numero INT(11) primary key,
-	Fornitore INT(11) not null references Fornitore(Codice)
+	Fornitore INT(11) not null references Fornitore(Codice) on update cascade on delete no action
 )ENGINE=InnoDB;
 
 create table CostoSpedizione (
@@ -66,10 +66,10 @@ create table CostoSpedizione (
 create table ContrattoAssistenza (
 	Codice INT(11) primary key auto_increment,
 	Importo INT(11) not null,
-	Cliente INT(11) not null references Cliente(Codice),
+	Cliente INT(11) not null references Cliente(Codice) on update cascade on delete no action,
 	Inizio DATE not null,
 	Termine DATE not null,
-	Fattura INT(11) not null references Fattura(Codice)
+	Fattura INT(11) not null references Fattura(Codice) on update cascade on delete no action
 )ENGINE=InnoDB;
 
 create table Fattura (
@@ -80,7 +80,7 @@ create table Fattura (
 	Emissione DATE not null,
 	Scadenza DATE not null,
 	DataPagamento DATE,
-	Spedizione INT(11) references Spedizione(Codice),
+	Spedizione INT(11) references Spedizione(Codice) on update cascade on delete no action,
 	check (Scadenza > Emissione)
 )ENGINE=InnoDB;
 
@@ -89,36 +89,55 @@ create table ProdottoServizio (
 )ENGINE=InnoDB;
 
 create table Prodotto (
-	Codice VARCHAR(20) primary key references ProdottoServizio(Codice),
+	Codice VARCHAR(20) primary key references ProdottoServizio(Codice) on update cascade on delete no action,
 	Produttore VARCHAR(45) not null,
 	Modello VARCHAR(45) not null
 )ENGINE=InnoDB;
 
 create table Notebook (
-	Codice VARCHAR(20) primary key references Prodotto(Codice),
+	Codice VARCHAR(20) primary key references Prodotto(Codice) on update cascade on delete no action,
 	Processore VARCHAR(11) not null,
 	RAM INT(11) not null,
 	Storage INT(11) not null,
 	Schermo FLOAT(2,1) not null,
 	SistemaOperativo VARCHAR(45) not null
+	check(SistemaOperativo='Windows 10'
+		or SistemaOperativo='Windows 7'
+		or SistemaOperativo='Mac OS X'
+		or SistemaOperativo='Linux'
+		or SistemaOperativo='Free Dos')
 )ENGINE=InnoDB;
 
 create table PCDesktop (
-	Codice VARCHAR(20) primary key references Prodotto(Codice),
+	Codice VARCHAR(20) primary key references Prodotto(Codice) on update cascade on delete no action,
 	Processore VARCHAR(11) not null,
 	RAM INT(11) not null,
 	Storage INT(11) not null,
-	SistemaOperativo VARCHAR(45) not null
+	SistemaOperativo VARCHAR(45) not null,
+	check(SistemaOperativo='Windows 10'
+		or SistemaOperativo='Windows 7'
+		or SistemaOperativo='Mac OS X'
+		or SistemaOperativo='Linux'
+		or SistemaOperativo='Free Dos')
 )ENGINE=InnoDB;
 
 create table Monitor (
-	Codice VARCHAR(20) primary key references Prodotto(Codice),
+	Codice VARCHAR(20) primary key references Prodotto(Codice) on update cascade on delete no action,
 	Dimensione FLOAT(3,1) not null,
 	Risoluzione VARCHAR(11) not null
+	check(Risoluzione='800x600' 
+		or Risoluzione='1024x768' 
+		or Risoluzione='1280x720' 
+		or Risoluzione='1280x800' 
+		or Risoluzione='1440x900' 
+		or Risoluzione='1650x1080' 
+		or Risoluzione='1920x1080' 
+		or Risoluzione='1920x1200' 
+		or Risoluzione='2560x1600')
 )ENGINE=InnoDB;
 
 create table Stampante (
-	Codice VARCHAR(20) primary key references Prodotto(Codice),
+	Codice VARCHAR(20) primary key references Prodotto(Codice) on update cascade on delete no action,
 	Tecnologia VARCHAR(6) not null,
 	FormatoMax CHAR(2) not null,
 	Velocità INT(11) not null,
@@ -129,7 +148,7 @@ create table Stampante (
 )ENGINE=InnoDB;
 
 create table Servizio (
-	Codice VARCHAR(20) primary key references ProdottoServizio(Codice),
+	Codice VARCHAR(20) primary key references ProdottoServizio(Codice) on update cascade on delete no action,
 	Tipologia VARCHAR(24) not null,
 	Costo INT(11) not null,
 	check(Tipologia='Riparazione software' or Tipologia='Sostituzione componente'
@@ -138,8 +157,8 @@ create table Servizio (
 )ENGINE=InnoDB;
 
 create table Catalogo (
-	Fornitore VARCHAR(16) references Fornitore(Codice),
-	Prodotto VARCHAR(20) references Prodotto(Codice),
+	Fornitore VARCHAR(16) references Fornitore(Codice) on update cascade on delete no action,
+	Prodotto VARCHAR(20) references Prodotto(Codice) on update cascade on delete no action,
 	primary key (Fornitore, Prodotto),
 	Prezzo INT(11) not null,
 	InizioValidità DATE not null,
@@ -147,33 +166,33 @@ create table Catalogo (
 )ENGINE=InnoDB;
 
 create table ElencazioneCostiSpedizione (
-	Fornitore VARCHAR(16) references Fornitore(Codice),
-	Costo INT(11) references CostoSpedizione(Codice),
+	Fornitore VARCHAR(16) references Fornitore(Codice) on update cascade on delete no action,
+	Costo INT(11) references CostoSpedizione(Codice) on update cascade on delete no action,
 	primary key (Fornitore, Costo)
 )ENGINE=InnoDB;
 
 create table ElencazioneAssistenza (
-	Contratto INT(11) references ContrattoAssistenza(Codice),
-	Servizio VARCHAR(20) references Servizio(Codice),
+	Contratto INT(11) references ContrattoAssistenza(Codice) on update cascade on delete no action,
+	Servizio VARCHAR(20) references Servizio(Codice) on update cascade on delete no action,
 	primary key (Contratto, Servizio)
 )ENGINE=InnoDB;
 
 create table DescrizioneRichiesta (
-	RichiestaMEPA INT(11) references RichiestaMEPA(Numero),
-	ProdottoServizio VARCHAR(20) references ProdottoServizio(Codice),
+	RichiestaMEPA INT(11) references RichiestaMEPA(Numero) on update cascade on delete no action,
+	ProdottoServizio VARCHAR(20) references ProdottoServizio(Codice) on update cascade on delete no action,
 	primary key (RichiestaMEPA, ProdottoServizio)
 )ENGINE=InnoDB;
 
 create table Acquisto (
-	Fattura INT(11) references Fattura(Codice),
-	Prodotto VARCHAR(20) references Prodotto(Codice),
+	Fattura INT(11) references Fattura(Codice) on update cascade on delete no action,
+	Prodotto VARCHAR(20) references Prodotto(Codice) on update cascade on delete no action,
 	primary key (Fattura, Prodotto),
 	Quantità INT(11) not null default 1
 )ENGINE=InnoDB;
 
 create table Vendita (
-	Fattura INT(11) references Fattura(Codice),
-	ProdottoServizio VARCHAR(20) references ProdottoServizio(Codice),
+	Fattura INT(11) references Fattura(Codice) on update cascade on delete no action,
+	ProdottoServizio VARCHAR(20) references ProdottoServizio(Codice) on update cascade on delete no action,
 	primary key (Fattura, ProdottoServizio),
 	Quantità INT(11) not null default 1
 )ENGINE=InnoDB;
