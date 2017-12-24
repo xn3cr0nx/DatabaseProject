@@ -1,5 +1,8 @@
 Usiamo questo file per annotare considerazioni, osservazioni, problemi, ecc.
 
+- Operazione 6
+Loris: non mi ricordo, per il destinatario usiamo il codice cliente o il nome cliente?
+
 - Operazione 10
 Loris: dalla tabella ContrattoAssistenza, ho dato all'attributo Fattura la possibilità
 di essere nullable, così si può fare un update a posteriori per mettere il codice
@@ -8,6 +11,12 @@ Però in realtà, per come ho fatto le operazioni, si potrebbe benissimo inserir
 per prima la fattura e successivamente il ContrattoAssistenza, e quindi non ci
 sarebbe neanche bisogno di fare l'update.
 
+- Operazione 11
+Se il vincitore non è Rimini Service, mettiamo il nome del vincitore o la sua p.iva?
+
+- Loris: mi sono accorto che aggiungendo un "Servizio" senza prima inserire un
+"ProdottoServizio", non mi è venuto fuori nessun errore. Mi sembra strano,
+dovrebbe esserci la foreign key.. indaghiamo
 
 - RichiestaMEPA e i clienti di tipo 'pa' non hanno un vero e proprio vincolo di integrità,
 non saprei se va bene lasciare così com'è oppure inserire un vincolo.

@@ -36,29 +36,52 @@ insert into RichiestaMEPA(Numero, CodicePA, OffertaProposta, LimiteSpesa, Inizio
 insert into Trattativa(RichiestaMEPA, Stipulata)
 	values(274635, null);
 
--- 5)
-insert into Servizio(Codice, Tipologia, Costo)
-  values ('1', 'Riparazione software', 50);
-insert into Servizio(Codice, Tipologia, Costo)
-  values ('2', 'Sostituzione componente', 30);
+-- 4)
+insert into ProdottoServizio(Codice) values ('MF839T/A');
+insert into Prodotto(Codice, Produttore, Modello)
+  values('MF839T/A', 'Apple', 'Macbook Pro 13');
+insert into Notebook(Codice, Processore, RAM, Storage, Schermo, SistemaOperativo)
+  values('MF839T/A', 'Intel Core i5', 8, 128, 13.3, 'Mac OS X');
 
--- 6) non mi ricordo, per il destinatario usiamo il codice cliente o il nome cliente?
+-- 5)
+insert into ProdottoServizio(Codice) values ('1');
+insert into Servizio(Codice, Tipologia, Costo)
+  values('1', 'Riparazione software', 50);
+
+insert into ProdottoServizio(Codice) values ('2');
+insert into Servizio(Codice, Tipologia, Costo)
+  values('2', 'Sostituzione componente', 30);
+
+-- 6)
 insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
 	values(null, 'Rimini Service', '00382520427', 2784.78, NOW(), adddate(NOW(), 30), null, null);
+
+-- 7)
+insert into Fornitore(Codice, IndirizzoPEC, Nome, Email, Via, NumCivico, Citta, CAP)
+  values('1924512551', null, 'Marcello Sordi', null, null, null, null, null);
+
+-- 8)
+insert into Catalogo(Fornitore, Prodotto, Prezzo, InizioValidita, FineValidita)
+  values('1924512551', 'MF839T/A', 1300, '2017-12-01', '2017-12-31');
 
 -- 10)
 insert into ContrattoAssistenza(Codice, Importo, Cliente, Inizio, Termine, Fattura)
 	values(null, 1600, '00382520427', '2018-01-15', '2018-07-15', null);
 
 insert into ElencazioneAssistenza(Contratto, Servizio)
-	values ((select MAX(Codice) from ContrattoAssistenza), '1');
+	values((select max(Codice) from ContrattoAssistenza), '1');
 
 insert into ElencazioneAssistenza(Contratto, Servizio)
-	values ((select MAX(Codice) from ContrattoAssistenza), '2');
+	values((select max(Codice) from ContrattoAssistenza), '2');
 
 insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
 	values(null, 'Rimini Service', '00382520427', 1600, NOW(), adddate(NOW(), 30), null, null);
 
 update ContrattoAssistenza
-  set Fattura = (select MAX(Codice) from Fattura)
+  set Fattura = (select max(Codice) from Fattura)
   order by Codice DESC limit 1;
+
+
+-- 11)
+update Gara set Aggiudicatario = 'Rimini Service', OffertaVincitore = 2784.78
+	where RichiestaMEPA = 1776266;

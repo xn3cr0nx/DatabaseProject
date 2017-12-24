@@ -3,8 +3,8 @@
 create table RichiestaMEPA (
 	Numero INT(11) primary key,
 	CodicePA VARCHAR(11) not null,
-	OffertaProposta FLOAT(6,2) not null,
-	LimiteSpesa FLOAT(6,2) not null,
+	OffertaProposta FLOAT(8,2) not null,
+	LimiteSpesa FLOAT(8,2) not null,
 	InizioOfferte DATE not null,
 	TermineOfferte DATE not null,
 	check(TermineOfferte > InizioOfferte)
@@ -13,7 +13,7 @@ create table RichiestaMEPA (
 create table Gara (
 	RichiestaMEPA INT(11) primary key references RichiestaMEPA(Numero) on update cascade on delete no action,
 	Aggiudicatario VARCHAR(45),
-	OffertaVincitore FLOAT(6,2)
+	OffertaVincitore FLOAT(8,2)
 )ENGINE=InnoDB;
 
 create table Trattativa (
@@ -65,7 +65,7 @@ create table CostoSpedizione (
 
 create table ContrattoAssistenza (
 	Codice INT(11) primary key auto_increment,
-	Importo FLOAT(6,2) not null,
+	Importo FLOAT(8,2) not null,
 	Cliente VARCHAR(16) not null references Cliente(Codice) on update cascade on delete no action,
 	Inizio DATE not null,
 	Termine DATE not null,
@@ -76,7 +76,7 @@ create table Fattura (
 	Codice INT(11) primary key auto_increment,
 	Emittente VARCHAR(45) not null,
 	Destinatario VARCHAR(45) not null,
-	Importo FLOAT(6,2) not null,
+	Importo FLOAT(8,2) not null,
 	Emissione DATE not null,
 	Scadenza DATE not null,
 	DataPagamento DATE,
@@ -96,10 +96,10 @@ create table Prodotto (
 
 create table Notebook (
 	Codice VARCHAR(20) primary key references Prodotto(Codice) on update cascade on delete no action,
-	Processore VARCHAR(11) not null,
+	Processore VARCHAR(15) not null,
 	RAM INT(11) not null,
 	Storage INT(11) not null,
-	Schermo FLOAT(2,1) not null,
+	Schermo FLOAT(3,1) not null,
 	SistemaOperativo VARCHAR(45) not null
 	check(SistemaOperativo='Windows 10'
 		or SistemaOperativo='Windows 7'
@@ -157,10 +157,10 @@ create table Servizio (
 )ENGINE=InnoDB;
 
 create table Catalogo (
-	Fornitore VARCHAR(16) references Fornitore(Codice) on update cascade on delete no action,
-	Prodotto VARCHAR(20) references Prodotto(Codice) on update cascade on delete no action,
+	Fornitore VARCHAR(16) not null references Fornitore(Codice) on update cascade on delete no action,
+	Prodotto VARCHAR(20) not null references Prodotto(Codice) on update cascade on delete no action,
 	primary key (Fornitore, Prodotto),
-	Prezzo FLOAT(6,2) not null,
+	Prezzo FLOAT(8,2) not null,
 	InizioValidita DATE not null,
 	FineValidita DATE not null
 )ENGINE=InnoDB;
@@ -234,13 +234,13 @@ insert into ContrattoAssistenza(Codice, Importo, Cliente, Inizio, Termine, Fattu
 	values(null, ..., null);
 
 insert into ElencazioneAssistenza(Contratto, Servizio)
-	values ((select MAX(Codice) from ContrattoAssistenza), <codice_servizio>);
+	values ((select max(Codice) from ContrattoAssistenza), <codice_servizio>);
 
 insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
 	values(null, 'Rimini Service', <codice_cliente>, <importo_contratto>, NOW(), adddate(NOW(), 30), null, null);
 
 update ContrattoAssistenza
-  set Fattura = (select MAX(Codice) from Fattura)
+  set Fattura = (select max(Codice) from Fattura)
   order by Codice DESC limit 1;
 
 -- 11)
