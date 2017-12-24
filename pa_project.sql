@@ -69,7 +69,7 @@ create table ContrattoAssistenza (
 	Cliente VARCHAR(16) not null references Cliente(Codice) on update cascade on delete no action,
 	Inizio DATE not null,
 	Termine DATE not null,
-	Fattura INT(11) not null references Fattura(Codice) on update cascade on delete no action
+	Fattura INT(11) references Fattura(Codice) on update cascade on delete no action
 )ENGINE=InnoDB;
 
 create table Fattura (
@@ -125,14 +125,14 @@ create table Monitor (
 	Codice VARCHAR(20) primary key references Prodotto(Codice) on update cascade on delete no action,
 	Dimensione FLOAT(3,1) not null,
 	Risoluzione VARCHAR(11) not null
-	check(Risoluzione='800x600' 
-		or Risoluzione='1024x768' 
-		or Risoluzione='1280x720' 
-		or Risoluzione='1280x800' 
-		or Risoluzione='1440x900' 
-		or Risoluzione='1650x1080' 
-		or Risoluzione='1920x1080' 
-		or Risoluzione='1920x1200' 
+	check(Risoluzione='800x600'
+		or Risoluzione='1024x768'
+		or Risoluzione='1280x720'
+		or Risoluzione='1280x800'
+		or Risoluzione='1440x900'
+		or Risoluzione='1650x1080'
+		or Risoluzione='1920x1080'
+		or Risoluzione='1920x1200'
 		or Risoluzione='2560x1600')
 )ENGINE=InnoDB;
 
@@ -228,13 +228,20 @@ insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenz
 	values(null, ...);
 
 -- 10)
-insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
-	values(null, 'Rimini Service', ...); -- usiamo i nomi dei clienti o il loro codice?????
 
--- Fattura corrisponde al codice creato nell'operazione qui sopra
--- L'importo dela fattura e del contratto devono essere gli stessi
+-- Qui l'importo non va calcolato con il costo dei servizi
 insert into ContrattoAssistenza(Codice, Importo, Cliente, Inizio, Termine, Fattura)
-	values(null, ...);
+	values(null, ..., null);
+
+insert into ElencazioneAssistenza(Contratto, Servizio)
+	values ((select MAX(Codice) from ContrattoAssistenza), <codice_servizio>);
+
+insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
+	values(null, 'Rimini Service', <codice_cliente>, <importo_contratto>, NOW(), adddate(NOW(), 30), null, null);
+
+update ContrattoAssistenza
+  set Fattura = (select MAX(Codice) from Fattura)
+  order by Codice DESC limit 1;
 
 -- 11)
 update Gara set Aggiudicatario = <vincitore>, OffertaVincitore = <offerta>
@@ -285,9 +292,9 @@ select * from Prodotto, Notebook where Prodotto.Codice = Notebook.Codice and Not
 select * from Prodotto, PCDesktop where Prodotto.Codice = PCDesktop.Codice and PCDesktop.Codice = <codice_pcdesktop>
 
 -- 29)
-select min(Prezzo), Fornitore 
+select min(Prezzo), Fornitore
 	from Catalogo
-	where Prodotto = <codice_prodotto> and InizioValidita < NOW() and FineValidita > NOW() 
+	where Prodotto = <codice_prodotto> and InizioValidita < NOW() and FineValidita > NOW()
 
 -- 30)
 select * from Fatture where Codice = <codice_fattura>

@@ -1,0 +1,15 @@
+Usiamo questo file per annotare considerazioni, osservazioni, problemi, ecc.
+
+- Operazione 10
+Loris: dalla tabella ContrattoAssistenza, ho dato all'attributo Fattura la possibilità
+di essere nullable, così si può fare un update a posteriori per mettere il codice
+della fattura.
+Però in realtà, per come ho fatto le operazioni, si potrebbe benissimo inserire
+per prima la fattura e successivamente il ContrattoAssistenza, e quindi non ci
+sarebbe neanche bisogno di fare l'update.
+
+
+- RichiestaMEPA e i clienti di tipo 'pa' non hanno un vero e proprio vincolo di integrità,
+non saprei se va bene lasciare così com'è oppure inserire un vincolo.
+Nel caso di inserimento del vincolo, bisogna decidere se inserire prima la richiesta
+sul MEPA e poi il cliente 'pa' oppure viceversa
