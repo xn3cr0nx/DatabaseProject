@@ -3,8 +3,8 @@
 create table RichiestaMEPA (
 	Numero INT(11) primary key,
 	CodicePA VARCHAR(11) not null,
-	OffertaProposta INT(11) not null,
-	LimiteSpesa INT(11) not null,
+	OffertaProposta FLOAT(6,2) not null,
+	LimiteSpesa FLOAT(6,2) not null,
 	InizioOfferte DATE not null,
 	TermineOfferte DATE not null,
 	check(TermineOfferte > InizioOfferte)
@@ -13,7 +13,7 @@ create table RichiestaMEPA (
 create table Gara (
 	RichiestaMEPA INT(11) primary key references RichiestaMEPA(Numero) on update cascade on delete no action,
 	Aggiudicatario VARCHAR(45),
-	OffertaVincitore INT(11)
+	OffertaVincitore FLOAT(6,2)
 )ENGINE=InnoDB;
 
 create table Trattativa (
@@ -41,18 +41,18 @@ create table Fornitore (
 	Email VARCHAR(45),
 	Via VARCHAR(45),
 	NumCivico VARCHAR(11),
-	Città VARCHAR(45),
+	Citta VARCHAR(45),
 	CAP INT(11)
 )ENGINE=InnoDB;
 
 create table TelefonoCliente (
-	Numero INT(11) primary key,
-	Cliente INT(11) not null references Cliente(Codice) on update cascade on delete no action
+	Numero VARCHAR(11) primary key,
+	Cliente VARCHAR(16) not null references Cliente(Codice) on update cascade on delete no action
 )ENGINE=InnoDB;
 
 create table TelefonoFornitore (
-	Numero INT(11) primary key,
-	Fornitore INT(11) not null references Fornitore(Codice) on update cascade on delete no action
+	Numero VARCHAR(11) primary key,
+	Fornitore VARCHAR(16) not null references Fornitore(Codice) on update cascade on delete no action
 )ENGINE=InnoDB;
 
 create table CostoSpedizione (
@@ -65,8 +65,8 @@ create table CostoSpedizione (
 
 create table ContrattoAssistenza (
 	Codice INT(11) primary key auto_increment,
-	Importo INT(11) not null,
-	Cliente INT(11) not null references Cliente(Codice) on update cascade on delete no action,
+	Importo FLOAT(6,2) not null,
+	Cliente VARCHAR(16) not null references Cliente(Codice) on update cascade on delete no action,
 	Inizio DATE not null,
 	Termine DATE not null,
 	Fattura INT(11) not null references Fattura(Codice) on update cascade on delete no action
@@ -76,7 +76,7 @@ create table Fattura (
 	Codice INT(11) primary key auto_increment,
 	Emittente VARCHAR(45) not null,
 	Destinatario VARCHAR(45) not null,
-	Importo INT(11) not null,
+	Importo FLOAT(6,2) not null,
 	Emissione DATE not null,
 	Scadenza DATE not null,
 	DataPagamento DATE,
@@ -140,11 +140,11 @@ create table Stampante (
 	Codice VARCHAR(20) primary key references Prodotto(Codice) on update cascade on delete no action,
 	Tecnologia VARCHAR(6) not null,
 	FormatoMax CHAR(2) not null,
-	Velocità INT(11) not null,
-	Connettività VARCHAR(9) not null,
+	Velocita INT(11) not null,
+	Connettivita VARCHAR(9) not null,
 	check(Tecnologia='Inkjet' or Tecnologia='Laser'),
 	check(FormatoMax='A3' or FormatoMax='A4' or FormatoMax='A5'),
-	check(Connettività='USB' or Connettività='WiFi' or Connettività='USB, WiFi')
+	check(Connettivita='USB' or Connettivita='WiFi' or Connettivita='USB, WiFi')
 )ENGINE=InnoDB;
 
 create table Servizio (
@@ -160,9 +160,9 @@ create table Catalogo (
 	Fornitore VARCHAR(16) references Fornitore(Codice) on update cascade on delete no action,
 	Prodotto VARCHAR(20) references Prodotto(Codice) on update cascade on delete no action,
 	primary key (Fornitore, Prodotto),
-	Prezzo INT(11) not null,
-	InizioValidità DATE not null,
-	FineValidità DATE not null
+	Prezzo FLOAT(6,2) not null,
+	InizioValidita DATE not null,
+	FineValidita DATE not null
 )ENGINE=InnoDB;
 
 create table ElencazioneCostiSpedizione (
@@ -187,14 +187,14 @@ create table Acquisto (
 	Fattura INT(11) references Fattura(Codice) on update cascade on delete no action,
 	Prodotto VARCHAR(20) references Prodotto(Codice) on update cascade on delete no action,
 	primary key (Fattura, Prodotto),
-	Quantità INT(11) not null default 1
+	Quantita INT(11) not null default 1
 )ENGINE=InnoDB;
 
 create table Vendita (
 	Fattura INT(11) references Fattura(Codice) on update cascade on delete no action,
 	ProdottoServizio VARCHAR(20) references ProdottoServizio(Codice) on update cascade on delete no action,
 	primary key (Fattura, ProdottoServizio),
-	Quantità INT(11) not null default 1
+	Quantita INT(11) not null default 1
 )ENGINE=InnoDB;
 
 
@@ -202,7 +202,7 @@ create table Vendita (
 /*** OPERAZIONI ***/
 
 -- 1)
-insert into Cliente(Codice, Tipo, Indirizzo PEC, Nome, Email, Via, NumCivico, Città, CAP)
+insert into Cliente(Codice, Tipo, IndirizzoPEC, Nome, Email, Via, NumCivico, Citta, CAP)
 	values(...);
 
 insert into TelefonoCliente(Numero, Cliente)
@@ -242,7 +242,7 @@ update Gara set Aggiudicatario = <vincitore>, OffertaVincitore = <offerta>
 
 -- 13)
 update Catalogo
-	set Prezzo = <nuovo_prezzo>, InizioValidità = <nuovo_inizio>,	FineValidità = <nuovo_termine>
+	set Prezzo = <nuovo_prezzo>, InizioValidita = <nuovo_inizio>,	FineValidita = <nuovo_termine>
 	where Fornitore = <fornitore> and Prodotto = <prodotto>;
 
 -- 18) rischiamo di perdere dei dati nelle fatture, è però vero che i codici prodotto sono universali
@@ -262,3 +262,34 @@ select * from Cliente where Codice = <codice_cliente>;
 select Cliente, Importo, Inizio, Termine, DataPagamento
 	from ContrattoAssistenza, Fattura
 	where ContrattoAssistenza.Codice = <codice_contratto> and Fattura.Codice = ContrattoAssistenza.Fattura;
+
+-- 25)
+select Codice, Importo, Cliente, Inizio , Termine, Fattura
+	from ContrattoAssistenza
+	where ContrattoAssistenza.Inizio >= <anno_mese_inizio> and ContrattoAssistenza.Termine <= <anno_mese_fine>
+
+-- 26)
+select * from Gara where RichiestaMEPA = <numero_richiestamepa>
+
+-- 27)
+select * from Trattativa where RichiestaMEPA = <numero_richiestamepa>
+
+-- 28)
+/* monitor per codice */
+select * from Prodotto, Monitor where Prodotto.Codice = Monitor.Codice and Monitor.Codice = <codice_monitor>
+
+/* notebook per codice */
+select * from Prodotto, Notebook where Prodotto.Codice = Notebook.Codice and Notebook.Codice = <codice_notebook>
+
+/* pcdesktop per codice */
+select * from Prodotto, PCDesktop where Prodotto.Codice = PCDesktop.Codice and PCDesktop.Codice = <codice_pcdesktop>
+
+-- 29)
+select min(Prezzo), Fornitore 
+	from Catalogo
+	where Prodotto = <codice_prodotto> and InizioValidita < NOW() and FineValidita > NOW() 
+
+-- 30)
+select * from Fatture where Codice = <codice_fattura>
+
+-- 31)
