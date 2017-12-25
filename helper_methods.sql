@@ -37,11 +37,19 @@ insert into Trattativa(RichiestaMEPA, Stipulata)
 	values(274635, null);
 
 -- 4)
+/* notebook */
 insert into ProdottoServizio(Codice) values ('MF839T/A');
 insert into Prodotto(Codice, Produttore, Modello)
   values('MF839T/A', 'Apple', 'Macbook Pro 13');
 insert into Notebook(Codice, Processore, RAM, Storage, Schermo, SistemaOperativo)
   values('MF839T/A', 'Intel Core i5', 8, 128, 13.3, 'Mac OS X');
+
+/* monitor */
+insert into ProdottoServizio(Codice) values ('24M38A');
+insert into Prodotto(Codice, Produttore, Modello)
+  values('24M38A', 'LG', 'Monitor LED 24"');
+insert into Monitor(Codice, Dimensione, Risoluzione)
+  values('24M38A', 23.6, '1920x1080');
 
 -- 5)
 insert into ProdottoServizio(Codice) values ('1');
@@ -85,3 +93,41 @@ update ContrattoAssistenza
 -- 11)
 update Gara set Aggiudicatario = 'Rimini Service', OffertaVincitore = 2784.78
 	where RichiestaMEPA = 1776266;
+
+-- 13)
+update Catalogo
+	set Prezzo = 1340.48, InizioValidita = '2018-01-01',	FineValidita = '2018-01-31'
+	where Fornitore = '1924512551' and Prodotto = 'MF839T/A';
+
+-- 18)
+-- delete from Prodotto
+-- 	where Codice = 'MF839T/A';
+
+-- 22)
+select * from Cliente where Codice = '00382520427';
+
+-- 24)
+select Cliente, ContrattoAssistenza.Importo, Inizio, Termine, DataPagamento
+  from ContrattoAssistenza, Fattura
+  where ContrattoAssistenza.Codice = 1 and Fattura.Codice = ContrattoAssistenza.Fattura;
+
+-- 25)
+select ContrattoAssistenza.Codice, Cliente, ContrattoAssistenza.Importo, Inizio , Termine, DataPagamento
+	from ContrattoAssistenza, Fattura
+	where Inizio >= '2018' and Termine <= '2019' and Fattura.Codice = ContrattoAssistenza.Fattura;
+
+-- 26)
+select * from Gara where RichiestaMEPA = 1776266;
+
+-- 27)
+select * from Trattativa where RichiestaMEPA = 274635;
+
+-- 28)
+/* monitor per codice */
+select Prodotto.Codice, Produttore, Modello, Dimensione, Risoluzione
+	from Prodotto, Monitor
+	where Prodotto.Codice = Monitor.Codice and Monitor.Codice = '24M38A';
+
+/* notebook per codice */
+select Prodotto.Codice, Produttore, Modello, Processore, RAM, Storage, Schermo, SistemaOperativo
+  from Prodotto, Notebook where Prodotto.Codice = Notebook.Codice and Notebook.Codice = 'MF839T/A';

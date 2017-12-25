@@ -1,5 +1,8 @@
 Usiamo questo file per annotare considerazioni, osservazioni, problemi, ecc.
 
+I CHECK NON FUNZIONANO, ho provato a mettere la risoluzione di un monitor 1920x1081,
+che non è corretta, ma il db se ne sbatte. Indagare
+
 - Operazione 6
 Loris: non mi ricordo, per il destinatario usiamo il codice cliente o il nome cliente?
 
@@ -14,9 +17,27 @@ sarebbe neanche bisogno di fare l'update.
 - Operazione 11
 Se il vincitore non è Rimini Service, mettiamo il nome del vincitore o la sua p.iva?
 
+- Operazione 18
+rischiamo di perdere dei dati nelle fatture, è però vero che i codici prodotto sono universali.
+Questa operazione la lascerei
+
+- Operazione 20
+siamo sicuri di volerlo fare? perdiamo dei dati nelle varie stipule
+Si era parlato di non inserire queste operazioni di Delete, e di giustificarle
+dicendo che per non perdere dati bisognerebbe mettere un attributo 'delete' a 1.
+Possiamo fare così, oppure vediamo l'esempio (l'esempio non usa assolutamente
+attributi di tipo 'delete'=1, se ne sbattano altamente della perdita di dati storici)
+-- discorso analogo per la cancellazione di un servizio
+
+- Loris: I check sulle date non funzionano, ho approvato ad aggiungere nel catalogo
+un InizioValidita maggiore di FineValidita ma il db non ha battuto ciglio.
+
 - Loris: mi sono accorto che aggiungendo un "Servizio" senza prima inserire un
 "ProdottoServizio", non mi è venuto fuori nessun errore. Mi sembra strano,
 dovrebbe esserci la foreign key.. indaghiamo
+
+- Controllare cosa succede quando si cancella un prodotto, dovrebbero cancellarsi
+le rispettive righe anche nei genitori del figlio
 
 - RichiestaMEPA e i clienti di tipo 'pa' non hanno un vero e proprio vincolo di integrità,
 non saprei se va bene lasciare così com'è oppure inserire un vincolo.

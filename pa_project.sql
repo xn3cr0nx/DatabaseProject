@@ -162,7 +162,8 @@ create table Catalogo (
 	primary key (Fornitore, Prodotto),
 	Prezzo FLOAT(8,2) not null,
 	InizioValidita DATE not null,
-	FineValidita DATE not null
+	FineValidita DATE not null,
+	check (InizioValidita < FineValidita)
 )ENGINE=InnoDB;
 
 create table ElencazioneCostiSpedizione (
@@ -252,51 +253,53 @@ update Catalogo
 	set Prezzo = <nuovo_prezzo>, InizioValidita = <nuovo_inizio>,	FineValidita = <nuovo_termine>
 	where Fornitore = <fornitore> and Prodotto = <prodotto>;
 
--- 18) rischiamo di perdere dei dati nelle fatture, è però vero che i codici prodotto sono universali
+-- 18)
 delete from Prodotto
 	where Codice = <codice_prodotto>;
 
--- 20) siamo sicuri di volerlo fare? perdiamo dei dati nelle varie stipule
+-- 20)
 delete from Fornitore
 	where Codice = <codice_fornitore>;
-
--- discorso analogo per la cancellazione di un servizio
 
 -- 22)
 select * from Cliente where Codice = <codice_cliente>;
 
--- 24) DA TESTARE
-select Cliente, Importo, Inizio, Termine, DataPagamento
+-- 24)
+select Cliente, ContrattoAssistenza.Importo, Inizio, Termine, DataPagamento
 	from ContrattoAssistenza, Fattura
 	where ContrattoAssistenza.Codice = <codice_contratto> and Fattura.Codice = ContrattoAssistenza.Fattura;
 
 -- 25)
-select Codice, Importo, Cliente, Inizio , Termine, Fattura
-	from ContrattoAssistenza
-	where ContrattoAssistenza.Inizio >= <anno_mese_inizio> and ContrattoAssistenza.Termine <= <anno_mese_fine>
+select ContrattoAssistenza.Codice, Cliente, ContrattoAssistenza.Importo, Inizio , Termine, DataPagamento
+	from ContrattoAssistenza, Fattura
+	where Inizio >= <data_inizio> and Termine <= <data_termine and Fattura.Codice = ContrattoAssistenza.Fattura;
 
 -- 26)
-select * from Gara where RichiestaMEPA = <numero_richiestamepa>
+select * from Gara where RichiestaMEPA = <numero_richiestamepa>;
 
 -- 27)
-select * from Trattativa where RichiestaMEPA = <numero_richiestamepa>
+select * from Trattativa where RichiestaMEPA = <numero_richiestamepa>;
 
 -- 28)
 /* monitor per codice */
-select * from Prodotto, Monitor where Prodotto.Codice = Monitor.Codice and Monitor.Codice = <codice_monitor>
+select Prodotto.Codice, Produttore, Modello, Dimensione, Risoluzione
+	from Prodotto, Monitor
+	where Prodotto.Codice = Monitor.Codice and Monitor.Codice = <codice_monitor>;
 
 /* notebook per codice */
-select * from Prodotto, Notebook where Prodotto.Codice = Notebook.Codice and Notebook.Codice = <codice_notebook>
+select Prodotto.Codice, Produttore, Modello, Processore, RAM, Storage, Schermo, SistemaOperativo
+	from Prodotto, Notebook
+	where Prodotto.Codice = Notebook.Codice and Notebook.Codice = <codice_notebook>;
 
 /* pcdesktop per codice */
-select * from Prodotto, PCDesktop where Prodotto.Codice = PCDesktop.Codice and PCDesktop.Codice = <codice_pcdesktop>
+select * from Prodotto, PCDesktop where Prodotto.Codice = PCDesktop.Codice and PCDesktop.Codice = <codice_pcdesktop>;
 
 -- 29)
 select min(Prezzo), Fornitore
 	from Catalogo
-	where Prodotto = <codice_prodotto> and InizioValidita < NOW() and FineValidita > NOW()
+	where Prodotto = <codice_prodotto> and InizioValidita < NOW() and FineValidita > NOW();
 
 -- 30)
-select * from Fatture where Codice = <codice_fattura>
+select * from Fatture where Codice = <codice_fattura>;
 
 -- 31)
