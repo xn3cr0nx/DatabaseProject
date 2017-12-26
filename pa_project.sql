@@ -228,21 +228,16 @@ insert into Trattativa(RichiestaMEPA, Stipulata)
 insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
 	values(null, ...);
 
--- 10)
-
--- Qui l'importo non va calcolato con il costo dei servizi
-insert into ContrattoAssistenza(Codice, Importo, Cliente, Inizio, Termine, Fattura)
-	values(null, ..., null);
-
-insert into ElencazioneAssistenza(Contratto, Servizio)
-	values ((select max(Codice) from ContrattoAssistenza), <codice_servizio>);
-
+-- 10) l'importo non va calcolato con i costi dei servizi
+-- DA TESTARE TUTTE E TRE
 insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
 	values(null, 'Rimini Service', <codice_cliente>, <importo_contratto>, NOW(), adddate(NOW(), 30), null, null);
 
-update ContrattoAssistenza
-  set Fattura = (select max(Codice) from Fattura)
-  order by Codice DESC limit 1;
+insert into ContrattoAssistenza(Codice, Importo, Cliente, Inizio, Termine, Fattura)
+	values(null, ..., (select max(Codice) from Fattura));
+
+insert into ElencazioneAssistenza(Contratto, Servizio)
+	values ((select max(Codice) from ContrattoAssistenza), <codice_servizio>);
 
 -- 11)
 update Gara set Aggiudicatario = <vincitore>, OffertaVincitore = <offerta>

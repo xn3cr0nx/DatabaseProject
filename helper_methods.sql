@@ -90,7 +90,7 @@ update ContrattoAssistenza
   order by Codice DESC limit 1;
 
 
--- 11)
+-- 11) se l'aggiudicatario non è Rimini Service, mettiamo il nome del vincitore
 update Gara set Aggiudicatario = 'Rimini Service', OffertaVincitore = 2784.78
 	where RichiestaMEPA = 1776266;
 
