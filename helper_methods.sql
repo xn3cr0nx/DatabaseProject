@@ -73,22 +73,17 @@ insert into Catalogo(Fornitore, Prodotto, Prezzo, InizioValidita, FineValidita)
   values('1924512551', 'MF839T/A', 1300, '2017-12-01', '2017-12-31');
 
 -- 10)
+insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
+  values(null, 'Rimini Service', '00382520427', 1600, NOW(), adddate(NOW(), 30), null, null);
+
 insert into ContrattoAssistenza(Codice, Importo, Cliente, Inizio, Termine, Fattura)
-	values(null, 1600, '00382520427', '2018-01-15', '2018-07-15', null);
+	values(null, 1600, '00382520427', '2018-01-15', '2018-07-15', (select max(Codice) from Fattura));
 
 insert into ElencazioneAssistenza(Contratto, Servizio)
 	values((select max(Codice) from ContrattoAssistenza), '1');
 
 insert into ElencazioneAssistenza(Contratto, Servizio)
 	values((select max(Codice) from ContrattoAssistenza), '2');
-
-insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
-	values(null, 'Rimini Service', '00382520427', 1600, NOW(), adddate(NOW(), 30), null, null);
-
-update ContrattoAssistenza
-  set Fattura = (select max(Codice) from Fattura)
-  order by Codice DESC limit 1;
-
 
 -- 11) se l'aggiudicatario non è Rimini Service, mettiamo il nome del vincitore
 update Gara set Aggiudicatario = 'Rimini Service', OffertaVincitore = 2784.78

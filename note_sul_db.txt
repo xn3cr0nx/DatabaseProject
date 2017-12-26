@@ -7,11 +7,6 @@ che non è corretta, ma il db se ne sbatte. Indagare
 Lasciamo le operazioni, e scriviamo una nota su come si dovrebbe fare (con il flag)
 -- discorso analogo per la cancellazione di un servizio
 
-- Loris: mi sono accorto che aggiungendo un "Servizio" senza prima inserire un
-"ProdottoServizio", non mi è venuto fuori nessun errore. Mi sembra strano,
-dovrebbe esserci la foreign key.. indaghiamo
-Indagare su "references" e "foreign key"
-
 - Controllare cosa succede quando si cancella un prodotto, dovrebbero cancellarsi
 le rispettive righe anche nei genitori del figlio
 
