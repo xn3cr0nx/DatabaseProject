@@ -28,13 +28,13 @@ create table Gara (
 	RichiestaMEPA INT(11) primary key,
 	Aggiudicatario VARCHAR(45),
 	OffertaVincitore FLOAT(8,2),
-	foreign key (RichiestaMEPA) references RichiestaMEPA(Numero) on update cascade on delete no action
+	foreign key (RichiestaMEPA) references RichiestaMEPA(Numero) on update cascade on delete cascade
 )ENGINE=InnoDB;
 
 create table Trattativa (
 	RichiestaMEPA INT(11) primary key,
 	Stipulata BOOLEAN,
-	foreign key (RichiestaMEPA) references RichiestaMEPA(Numero) on update cascade on delete no action
+	foreign key (RichiestaMEPA) references RichiestaMEPA(Numero) on update cascade on delete cascade
 )ENGINE=InnoDB;
 
 create table Fornitore (
@@ -51,13 +51,13 @@ create table Fornitore (
 create table TelefonoCliente (
 	Numero VARCHAR(11) primary key,
 	Cliente VARCHAR(16) not null,
-	foreign key (Cliente) references Cliente(Codice) on update cascade on delete no action
+	foreign key (Cliente) references Cliente(Codice) on update cascade on delete cascade
 )ENGINE=InnoDB;
 
 create table TelefonoFornitore (
 	Numero VARCHAR(11) primary key,
 	Fornitore VARCHAR(16) not null,
-	foreign key (Fornitore) references Fornitore(Codice) on update cascade on delete no action
+	foreign key (Fornitore) references Fornitore(Codice) on update cascade on delete cascade
 )ENGINE=InnoDB;
 
 create table CostoSpedizione (
@@ -100,7 +100,7 @@ create table Prodotto (
 	Codice VARCHAR(20) primary key,
 	Produttore VARCHAR(45) not null,
 	Modello VARCHAR(45) not null,
-	foreign key (Codice) references ProdottoServizio(Codice) on update cascade on delete no action
+	foreign key (Codice) references ProdottoServizio(Codice) on update cascade on delete cascade
 )ENGINE=InnoDB;
 
 create table Notebook (
@@ -110,7 +110,7 @@ create table Notebook (
 	Storage INT(11) not null,
 	Schermo FLOAT(3,1) not null,
 	SistemaOperativo VARCHAR(45) not null,
-	foreign key (Codice) references Prodotto(Codice) on update cascade on delete no action,
+	foreign key (Codice) references Prodotto(Codice) on update cascade on delete cascade,
 	check(SistemaOperativo='Windows 10'
 		or SistemaOperativo='Windows 7'
 		or SistemaOperativo='Mac OS X'
@@ -124,7 +124,7 @@ create table PCDesktop (
 	RAM INT(11) not null,
 	Storage INT(11) not null,
 	SistemaOperativo VARCHAR(45) not null,
-	foreign key (Codice) references Prodotto(Codice) on update cascade on delete no action,
+	foreign key (Codice) references Prodotto(Codice) on update cascade on delete cascade,
 	check(SistemaOperativo='Windows 10'
 		or SistemaOperativo='Windows 7'
 		or SistemaOperativo='Mac OS X'
@@ -136,7 +136,7 @@ create table Monitor (
 	Codice VARCHAR(20) primary key,
 	Dimensione FLOAT(3,1) not null,
 	Risoluzione VARCHAR(11) not null,
-	foreign key (Codice) references Prodotto(Codice) on update cascade on delete no action,
+	foreign key (Codice) references Prodotto(Codice) on update cascade on delete cascade,
 	check(Risoluzione='800x600'
 		or Risoluzione='1024x768'
 		or Risoluzione='1280x720'
@@ -154,7 +154,7 @@ create table Stampante (
 	FormatoMax CHAR(2) not null,
 	Velocita INT(11) not null,
 	Connettivita VARCHAR(9) not null,
-	foreign key (Codice) references Prodotto(Codice) on update cascade on delete no action,
+	foreign key (Codice) references Prodotto(Codice) on update cascade on delete cascade,
 	check(Tecnologia='Inkjet' or Tecnologia='Laser'),
 	check(FormatoMax='A3' or FormatoMax='A4' or FormatoMax='A5'),
 	check(Connettivita='USB' or Connettivita='WiFi' or Connettivita='USB, WiFi')
@@ -164,7 +164,7 @@ create table Servizio (
 	Codice VARCHAR(20) primary key,
 	Tipologia VARCHAR(24) not null,
 	Costo INT(11) not null,
-	foreign key(Codice) references ProdottoServizio(Codice) on update cascade on delete no action,
+	foreign key(Codice) references ProdottoServizio(Codice) on update cascade on delete cascade,
 	check(Tipologia='Riparazione software' or Tipologia='Sostituzione componente'
 		or Tipologia='Configurazione programma' or Tipologia='Formattazione pc'
 		or Tipologia='Installazione rete WiFi')
@@ -274,8 +274,8 @@ update Catalogo
 	where Fornitore = <fornitore> and Prodotto = <prodotto>;
 
 -- 18)
-delete from Prodotto
-	where Codice = <codice_prodotto>;
+delete from ProdottoServizio
+	where Codice = <codice_prodotto_servizio>;
 
 -- 20)
 delete from Fornitore

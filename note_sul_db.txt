@@ -1,15 +1,15 @@
 Usiamo questo file per annotare considerazioni, osservazioni, problemi, ecc.
 
-I CHECK NON FUNZIONANO, ho provato a mettere la risoluzione di un monitor 1920x1081,
-che non è corretta, ma il db se ne sbatte. Indagare
+- Controllare i vari "on delete", considerare che "no action" blocca la cancellazione del padre
+
+- Bisogna aggiungere l'inserimento del Cliente prima di inserire
+la gara (e magari usare un if-statement per vedere se la PA c'è già nel db)
+
+
+I CHECK NON FUNZIONANO, il db se ne sbatte.
+MySQL non ha implementato le funzionalità di Check, non possiamo farci niente ahah
+https://stackoverflow.com/questions/2115497/check-constraint-in-mysql-is-not-working
 
 - Operazione 20
 Lasciamo le operazioni, e scriviamo una nota su come si dovrebbe fare (con il flag)
 -- discorso analogo per la cancellazione di un servizio
-
-- Controllare cosa succede quando si cancella un prodotto, dovrebbero cancellarsi
-le rispettive righe anche nei genitori del figlio
-
-- Foreign key su "CodicePA" nella richiesta MEPA
-E poi bisogna aggiungere l'inserimento del Cliente prima di inserire
-la gara (e magari usare un if-statement per vedere se la PA c'è già nel db)

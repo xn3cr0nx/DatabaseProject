@@ -31,7 +31,7 @@ insert into Gara(RichiestaMEPA, Aggiudicatario, OffertaVincitore)
 
 -- 3)
 insert into RichiestaMEPA(Numero, CodicePA, OffertaProposta, LimiteSpesa, InizioOfferte, TermineOfferte)
-	values(274635, '84001850589', 1921.24, 2000, '2017-10-17', '2017-10-23');
+	values(274635, '00382520427', 1921.24, 2000, '2017-10-17', '2017-10-23');
 
 insert into Trattativa(RichiestaMEPA, Stipulata)
 	values(274635, null);
@@ -95,7 +95,7 @@ update Catalogo
 	where Fornitore = '1924512551' and Prodotto = 'MF839T/A';
 
 -- 18)
--- delete from Prodotto
+-- delete from ProdottoServizio
 -- 	where Codice = 'MF839T/A';
 
 -- 22)
