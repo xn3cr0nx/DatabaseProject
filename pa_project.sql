@@ -120,7 +120,7 @@ create table Notebook (
 
 create table PCDesktop (
 	Codice VARCHAR(20) primary key,
-	Processore VARCHAR(11) not null,
+	Processore VARCHAR(15) not null,
 	RAM INT(11) not null,
 	Storage INT(11) not null,
 	SistemaOperativo VARCHAR(45) not null,
@@ -249,6 +249,14 @@ insert into RichiestaMEPA(Numero, CodicePA, OffertaProposta, LimiteSpesa, Inizio
 insert into Trattativa(RichiestaMEPA, Stipulata)
 	values(...);
 
+-- 4)
+/* notebook */
+insert into ProdottoServizio(Codice) values (...);
+insert into Prodotto(Codice, Produttore, Modello)
+  values(...);
+insert into Notebook(Codice, Processore, RAM, Storage, Schermo, SistemaOperativo)
+  values(...);
+
 
 -- 6)
 insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
@@ -312,14 +320,17 @@ select Prodotto.Codice, Produttore, Modello, Processore, RAM, Storage, Schermo, 
 	where Prodotto.Codice = Notebook.Codice and Notebook.Codice = <codice_notebook>;
 
 /* pcdesktop per codice */
-select * from Prodotto, PCDesktop where Prodotto.Codice = PCDesktop.Codice and PCDesktop.Codice = <codice_pcdesktop>;
+select Prodotto.Codice, Produttore, Modello, Processore, RAM, Storage, SistemaOperativo
+	from Prodotto, PCDesktop
+	where Prodotto.Codice = PCDesktop.Codice and PCDesktop.Codice = <codice_pcdesktop>;
 
 -- 29)
 select min(Prezzo), Fornitore
 	from Catalogo
-	where Prodotto = <codice_prodotto> and InizioValidita < NOW() and FineValidita > NOW();
+	where Prodotto = <codice_prodotto> and InizioValidita < NOW() and FineValidita > NOW()
+	group by Fornitore;
 
 -- 30)
-select * from Fatture where Codice = <codice_fattura>;
+select * from Fattura where Codice = <codice_fattura>;
 
 -- 31)

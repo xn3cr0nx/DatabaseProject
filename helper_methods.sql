@@ -51,6 +51,13 @@ insert into Prodotto(Codice, Produttore, Modello)
 insert into Monitor(Codice, Dimensione, Risoluzione)
   values('24M38A', 23.6, '1920x1080');
 
+/* pc desktop */
+insert into ProdottoServizio(Codice) values ('VC65R-G026Z');
+insert into Prodotto(Codice, Produttore, Modello)
+  values('VC65R-G026Z', 'Asus', 'VivoPC VC65R-G026Z');
+insert into PCDesktop(Codice, Processore, RAM, Storage, SistemaOperativo)
+  values('VC65R-G026Z', 'Intel Core i5', 8, 1000, 'Windows 10');
+
 -- 5)
 insert into ProdottoServizio(Codice) values ('1');
 insert into Servizio(Codice, Tipologia, Costo)
@@ -91,7 +98,7 @@ update Gara set Aggiudicatario = 'Rimini Service', OffertaVincitore = 2784.78
 
 -- 13)
 update Catalogo
-	set Prezzo = 1340.48, InizioValidita = '2018-01-01',	FineValidita = '2018-01-31'
+	set Prezzo = 1340.48, InizioValidita = '2017-12-20',	FineValidita = '2018-01-19'
 	where Fornitore = '1924512551' and Prodotto = 'MF839T/A';
 
 -- 18)
@@ -126,3 +133,17 @@ select Prodotto.Codice, Produttore, Modello, Dimensione, Risoluzione
 /* notebook per codice */
 select Prodotto.Codice, Produttore, Modello, Processore, RAM, Storage, Schermo, SistemaOperativo
   from Prodotto, Notebook where Prodotto.Codice = Notebook.Codice and Notebook.Codice = 'MF839T/A';
+
+/* pcdesktop per codice */
+select Prodotto.Codice, Produttore, Modello, Processore, RAM, Storage, SistemaOperativo
+	from Prodotto, PCDesktop
+	where Prodotto.Codice = PCDesktop.Codice and PCDesktop.Codice = 'VC65R-G026Z';
+
+-- 29)
+select min(Prezzo), Fornitore
+	from Catalogo
+  where Prodotto = 'MF839T/A' and InizioValidita < NOW() and FineValidita > NOW()
+  group by Fornitore;
+
+-- 30)
+select * from Fattura where Codice = 1;
