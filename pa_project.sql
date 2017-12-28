@@ -347,3 +347,53 @@ select Codice, Quantita, Produttore, Modello
 	from Vendita, Prodotto
 	where Vendita.ProdottoServizio = Codice
 	order by Quantita desc;
+
+-- 34)
+select Codice, Quantita, Tipologia
+	from Vendita, Servizio
+	where Vendita.ProdottoServizio = Codice
+	order by Quantita desc;
+
+-- 35)
+select Codice, (select Nome from Cliente where Codice=Destinatario) as Nome, Emissione, Scadenza
+	from Fattura
+	where Emittente='Rimini Service' and NOW() >= Emissione and DataPagamento IS NULL
+	order by Emissione;
+
+-- 36)
+select Codice, (select Nome from Cliente where Codice=Destinatario) as Nome, Emissione, Scadenza
+	from Fattura
+	where Emittente='Rimini Service' and NOW() >= Emissione and DataPagamento IS NULL and DATEDIFF(Scadenza, NOW()) < 3
+	order by Emissione;
+
+-- 37)
+select Codice, Emissione, Scadenza
+	from Fattura
+	where Emittente!='Rimini Service' and NOW() >= Emissione and DataPagamento IS NULL
+	order by Emissione;
+
+-- 38)
+select Codice, Emissione, Scadenza
+	from Fattura
+	where Emittente!='Rimini Service' and NOW() >= Emissione and DataPagamento IS NULL and DATEDIFF(Scadenza, NOW()) < 3
+	order by Emissione;
+
+-- 39)
+select ((select sum(Importo) from Fattura where Emittente = 'Rimini Service') 
+		- (select sum(Importo) from Fattura where Emittente != 'Rimini Service')) as Guadagno;
+
+-- 40)
+select sum(Quantita)
+	from Vendita;
+
+-- 41)
+select 
+
+-- 42)
+select min(Prezzo), Fornitore
+	from Catalogo
+	where Prodotto = `codice` IN <codici_prodotti> and InizioValidita < NOW() and FineValidita > NOW()
+	group by Fornitore;
+
+-- 43)
+select
