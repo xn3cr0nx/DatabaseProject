@@ -41,9 +41,13 @@ insert into Gara(RichiestaMEPA, Aggiudicatario, OffertaVincitore)
 -- 3)
 insert into RichiestaMEPA(Numero, CodicePA, OffertaProposta, LimiteSpesa, InizioOfferte, TermineOfferte)
 	values(274635, '00382520427', 1921.24, 2000, '2017-10-17', '2017-10-23');
-
 insert into Trattativa(RichiestaMEPA, Stipulata)
 	values(274635, null);
+
+insert into RichiestaMEPA(Numero, CodicePA, OffertaProposta, LimiteSpesa, InizioOfferte, TermineOfferte)
+	values(92148, '00382520427', 3201, 3250, '2017-11-17', '2017-11-23');
+insert into Trattativa(RichiestaMEPA, Stipulata)
+	values(92148, null);
 
 -- 4)
 /* notebook */
@@ -111,6 +115,11 @@ update Gara set Aggiudicatario = 'Zucchetti srl', OffertaVincitore = 1126
 update Gara set Aggiudicatario = 'Rimini Service', OffertaVincitore = 1700
 	where RichiestaMEPA = 94432633;
 
+-- 12)
+update Trattativa set Stipulata = true where RichiestaMEPA = 274635;
+
+update Trattativa set Stipulata = false where RichiestaMEPA = 92148;
+
 -- 13)
 update Catalogo
 	set Prezzo = 1340.48, InizioValidita = '2017-12-20',	FineValidita = '2018-01-19'
@@ -164,7 +173,7 @@ select min(Prezzo), Fornitore
 select * from Fattura where Codice = 1;
 
 -- 31)
-select Gara.RichiestaMEPA, Aggiudicatario
+select Gara.RichiestaMEPA, Aggiudicatario, OffertaVincitore, LimiteSpesa
 	from Gara, RichiestaMEPA
 	where TermineOfferte >= '2017' and TermineOfferte <= '2019' and Gara.RichiestaMEPA = RichiestaMEPA.Numero
   order by Aggiudicatario = 'Rimini Service' desc;

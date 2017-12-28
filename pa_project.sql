@@ -334,7 +334,16 @@ select min(Prezzo), Fornitore
 select * from Fattura where Codice = <codice_fattura>;
 
 -- 31)
-select Gara.RichiestaMEPA, Aggiudicatario
+select Gara.RichiestaMEPA, Aggiudicatario, OffertaVincitore, LimiteSpesa
 	from Gara, RichiestaMEPA
 	where TermineOfferte >= <inizio_periodo> and TermineOfferte <= <fine_periodo> and Gara.RichiestaMEPA = RichiestaMEPA.Numero
   order by Aggiudicatario = 'Rimini Service' desc;
+
+-- 32)
+select * from Trattativa order by Stipulata = true desc;
+
+-- 33)
+select Codice, Quantita, Produttore, Modello
+	from Vendita, Prodotto
+	where Vendita.ProdottoServizio = Codice
+	order by Quantita desc;
