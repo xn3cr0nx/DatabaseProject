@@ -92,6 +92,25 @@ insert into Fornitore(Codice, IndirizzoPEC, Nome, Email, Via, NumCivico, Citta, 
 insert into Catalogo(Fornitore, Prodotto, Prezzo, InizioValidita, FineValidita)
   values('1924512551', 'MF839T/A', 1300, '2017-12-01', '2017-12-31');
 
+-- 6)
+/* vendita prodotto */
+insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
+	values(null, 'Rimini Service', '19245125', null, NOW(), adddate(NOW(), 30), null, null);
+insert into Vendita(Fattura, ProdottoServizio, Quantita)
+  values((select max(Codice) from Fattura), 'MF839T/A', 2);
+
+update Fattura
+  set Importo = (
+    select sum(Quantita*Prezzo*1.1)
+      from (select min(Prezzo) as Prezzo, Fornitore
+      	from Catalogo
+      	where Prodotto = 'MF839T/A' and InizioValidita < NOW() and FineValidita > NOW()
+      	group by Fornitore
+      ) as PrezzoVendita, Vendita
+      where Vendita.Fattura = (select max(Fattura) from Vendita) and Vendita.ProdottoServizio = 'MF839T/A'
+  )
+  order by Codice DESC limit 1;
+
 -- 10)
 insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
   values(null, 'Rimini Service', '00382520427', 1600, NOW(), adddate(NOW(), 30), null, null);

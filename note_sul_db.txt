@@ -1,6 +1,6 @@
 Usiamo questo file per annotare considerazioni, osservazioni, problemi, ecc.
 
-- Controllare i vari "on delete", considerare che "no action" blocca la cancellazione del padre
+- Aggiungere la spedizione quando si inserisce una vendita di prodotto
 
 - Bisogna aggiungere l'inserimento del Cliente prima di inserire
 la gara (e magari usare un if-statement per vedere se la PA c'è già nel db)

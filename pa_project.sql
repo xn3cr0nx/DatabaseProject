@@ -72,7 +72,7 @@ create table Fattura (
 	Codice INT(11) primary key auto_increment,
 	Emittente VARCHAR(45) not null,
 	Destinatario VARCHAR(45) not null,
-	Importo FLOAT(8,2) not null,
+	Importo FLOAT(8,2),
 	Emissione DATE not null,
 	Scadenza DATE not null,
 	DataPagamento DATE,
@@ -263,6 +263,25 @@ insert into Notebook(Codice, Processore, RAM, Storage, Schermo, SistemaOperativo
 -- 6)
 insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
 	values(null, ...);
+
+/* vendita prodotto */
+insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
+	values(null, ...);
+
+insert into Vendita(Fattura, ProdottoServizio, Quantita)
+	values((select max(Codice) from Fattura), ...)
+
+update Fattura
+  set Importo = (
+    select sum(Quantita*Prezzo*1.1)
+      from (select min(Prezzo) as Prezzo, Fornitore
+      	from Catalogo
+      	where Prodotto = <codice_prodotto> and InizioValidita < NOW() and FineValidita > NOW()
+      	group by Fornitore
+      ) as PrezzoVendita, Vendita
+      where Vendita.Fattura = (select max(Fattura) from Vendita) and Vendita.ProdottoServizio = <codice_prodotto>
+  )
+  order by Codice DESC limit 1;
 
 -- 10) l'importo non va calcolato con i costi dei servizi
 insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
