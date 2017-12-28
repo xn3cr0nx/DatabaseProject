@@ -300,7 +300,7 @@ select Cliente, ContrattoAssistenza.Importo, Inizio, Termine, DataPagamento
 -- 25)
 select ContrattoAssistenza.Codice, Cliente, ContrattoAssistenza.Importo, Inizio , Termine, DataPagamento
 	from ContrattoAssistenza, Fattura
-	where Inizio >= <data_inizio> and Termine <= <data_termine and Fattura.Codice = ContrattoAssistenza.Fattura;
+	where Inizio >= <data_inizio> and Termine <= <data_termine> and Fattura.Codice = ContrattoAssistenza.Fattura;
 
 -- 26)
 select * from Gara where RichiestaMEPA = <numero_richiestamepa>;
@@ -334,3 +334,7 @@ select min(Prezzo), Fornitore
 select * from Fattura where Codice = <codice_fattura>;
 
 -- 31)
+select Gara.RichiestaMEPA, Aggiudicatario
+	from Gara, RichiestaMEPA
+	where TermineOfferte >= <inizio_periodo> and TermineOfferte <= <fine_periodo> and Gara.RichiestaMEPA = RichiestaMEPA.Numero
+  order by Aggiudicatario = 'Rimini Service' desc;
