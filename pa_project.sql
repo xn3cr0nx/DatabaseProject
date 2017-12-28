@@ -100,6 +100,8 @@ create table Prodotto (
 	Codice VARCHAR(20) primary key,
 	Produttore VARCHAR(45) not null,
 	Modello VARCHAR(45) not null,
+	Peso FLOAT(4,1) not null,
+	Dimensioni VARCHAR(20) not null,
 	foreign key (Codice) references ProdottoServizio(Codice) on update cascade on delete cascade
 )ENGINE=InnoDB;
 
@@ -293,12 +295,12 @@ delete from Fornitore
 select * from Cliente where Codice = <codice_cliente>;
 
 -- 24)
-select Cliente, ContrattoAssistenza.Importo, Inizio, Termine, DataPagamento
+select (select Nome from Cliente where Codice=Cliente) as Cliente, ContrattoAssistenza.Importo, Inizio, Termine, DataPagamento
 	from ContrattoAssistenza, Fattura
 	where ContrattoAssistenza.Codice = <codice_contratto> and Fattura.Codice = ContrattoAssistenza.Fattura;
 
 -- 25)
-select ContrattoAssistenza.Codice, Cliente, ContrattoAssistenza.Importo, Inizio , Termine, DataPagamento
+select ContrattoAssistenza.Codice as Contratto, (select Nome from Cliente where Codice=Cliente) as Cliente, ContrattoAssistenza.Importo, Inizio , Termine, DataPagamento
 	from ContrattoAssistenza, Fattura
 	where Inizio >= <data_inizio> and Termine <= <data_termine> and Fattura.Codice = ContrattoAssistenza.Fattura;
 
@@ -325,7 +327,7 @@ select Prodotto.Codice, Produttore, Modello, Processore, RAM, Storage, SistemaOp
 	where Prodotto.Codice = PCDesktop.Codice and PCDesktop.Codice = <codice_pcdesktop>;
 
 -- 29)
-select min(Prezzo), Fornitore
+select min(Prezzo) as Prezzo, Fornitore
 	from Catalogo
 	where Prodotto = <codice_prodotto> and InizioValidita < NOW() and FineValidita > NOW()
 	group by Fornitore;
@@ -379,7 +381,7 @@ select Codice, Emissione, Scadenza
 	order by Emissione;
 
 -- 39)
-select ((select sum(Importo) from Fattura where Emittente = 'Rimini Service') 
+select ((select sum(Importo) from Fattura where Emittente = 'Rimini Service')
 		- (select sum(Importo) from Fattura where Emittente != 'Rimini Service')) as Guadagno;
 
 -- 40)
@@ -387,7 +389,7 @@ select sum(Quantita)
 	from Vendita;
 
 -- 41)
-select 
+select
 
 -- 42)
 select min(Prezzo), Fornitore

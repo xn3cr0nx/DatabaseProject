@@ -52,22 +52,22 @@ insert into Trattativa(RichiestaMEPA, Stipulata)
 -- 4)
 /* notebook */
 insert into ProdottoServizio(Codice) values ('MF839T/A');
-insert into Prodotto(Codice, Produttore, Modello)
-  values('MF839T/A', 'Apple', 'Macbook Pro 13');
+insert into Prodotto(Codice, Produttore, Modello, Peso, Dimensioni)
+  values('MF839T/A', 'Apple', 'Macbook Pro 13', 1.3, '28x22x3');
 insert into Notebook(Codice, Processore, RAM, Storage, Schermo, SistemaOperativo)
   values('MF839T/A', 'Intel Core i5', 8, 128, 13.3, 'Mac OS X');
 
 /* monitor */
 insert into ProdottoServizio(Codice) values ('24M38A');
-insert into Prodotto(Codice, Produttore, Modello)
-  values('24M38A', 'LG', 'Monitor LED 24"');
+insert into Prodotto(Codice, Produttore, Modello, Peso, Dimensioni)
+  values('24M38A', 'LG', 'Monitor LED 24"', 2.7, '46x34x4');
 insert into Monitor(Codice, Dimensione, Risoluzione)
   values('24M38A', 23.6, '1920x1080');
 
 /* pc desktop */
 insert into ProdottoServizio(Codice) values ('VC65R-G026Z');
-insert into Prodotto(Codice, Produttore, Modello)
-  values('VC65R-G026Z', 'Asus', 'VivoPC VC65R-G026Z');
+insert into Prodotto(Codice, Produttore, Modello, Peso, Dimensioni)
+  values('VC65R-G026Z', 'Asus', 'VivoPC VC65R-G026Z', 3.8, '52x24x48');
 insert into PCDesktop(Codice, Processore, RAM, Storage, SistemaOperativo)
   values('VC65R-G026Z', 'Intel Core i5', 8, 1000, 'Windows 10');
 
@@ -105,7 +105,7 @@ insert into ElencazioneAssistenza(Contratto, Servizio)
 insert into ElencazioneAssistenza(Contratto, Servizio)
 	values((select max(Codice) from ContrattoAssistenza), '2');
 
--- 11) se l'aggiudicatario non è Rimini Service, mettiamo il nome del vincitore
+-- 11)
 update Gara set Aggiudicatario = 'Rimini Service', OffertaVincitore = 2784.78
 	where RichiestaMEPA = 1776266;
 
@@ -133,12 +133,12 @@ update Catalogo
 select * from Cliente where Codice = '00382520427';
 
 -- 24)
-select Cliente, ContrattoAssistenza.Importo, Inizio, Termine, DataPagamento
+select (select Nome from Cliente where Codice=Cliente) as Cliente, ContrattoAssistenza.Importo, Inizio, Termine, DataPagamento
   from ContrattoAssistenza, Fattura
   where ContrattoAssistenza.Codice = 1 and Fattura.Codice = ContrattoAssistenza.Fattura;
 
 -- 25)
-select ContrattoAssistenza.Codice, Cliente, ContrattoAssistenza.Importo, Inizio , Termine, DataPagamento
+select ContrattoAssistenza.Codice as Contratto, (select Nome from Cliente where Codice=Cliente) as Cliente, ContrattoAssistenza.Importo, Inizio , Termine, DataPagamento
 	from ContrattoAssistenza, Fattura
 	where Inizio >= '2018' and Termine <= '2019' and Fattura.Codice = ContrattoAssistenza.Fattura;
 
@@ -164,7 +164,7 @@ select Prodotto.Codice, Produttore, Modello, Processore, RAM, Storage, SistemaOp
 	where Prodotto.Codice = PCDesktop.Codice and PCDesktop.Codice = 'VC65R-G026Z';
 
 -- 29)
-select min(Prezzo), Fornitore
+select min(Prezzo) as Prezzo, Fornitore
 	from Catalogo
   where Prodotto = 'MF839T/A' and InizioValidita < NOW() and FineValidita > NOW()
   group by Fornitore;
