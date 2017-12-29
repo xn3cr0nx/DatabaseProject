@@ -233,11 +233,15 @@ create table Vendita (
 -- 1)
 insert into Cliente(Codice, Tipo, IndirizzoPEC, Nome, Email, Via, NumCivico, Citta, CAP)
 	values(...);
-
 insert into TelefonoCliente(Numero, Cliente)
 	values(...);
 
 -- 2)
+insert into Cliente(Codice, Tipo, IndirizzoPEC, Nome, Email, Via, NumCivico, Citta, CAP)
+	values(...);
+insert into TelefonoCliente(Numero, Cliente)
+	values(...);
+
 insert into RichiestaMEPA(Numero, CodicePA, OffertaProposta, LimiteSpesa, InizioOfferte, TermineOfferte)
 	values(...);
 
@@ -245,6 +249,11 @@ insert into Gara(RichiestaMEPA, Aggiudicatario, OffertaVincitore)
 	values(...);
 
 -- 3)
+insert into Cliente(Codice, Tipo, IndirizzoPEC, Nome, Email, Via, NumCivico, Citta, CAP)
+	values(...);
+insert into TelefonoCliente(Numero, Cliente)
+	values(...);
+
 insert into RichiestaMEPA(Numero, CodicePA, OffertaProposta, LimiteSpesa, InizioOfferte, TermineOfferte)
 	values(...);
 
@@ -406,7 +415,7 @@ select ((select sum(Importo) from Fattura where Emittente = 'Rimini Service')
 -- 40)
 select sum(Quantita)
 	from Vendita, Fattura
-	where Fattura = Codice and Emissione >= <inizio_periodo> and Emissione <= <fine_periodo>; 
+	where Fattura = Codice and Emissione >= <inizio_periodo> and Emissione <= <fine_periodo>;
 
 -- 41)
 select Costo
@@ -414,11 +423,12 @@ select Costo
   where (select Peso
       from Prodotto
       where Codice = <codice_prodotto>) <= PesoMax
-  and (select 
+  and (select
     (select SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto where Codice = <codice_prodotto>) +
     (select SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', 1) from Prodotto where Codice = <codice_prodotto>) +
     (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto where Codice = <codice_prodotto>)
-    ) <= SommaMisureMax;
+    ) <= SommaMisureMax
+	order by Costo limit 1;
 
 -- 42)
 select min(Prezzo), Fornitore

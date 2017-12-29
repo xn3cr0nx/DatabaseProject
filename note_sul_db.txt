@@ -1,10 +1,5 @@
 Usiamo questo file per annotare considerazioni, osservazioni, problemi, ecc.
 
-- Aggiungere la spedizione quando si inserisce una vendita di prodotto
-
-- Bisogna aggiungere l'inserimento del Cliente prima di inserire
-la gara (e magari usare un if-statement per vedere se la PA c'è già nel db)
-
 
 I CHECK NON FUNZIONANO, il db se ne sbatte.
 MySQL non ha implementato le funzionalità di Check, non possiamo farci niente ahah

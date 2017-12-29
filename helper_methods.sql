@@ -10,19 +10,13 @@
 
 insert into TelefonoCliente(Numero, Cliente) values('3336933856', '19245125');
 
--- lo mettiamo NULL il valore Email dove c'è la PEC?
-insert into Cliente(Codice, Tipo, IndirizzoPEC, Nome, Email, Via, NumCivico, Citta, CAP)
-  values('00382520427', 'pa', 'protocollo@pec.univpm.it', 'Universita Politecnica delle Marche', 'protocollo@pec.univpm.it', 'Piazza Roma', '22', 'Ancona', 60121);
-
-insert into TelefonoCliente(Numero, Cliente) values('0712201', '00382520427');
-
-insert into Cliente(Codice, Tipo, IndirizzoPEC, Nome, Email, Via, NumCivico, Citta, CAP)
-  values('00754150100', 'pa', 'protocollo@pec.unige.it', 'Universita degli studi di Genova', 'protocollo@pec.unige.it', 'Via Balbi', '5', 'Genova', 16126);
-
-insert into TelefonoCliente(Numero, Cliente) values('01020991', '00754150100');
 
 
 -- 2)
+insert into Cliente(Codice, Tipo, IndirizzoPEC, Nome, Email, Via, NumCivico, Citta, CAP)
+  values('00754150100', 'pa', 'protocollo@pec.unige.it', 'Universita degli studi di Genova', 'protocollo@pec.unige.it', 'Via Balbi', '5', 'Genova', 16126);
+insert into TelefonoCliente(Numero, Cliente) values('01020991', '00754150100');
+
 insert into RichiestaMEPA(Numero, CodicePA, OffertaProposta, LimiteSpesa, InizioOfferte, TermineOfferte)
 	values(1776266, '00754150100', 2784.78, 2900, '2017-11-20', '2017-11-27');
 insert into Gara(RichiestaMEPA, Aggiudicatario, OffertaVincitore)
@@ -39,6 +33,10 @@ insert into Gara(RichiestaMEPA, Aggiudicatario, OffertaVincitore)
 	values(94432633, null, null);
 
 -- 3)
+insert into Cliente(Codice, Tipo, IndirizzoPEC, Nome, Email, Via, NumCivico, Citta, CAP)
+  values('00382520427', 'pa', 'protocollo@pec.univpm.it', 'Universita Politecnica delle Marche', 'protocollo@pec.univpm.it', 'Piazza Roma', '22', 'Ancona', 60121);
+insert into TelefonoCliente(Numero, Cliente) values('0712201', '00382520427');
+
 insert into RichiestaMEPA(Numero, CodicePA, OffertaProposta, LimiteSpesa, InizioOfferte, TermineOfferte)
 	values(274635, '00382520427', 1921.24, 2000, '2017-10-17', '2017-10-23');
 insert into Trattativa(RichiestaMEPA, Stipulata)
@@ -110,6 +108,21 @@ update Fattura
       where Vendita.Fattura = (select max(Fattura) from Vendita) and Vendita.ProdottoServizio = 'MF839T/A'
   )
   order by Codice DESC limit 1;
+
+-- 9)
+insert into CostoSpedizione(Costo, Tempo, PesoMax, SommaMisureMax)
+  values(10, 3, 15, 87);
+insert into CostoSpedizione(Costo, Tempo, PesoMax, SommaMisureMax)
+  values(20, 3, 25, 108);
+insert into CostoSpedizione(Costo, Tempo, PesoMax, SommaMisureMax)
+  values(30, 3, 30, 130);
+
+insert into ElencazioneCostiSpedizione(Fornitore, Costo)
+  values('1924512551', 1);
+insert into ElencazioneCostiSpedizione(Fornitore, Costo)
+  values('1924512551', 2);
+insert into ElencazioneCostiSpedizione(Fornitore, Costo)
+  values('1924512551', 3);
 
 -- 10)
 insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
@@ -221,19 +234,17 @@ select sum(Quantita)
   where Fattura = Codice and Emissione >= '2017-11' and Emissione <= '2018';
 
 -- 41)
-insert into CostoSpedizione(Costo, Tempo, PesoMax, SommaMisureMax)
-  values(10, 3, 15, 87);
-
 select Costo
   from CostoSpedizione
   where (select Peso
       from Prodotto
       where Codice = 'MF839T/A') <= PesoMax
-  and (select 
+  and (select
     (select SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto where Codice = 'MF839T/A') +
     (select SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', 1) from Prodotto where Codice = 'MF839T/A') +
     (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto where Codice = 'MF839T/A')
-    ) <= SommaMisureMax;
+    ) <= SommaMisureMax
+  order by Costo limit 1;
 
 
 select sum(Costo)
@@ -241,8 +252,9 @@ select sum(Costo)
   where (select Peso
       from Prodotto
       where Codice IN ('MF839T/A', '24M38A')) <= PesoMax
-  and (select 
+  and (select
     (select SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto where Codice IN ('MF839T/A', '24M38A')) +
     (select SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', 1) from Prodotto where Codice IN ('MF839T/A', '24M38A')) +
     (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto where Codice IN ('MF839T/A', '24M38A'))
-    ) <= SommaMisureMax;
+    ) <= SommaMisureMax
+  order by Costo limit 1;
