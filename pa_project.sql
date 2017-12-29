@@ -273,6 +273,38 @@ insert into Notebook(Codice, Processore, RAM, Storage, Schermo, SistemaOperativo
 insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
 	values(null, ...);
 
+/* acquisto prodotto */
+insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
+	values(null, <codice_fornitore>, 'Rimini Service', ...);
+insert into Acquisto(Fattura, Prodotto, Quantita)
+  values((select max(Codice) from Fattura), ...);
+
+update Fattura
+  set Importo = (
+    select sum(Quantita*Prezzo)
+      from (select min(Prezzo) as Prezzo, Fornitore
+      	from Catalogo
+      	where Prodotto = <codice_prodotto> and InizioValidita < NOW() and FineValidita > NOW()
+      	group by Fornitore
+      ) as PrezzoVendita, Acquisto
+      where Acquisto.Fattura = (select max(Fattura) from Acquisto) and Acquisto.Prodotto = <codice_prodotto>
+  ),
+  Spedizione = (
+    select Codice
+      from CostoSpedizione, ElencazioneCostiSpedizione
+      where (select Peso
+          from Prodotto
+          where Codice = <codice_prodotto>) <= PesoMax
+      and (select
+        (select SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto where Codice = <codice_prodotto>) +
+        (select SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', 1) from Prodotto where Codice = <codice_prodotto>) +
+        (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto where Codice = <codice_prodotto>)
+        ) <= SommaMisureMax
+      and ElencazioneCostiSpedizione.Fornitore = Fattura.Emittente
+    	order by CostoSpedizione.Costo limit 1
+  )
+  order by Codice DESC limit 1;
+
 /* vendita prodotto */
 insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
 	values(null, ...);

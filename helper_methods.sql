@@ -90,7 +90,54 @@ insert into Fornitore(Codice, IndirizzoPEC, Nome, Email, Via, NumCivico, Citta, 
 insert into Catalogo(Fornitore, Prodotto, Prezzo, InizioValidita, FineValidita)
   values('1924512551', 'MF839T/A', 1300, '2017-12-01', '2017-12-31');
 
+-- 9)
+insert into CostoSpedizione(Costo, Tempo, PesoMax, SommaMisureMax)
+  values(10, 3, 15, 87);
+insert into CostoSpedizione(Costo, Tempo, PesoMax, SommaMisureMax)
+  values(20, 3, 25, 108);
+insert into CostoSpedizione(Costo, Tempo, PesoMax, SommaMisureMax)
+  values(30, 3, 30, 130);
+
+insert into ElencazioneCostiSpedizione(Fornitore, Costo)
+  values('1924512551', 1);
+insert into ElencazioneCostiSpedizione(Fornitore, Costo)
+  values('1924512551', 2);
+insert into ElencazioneCostiSpedizione(Fornitore, Costo)
+  values('1924512551', 3);
+
 -- 6)
+/* acquisto prodotto */
+insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
+	values(null, '1924512551', 'Rimini Service', null, NOW(), adddate(NOW(), 30), null, null);
+insert into Acquisto(Fattura, Prodotto, Quantita)
+  values((select max(Codice) from Fattura), 'MF839T/A', 2);
+
+update Fattura
+  set Importo = (
+    select sum(Quantita*Prezzo)
+      from (select min(Prezzo) as Prezzo, Fornitore
+      	from Catalogo
+      	where Prodotto = 'MF839T/A' and InizioValidita < NOW() and FineValidita > NOW()
+      	group by Fornitore
+      ) as PrezzoVendita, Acquisto
+      where Acquisto.Fattura = (select max(Fattura) from Acquisto) and Acquisto.Prodotto = 'MF839T/A'
+  ),
+  Spedizione = (
+    select Codice
+      from CostoSpedizione, ElencazioneCostiSpedizione
+      where (select Peso
+          from Prodotto
+          where Codice = 'MF839T/A') <= PesoMax
+      and (select
+        (select SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto where Codice = 'MF839T/A') +
+        (select SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', 1) from Prodotto where Codice = 'MF839T/A') +
+        (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto where Codice = 'MF839T/A')
+        ) <= SommaMisureMax
+      and ElencazioneCostiSpedizione.Fornitore = Fattura.Emittente
+    	order by CostoSpedizione.Costo limit 1
+  )
+  order by Codice DESC limit 1;
+
 /* vendita prodotto */
 insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
 	values(null, 'Rimini Service', '19245125', null, NOW(), adddate(NOW(), 30), null, null);
@@ -108,21 +155,6 @@ update Fattura
       where Vendita.Fattura = (select max(Fattura) from Vendita) and Vendita.ProdottoServizio = 'MF839T/A'
   )
   order by Codice DESC limit 1;
-
--- 9)
-insert into CostoSpedizione(Costo, Tempo, PesoMax, SommaMisureMax)
-  values(10, 3, 15, 87);
-insert into CostoSpedizione(Costo, Tempo, PesoMax, SommaMisureMax)
-  values(20, 3, 25, 108);
-insert into CostoSpedizione(Costo, Tempo, PesoMax, SommaMisureMax)
-  values(30, 3, 30, 130);
-
-insert into ElencazioneCostiSpedizione(Fornitore, Costo)
-  values('1924512551', 1);
-insert into ElencazioneCostiSpedizione(Fornitore, Costo)
-  values('1924512551', 2);
-insert into ElencazioneCostiSpedizione(Fornitore, Costo)
-  values('1924512551', 3);
 
 -- 10)
 insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
