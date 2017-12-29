@@ -196,3 +196,53 @@ select Gara.RichiestaMEPA, Aggiudicatario, OffertaVincitore, LimiteSpesa
 	from Gara, RichiestaMEPA
 	where TermineOfferte >= '2017' and TermineOfferte <= '2019' and Gara.RichiestaMEPA = RichiestaMEPA.Numero
   order by Aggiudicatario = 'Rimini Service' desc;
+
+
+-- 40)
+insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
+  values(null, 'Rimini Service', '19245725', null, NOW(), adddate(NOW(), 30), null, null);
+insert into Vendita(Fattura, ProdottoServizio, Quantita)
+  values((select max(Codice) from Fattura), '24M38A', 4);
+
+update Fattura
+  set Importo = (
+    select sum(Quantita*Prezzo*1.1)
+      from (select min(Prezzo) as Prezzo, Fornitore
+        from Catalogo
+        where Prodotto = '24M38A' and InizioValidita < NOW() and FineValidita > NOW()
+        group by Fornitore
+      ) as PrezzoVendita, Vendita
+      where Vendita.Fattura = (select max(Fattura) from Vendita) and Vendita.ProdottoServizio = '24M38A'
+  )
+  order by Codice DESC limit 1;
+
+select sum(Quantita)
+  from Vendita, Fattura
+  where Fattura = Codice and Emissione >= '2017-11' and Emissione <= '2018';
+
+-- 41)
+insert into CostoSpedizione(Costo, Tempo, PesoMax, SommaMisureMax)
+  values(10, 3, 15, 87);
+
+select Costo
+  from CostoSpedizione
+  where (select Peso
+      from Prodotto
+      where Codice = 'MF839T/A') <= PesoMax
+  and (select 
+    (select SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto where Codice = 'MF839T/A') +
+    (select SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', 1) from Prodotto where Codice = 'MF839T/A') +
+    (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto where Codice = 'MF839T/A')
+    ) <= SommaMisureMax;
+
+
+select sum(Costo)
+  from CostoSpedizione
+  where (select Peso
+      from Prodotto
+      where Codice IN ('MF839T/A', '24M38A')) <= PesoMax
+  and (select 
+    (select SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto where Codice IN ('MF839T/A', '24M38A')) +
+    (select SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', 1) from Prodotto where Codice IN ('MF839T/A', '24M38A')) +
+    (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto where Codice IN ('MF839T/A', '24M38A'))
+    ) <= SommaMisureMax;

@@ -62,7 +62,7 @@ create table TelefonoFornitore (
 
 create table CostoSpedizione (
 	Codice INT(11) primary key auto_increment,
-	Costo INT(11) not null,
+	Costo FLOAT(8,2) not null,
 	Tempo INT(11) not null,
 	PesoMax INT(11) not null,
 	SommaMisureMax INT(11) not null
@@ -405,10 +405,20 @@ select ((select sum(Importo) from Fattura where Emittente = 'Rimini Service')
 
 -- 40)
 select sum(Quantita)
-	from Vendita;
+	from Vendita, Fattura
+	where Fattura = Codice and Emissione >= <inizio_periodo> and Emissione <= <fine_periodo>; 
 
 -- 41)
-select
+select Costo
+  from CostoSpedizione
+  where (select Peso
+      from Prodotto
+      where Codice = <codice_prodotto>) <= PesoMax
+  and (select 
+    (select SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto where Codice = <codice_prodotto>) +
+    (select SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', 1) from Prodotto where Codice = <codice_prodotto>) +
+    (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto where Codice = <codice_prodotto>)
+    ) <= SommaMisureMax;
 
 -- 42)
 select min(Prezzo), Fornitore
