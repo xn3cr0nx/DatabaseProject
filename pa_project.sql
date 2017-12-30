@@ -203,6 +203,7 @@ create table ElencazioneAssistenza (
 create table DescrizioneRichiesta (
 	RichiestaMEPA INT(11),
 	ProdottoServizio VARCHAR(20),
+	Quantita INT(11) not null default 1,
 	primary key (RichiestaMEPA, ProdottoServizio),
 	foreign key (RichiestaMEPA) references RichiestaMEPA(Numero) on update cascade on delete no action,
 	foreign key (ProdottoServizio) references ProdottoServizio(Codice) on update cascade on delete no action
