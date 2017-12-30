@@ -1,48 +1,292 @@
 \vspace{1cm}
 
-\noindent\textit{Inserimento nuovo utente (in media 2 volte al giorno)}
+\noindent\textit{Inserimento nuovo cliente (in media 10 volte al mese)}
 \begin{verbatim}
-insert into utente (
-username, nome, cognome,indirizzo,
-carCredito,password, email)
-values (?);
+insert into Cliente(Codice, Tipo, IndirizzoPEC, Nome, Email, Via,
+  NumCivico, Citta, CAP)
+  values(...);
+insert into TelefonoCliente(Numero, Cliente)
+  values(...);
 \end{verbatim}
-\vspace{0.5cm}
+\vspace{1cm}
 
-\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/1}}
-\newline\newline
-
-\noindent\textit{Inserimento nuovo personaggio (in media 5 volte al giorno)}
-\begin{verbatim}insert into personaggio(
-nome, razza, classe, livello, esperienza, soldi,
-capelli, colorePelle, barba, volto, puntiVita, puniMana, attacco,
-difesa, forza, destrezza, intelligenza, xPos, yPos, zPos)
-values (?);
-
-\end{verbatim}
-
-\noindent\textit{Inserimento nuovo utente (in media 2 volte al giorno)}
+\noindent\textit{Inserimento nuova gara pubblica (in media una volta al giorno)}
 \begin{verbatim}
-insert into utente (
-username, nome, cognome,indirizzo,
-carCredito,password, email)
-values (?);
+insert into Cliente(Codice, Tipo, IndirizzoPEC, Nome, Email, Via,
+  NumCivico, Citta, CAP)
+  values(...);
+insert into TelefonoCliente(Numero, Cliente)
+  values(...);
+insert into RichiestaMEPA(Numero, CodicePA, OffertaProposta, LimiteSpesa,
+  InizioOfferte, TermineOfferte)
+  values(...);
+insert into Gara(RichiestaMEPA, Aggiudicatario, OffertaVincitore)
+  values(...);
 \end{verbatim}
-\vspace{0.5cm}
+\vspace{1cm}
 
-\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/1}}
-\newline\newline
+\noindent\textit{Inserimento nuova trattativa diretta (in media una volta a settimana)}
+\begin{verbatim}
+insert into Cliente(Codice, Tipo, IndirizzoPEC, Nome, Email, Via,
+  NumCivico, Citta, CAP)
+  values(...);
+insert into TelefonoCliente(Numero, Cliente)
+  values(...);
+insert into RichiestaMEPA(Numero, CodicePA, OffertaProposta, LimiteSpesa,
+  InizioOfferte, TermineOfferte)
+  values(...);
+insert into Trattativa(RichiestaMEPA, Stipulata)
+  values(...);
+\end{verbatim}
+\vspace{1cm}
 
-\noindent\textit{Inserimento nuovo personaggio (in media 5 volte al giorno)}
-\begin{verbatim}insert into personaggio(
-nome, razza, classe, livello, esperienza, soldi,
-capelli, colorePelle, barba, volto, puntiVita, puniMana, attacco,
-difesa, forza, destrezza, intelligenza, xPos, yPos, zPos)
-values (?);
+\noindent\textit{Inserimento nuovo prodotto (due volte al mese)}
+\begin{verbatim}
+/* notebook */
+insert into ProdottoServizio(Codice) values (...);
+insert into Prodotto(Codice, Produttore, Modello)
+  values(...);
+insert into Notebook(Codice, Processore, RAM, Storage, Schermo,
+  SistemaOperativo)
+  values(...);
+\end{verbatim}
+\vspace{1cm}
+
+\noindent\textit{Inserimento nuova fattura (in media tre volte al giorno)}
+\begin{verbatim}
+insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione,
+  Scadenza, DataPagamento, Spedizione)
+  values(null, ...);
+
+/* acquisto prodotto */
+insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione,
+  Scadenza, DataPagamento, Spedizione)
+  values(null, <codice_fornitore>, 'Rimini Service', ...);
+insert into Acquisto(Fattura, Prodotto, Quantita)
+  values((select max(Codice) from Fattura), ...);
+update Fattura
+  set Importo = (
+    select sum(Quantita*Prezzo)
+      from (select min(Prezzo) as Prezzo, Fornitore
+        from Catalogo
+        where Prodotto = <codice_prodotto> and InizioValidita < NOW()
+        and FineValidita > NOW()
+        group by Fornitore
+      ) as PrezzoVendita, Acquisto
+      where Acquisto.Fattura = (select max(Fattura) from Acquisto)
+      and Acquisto.Prodotto = <codice_prodotto>
+  ),
+  Spedizione = (
+    select Codice
+      from CostoSpedizione, ElencazioneCostiSpedizione
+      where (select Peso
+          from Prodotto
+          where Codice = <codice_prodotto>) <= PesoMax
+      and (select
+        (select SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto
+        where Codice = <codice_prodotto>) +
+        (select SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', 1)
+        from Prodotto where Codice = <codice_prodotto>) +
+        (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto
+        where Codice = <codice_prodotto>)
+        ) <= SommaMisureMax
+      and ElencazioneCostiSpedizione.Fornitore = Fattura.Emittente
+      order by CostoSpedizione.Costo limit 1
+  )
+  order by Codice DESC limit 1;
+
+/* vendita prodotto */
+insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione,
+  Scadenza, DataPagamento, Spedizione)
+  values(null, ...);
+insert into Vendita(Fattura, ProdottoServizio, Quantita)
+  values((select max(Codice) from Fattura), ...)
+update Fattura
+  set Importo = (
+    select sum(Quantita*Prezzo*1.1)
+      from (select min(Prezzo) as Prezzo, Fornitore
+        from Catalogo
+        where Prodotto = <codice_prodotto> and InizioValidita < NOW()
+        and FineValidita > NOW()
+        group by Fornitore
+      ) as PrezzoVendita, Vendita
+      where Vendita.Fattura = (select max(Fattura) from Vendita)
+      and Vendita.ProdottoServizio = <codice_prodotto>
+  )
+  order by Codice DESC limit 1;
+\end{verbatim}
+\vspace{1cm}
+
+\noindent\textit{Stipulazione nuovo contratto di assistenza on center (una volta al mese)}
+\begin{verbatim}
+insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione,
+  Scadenza, DataPagamento, Spedizione)
+  values(null, 'Rimini Service', <codice_cliente>, <importo_contratto>,
+  NOW(), adddate(NOW(), 30), null, null);
+insert into ContrattoAssistenza(Codice, Importo, Cliente, Inizio, Termine,
+  Fattura)
+  values(null, ..., (select max(Codice) from Fattura));
+insert into ElencazioneAssistenza(Contratto, Servizio)
+  values ((select max(Codice) from ContrattoAssistenza), <codice_servizio>);
+\end{verbatim}
+\vspace{1cm}
+
+\noindent\textit{Aggiornamento di una gara pubblica in seguito alla sua chiusura (in media una volta al giorno)}
+\begin{verbatim}
+update Gara set Aggiudicatario = <vincitore>, OffertaVincitore = <offerta>
+  where RichiestaMEPA = <codice_gara>;
+\end{verbatim}
+\vspace{1cm}
+
+\noindent\textit{Aggiornamento di un catalogo (dieci volte al mese)}
+\begin{verbatim}
+update Catalogo
+  set Prezzo = <nuovo_prezzo>, InizioValidita = <nuovo_inizio>,
+  FineValidita = <nuovo_termine>
+  where Fornitore = <fornitore> and Prodotto = <prodotto>;
+\end{verbatim}
+\vspace{1cm}
+
+\noindent\textit{Cancellazione di un prodotto (quattro volte all'anno)}
+\begin{verbatim}
+delete from ProdottoServizio
+  where Codice = <codice_prodotto_servizio>;
+\end{verbatim}
+\vspace{1cm}
+
+\noindent\textit{Cancellazione di un fornitore (una volta all'anno)}
+\begin{verbatim}
+delete from Fornitore
+  where Codice = <codice_fornitore>;
+\end{verbatim}
+\vspace{1cm}
+
+\noindent\textit{Aggiornamento di un catalogo (dieci volte al mese)}
+\begin{verbatim}
+update Catalogo
+  set Prezzo = <nuovo_prezzo>, InizioValidita = <nuovo_inizio>,
+  FineValidita = <nuovo_termine>
+  where Fornitore = <fornitore> and Prodotto = <prodotto>;
+\end{verbatim}
+\vspace{1cm}
+
+\noindent\textit{Consultazione dati dei clienti (in media 10 volte al giorno)}
+\begin{verbatim}
+select * from Cliente where Codice = <codice_cliente>;
+\end{verbatim}
+\vspace{1cm}
+
+\noindent\textit{Consultazione contratti di assistenza on center (in media due volte a settimana)}
+\begin{verbatim}
+select (select Nome from Cliente where Codice=Cliente) as Cliente,
+  ContrattoAssistenza.Importo, Inizio, Termine, DataPagamento
+  from ContrattoAssistenza, Fattura
+  where ContrattoAssistenza.Codice = <codice_contratto>
+  and Fattura.Codice = ContrattoAssistenza.Fattura;
+\end{verbatim}
+\vspace{1cm}
+
+\noindent\textit{Consultazione contratti di assistenza on center in un determinato periodo (due volte al mese)}
+\begin{verbatim}
+select ContrattoAssistenza.Codice as Contratto, (select Nome from Cliente
+  where Codice=Cliente) as Cliente, ContrattoAssistenza.Importo, Inizio,
+  Termine, DataPagamento
+  from ContrattoAssistenza, Fattura
+  where Inizio >= <data_inizio> and Termine <= <data_termine>
+  and Fattura.Codice = ContrattoAssistenza.Fattura;
 
 \end{verbatim}
+\vspace{1cm}
 
-\noindent\textit{Inserimento nuovo utente (in media 2 volte al giorno)}
+\noindent\textit{Consultazione dati di una gara pubblica (in media cinque volte al giorno)}
+\begin{verbatim}
+select * from Gara where RichiestaMEPA = <numero_richiestamepa>;
+\end{verbatim}
+\vspace{1cm}
+
+\noindent\textit{Consultazione dati di una trattativa diretta (in media due volte al giorno)}
+\begin{verbatim}
+select * from Trattativa where RichiestaMEPA = <numero_richiestamepa>;
+\end{verbatim}
+\vspace{1cm}
+
+\noindent\textit{Consultazione caratteristiche di un prodotto (cinque volte al giorno)}
+\begin{verbatim}
+/* monitor per codice */
+select Prodotto.Codice, Produttore, Modello, Dimensione, Risoluzione
+  from Prodotto, Monitor
+  where Prodotto.Codice = Monitor.Codice
+  and Monitor.Codice = <codice_monitor>;
+
+/* notebook per codice */
+select Prodotto.Codice, Produttore, Modello, Processore, RAM, Storage,
+  Schermo, SistemaOperativo
+  from Prodotto, Notebook
+  where Prodotto.Codice = Notebook.Codice
+  and Notebook.Codice = <codice_notebook>;
+
+/* pcdesktop per codice */
+select Prodotto.Codice, Produttore, Modello, Processore, RAM, Storage,
+  SistemaOperativo
+  from Prodotto, PCDesktop
+  where Prodotto.Codice = PCDesktop.Codice
+  and PCDesktop.Codice = <codice_pcdesktop>;
+\end{verbatim}
+\vspace{1cm}
+
+\noindent\textit{Consultazione prezzo di un prodotto (dieci volte al giorno)}
+\begin{verbatim}
+select min(Prezzo) as Prezzo, Fornitore
+  from Catalogo
+  where Prodotto = <codice_prodotto> and InizioValidita < NOW()
+  and FineValidita > NOW()
+  group by Fornitore;
+\end{verbatim}
+\vspace{1cm}
+
+\noindent\textit{Consultazione di una fattura (una volta al giorno)}
+\begin{verbatim}
+select * from Fattura where Codice = <codice_fattura>;
+\end{verbatim}
+\vspace{1cm}
+
+\noindent\textit{Statistica delle gare pubbliche vinte e perse in un determinato periodo (una volta al mese)}
+\begin{verbatim}
+select Gara.RichiestaMEPA, Aggiudicatario, OffertaVincitore, LimiteSpesa
+  from Gara, RichiestaMEPA
+  where TermineOfferte >= <inizio_periodo>
+  and TermineOfferte <= <fine_periodo>
+  and Gara.RichiestaMEPA = RichiestaMEPA.Numero
+  order by Aggiudicatario = 'Rimini Service' desc;
+
+\end{verbatim}
+\vspace{1cm}
+
+\noindent\textit{Statistica delle trattative dirette stipulate (una volta al mese)}
+\begin{verbatim}
+select * from Trattativa order by Stipulata = true desc;
+\end{verbatim}
+\vspace{1cm}
+
+\noindent\textit{Statistica dei prodotti più venduti (una volta al mese)}
+\begin{verbatim}
+select Codice, Quantita, Produttore, Modello
+  from Vendita, Prodotto
+  where Vendita.ProdottoServizio = Codice
+  order by Quantita desc;
+\end{verbatim}
+\vspace{1cm}
+
+\noindent\textit{Statistica dei servizi più erogati (una volta al mese)}
+\begin{verbatim}
+select Codice, Quantita, Tipologia
+  from Vendita, Servizio
+  where Vendita.ProdottoServizio = Codice
+  order by Quantita desc;
+\end{verbatim}
+\vspace{1cm}
+
+\noindent\textit{Inserimento nuova fattura (in media tre volte al giorno)}
 \begin{verbatim}
 insert into utente (
 username, nome, cognome,indirizzo,
