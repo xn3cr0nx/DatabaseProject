@@ -6,8 +6,7 @@
 
  -- 1)
  insert into Cliente(Codice, Tipo, IndirizzoPEC, Nome, Email, Via, NumCivico, Citta, CAP)
- 	values('19245125', 'privato', null, 'Maurizio Verdi', null, null, null, null, null);
-
+ 	values('19245125', 'privato', null, 'Maurizio Verdi', 'verdim62@gmail.com', 'Viale Ceccarini', 12, 'Riccione', 47921);
 insert into TelefonoCliente(Numero, Cliente) values('3336933856', '19245125');
 
 
@@ -70,13 +69,13 @@ insert into PCDesktop(Codice, Processore, RAM, Storage, SistemaOperativo)
   values('VC65R-G026Z', 'Intel Core i5', 8, 1000, 'Windows 10');
 
 -- 5)
-insert into ProdottoServizio(Codice) values ('1');
+insert into ProdottoServizio(Codice) values ('001');
 insert into Servizio(Codice, Tipologia, Costo)
-  values('1', 'Riparazione software', 50);
+  values('001', 'Riparazione software', 50);
 
-insert into ProdottoServizio(Codice) values ('2');
+insert into ProdottoServizio(Codice) values ('002');
 insert into Servizio(Codice, Tipologia, Costo)
-  values('2', 'Sostituzione componente', 30);
+  values('002', 'Sostituzione componente', 30);
 
 -- 6)
 insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
@@ -84,7 +83,9 @@ insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenz
 
 -- 7)
 insert into Fornitore(Codice, IndirizzoPEC, Nome, Email, Via, NumCivico, Citta, CAP)
-  values('1924512551', null, 'Marcello Sordi', null, null, null, null, null);
+  values('1924512551', null, 'Marcello Sordi', 'marcellosordi@libero.it', 'Via Coriano', 126, 'Rimini', 47922);
+insert into TelefonoFornitore(Numero, Fornitore) values('3806593261', '1924512551');
+
 
 -- 8)
 insert into Catalogo(Fornitore, Prodotto, Prezzo, InizioValidita, FineValidita)
@@ -164,10 +165,10 @@ insert into ContrattoAssistenza(Codice, Importo, Cliente, Inizio, Termine, Fattu
 	values(null, 1600, '00382520427', '2018-01-15', '2018-07-15', (select max(Codice) from Fattura));
 
 insert into ElencazioneAssistenza(Contratto, Servizio)
-	values((select max(Codice) from ContrattoAssistenza), '1');
+	values((select max(Codice) from ContrattoAssistenza), '001');
 
 insert into ElencazioneAssistenza(Contratto, Servizio)
-	values((select max(Codice) from ContrattoAssistenza), '2');
+	values((select max(Codice) from ContrattoAssistenza), '002');
 
 -- 11)
 update Gara set Aggiudicatario = 'Rimini Service', OffertaVincitore = 2784.78
@@ -244,22 +245,22 @@ select Gara.RichiestaMEPA, Aggiudicatario, OffertaVincitore, LimiteSpesa
 
 
 -- 40)
-insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
-  values(null, 'Rimini Service', '19245725', null, NOW(), adddate(NOW(), 30), null, null);
-insert into Vendita(Fattura, ProdottoServizio, Quantita)
-  values((select max(Codice) from Fattura), '24M38A', 4);
-
-update Fattura
-  set Importo = (
-    select sum(Quantita*Prezzo*1.1)
-      from (select min(Prezzo) as Prezzo, Fornitore
-        from Catalogo
-        where Prodotto = '24M38A' and InizioValidita < NOW() and FineValidita > NOW()
-        group by Fornitore
-      ) as PrezzoVendita, Vendita
-      where Vendita.Fattura = (select max(Fattura) from Vendita) and Vendita.ProdottoServizio = '24M38A'
-  )
-  order by Codice DESC limit 1;
+-- insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
+--   values(null, 'Rimini Service', '19245725', null, NOW(), adddate(NOW(), 30), null, null);
+-- insert into Vendita(Fattura, ProdottoServizio, Quantita)
+--   values((select max(Codice) from Fattura), '24M38A', 4);
+--
+-- update Fattura
+--   set Importo = (
+--     select sum(Quantita*Prezzo*1.1)
+--       from (select min(Prezzo) as Prezzo, Fornitore
+--         from Catalogo
+--         where Prodotto = '24M38A' and InizioValidita < NOW() and FineValidita > NOW()
+--         group by Fornitore
+--       ) as PrezzoVendita, Vendita
+--       where Vendita.Fattura = (select max(Fattura) from Vendita) and Vendita.ProdottoServizio = '24M38A'
+--   )
+--   order by Codice DESC limit 1;
 
 select sum(Quantita)
   from Vendita, Fattura
