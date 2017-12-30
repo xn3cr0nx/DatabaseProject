@@ -262,9 +262,9 @@ select Gara.RichiestaMEPA, Aggiudicatario, OffertaVincitore, LimiteSpesa
 --   )
 --   order by Codice DESC limit 1;
 
-select sum(Quantita)
-  from Vendita, Fattura
-  where Fattura = Codice and Emissione >= '2017-11' and Emissione <= '2018';
+select sum(Importo)
+  from Fattura
+  where Emittente = 'Rimini Service' and Emissione >= '2017-11' and Emissione <= '2018';
 
 -- 41)
 select Costo
@@ -291,3 +291,17 @@ select sum(Costo)
     (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto where Codice IN ('MF839T/A', '24M38A'))
     ) <= SommaMisureMax
   order by Costo limit 1;
+
+
+  @rank:=@rank+1 AS rank
+  select sum(Costo)
+
+  where (select Peso
+  from CostoSpedizione
+      from Prodotto
+      where Codice IN ('MF839T/A', '24M38A')) <= PesoMax
+    (select @rank:=@rank+1 AS rank, SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto where Codice IN ('MF839T/A', '24M38A')) +
+    (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto where Codice IN ('MF839T/A', '24M38A'))
+    (select @rank:=@rank+1 AS rank, SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', 1) from Prodotto where Codice IN ('MF839T/A', '24M38A')) +
+  and (select 
+    ) <= SommaMisureMax;

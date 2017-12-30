@@ -446,9 +446,9 @@ select ((select sum(Importo) from Fattura where Emittente = 'Rimini Service')
 		- (select sum(Importo) from Fattura where Emittente != 'Rimini Service')) as Guadagno;
 
 -- 40)
-select sum(Quantita)
-	from Vendita, Fattura
-	where Fattura = Codice and Emissione >= <inizio_periodo> and Emissione <= <fine_periodo>;
+select sum(Importo)
+	from Fattura
+	where Emittente = 'Rimini Service' and Emissione >= <inizio_periodo> and Emissione <= <fine_periodo>;
 
 -- 41)
 select Costo

@@ -8,3 +8,5 @@ https://stackoverflow.com/questions/2115497/check-constraint-in-mysql-is-not-wor
 - Operazione 20
 Lasciamo le operazioni, e scriviamo una nota su come si dovrebbe fare (con il flag)
 -- discorso analogo per la cancellazione di un servizio
+
+- operazioni 8-9 nelle operazioni iniziali sono descritte come inserimento di una nuova tabella, invece abbiamo una tabella unica, nelle query bisogna spiegare il nuovo approccio
