@@ -147,7 +147,17 @@ insert into Vendita(Fattura, ProdottoServizio, Quantita)
 
 update Fattura
   set Importo = (
-    select sum(Quantita*Prezzo*1.1)
+    select sum(Quantita*Prezzo*1.1) + (select Costo
+        from CostoSpedizione
+        where (select Peso
+            from Prodotto
+            where Codice = 'MF839T/A') <= PesoMax
+        and (select
+          (select SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto where Codice = 'MF839T/A') +
+          (select SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', 1) from Prodotto where Codice = 'MF839T/A') +
+          (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto where Codice = 'MF839T/A')
+          ) <= SommaMisureMax
+        order by Costo limit 1)
       from (select min(Prezzo) as Prezzo, Fornitore
       	from Catalogo
       	where Prodotto = 'MF839T/A' and InizioValidita < NOW() and FineValidita > NOW()
@@ -205,7 +215,7 @@ select (select Nome from Cliente where Codice=Cliente) as Cliente, ContrattoAssi
 -- 25)
 select ContrattoAssistenza.Codice as Contratto, (select Nome from Cliente where Codice=Cliente) as Cliente, ContrattoAssistenza.Importo, Inizio , Termine, DataPagamento
 	from ContrattoAssistenza, Fattura
-	where Inizio >= '2018' and Termine <= '2019' and Fattura.Codice = ContrattoAssistenza.Fattura;
+	where Inizio >= '2018-01' and Termine <= '2018-10' and Fattura.Codice = ContrattoAssistenza.Fattura;
 
 -- 26)
 select * from Gara where RichiestaMEPA = 1776266;
@@ -245,24 +255,7 @@ select Gara.RichiestaMEPA, Aggiudicatario, OffertaVincitore, LimiteSpesa
 
 
 -- 40)
--- insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
---   values(null, 'Rimini Service', '19245725', null, NOW(), adddate(NOW(), 30), null, null);
--- insert into Vendita(Fattura, ProdottoServizio, Quantita)
---   values((select max(Codice) from Fattura), '24M38A', 4);
---
--- update Fattura
---   set Importo = (
---     select sum(Quantita*Prezzo*1.1)
---       from (select min(Prezzo) as Prezzo, Fornitore
---         from Catalogo
---         where Prodotto = '24M38A' and InizioValidita < NOW() and FineValidita > NOW()
---         group by Fornitore
---       ) as PrezzoVendita, Vendita
---       where Vendita.Fattura = (select max(Fattura) from Vendita) and Vendita.ProdottoServizio = '24M38A'
---   )
---   order by Codice DESC limit 1;
-
-select sum(Importo)
+select sum(Importo) as Volume_vendite
   from Fattura
   where Emittente = 'Rimini Service' and Emissione >= '2017-11' and Emissione <= '2018';
 
@@ -303,5 +296,5 @@ select sum(Costo)
     (select @rank:=@rank+1 AS rank, SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto where Codice IN ('MF839T/A', '24M38A')) +
     (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto where Codice IN ('MF839T/A', '24M38A'))
     (select @rank:=@rank+1 AS rank, SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', 1) from Prodotto where Codice IN ('MF839T/A', '24M38A')) +
-  and (select 
+  and (select
     ) <= SommaMisureMax;

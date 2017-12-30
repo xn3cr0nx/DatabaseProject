@@ -315,7 +315,17 @@ insert into Vendita(Fattura, ProdottoServizio, Quantita)
 
 update Fattura
   set Importo = (
-    select sum(Quantita*Prezzo*1.1)
+    select sum(Quantita*Prezzo*1.1) + (select Costo
+        from CostoSpedizione
+        where (select Peso
+            from Prodotto
+            where Codice = <codice_prodotto>) <= PesoMax
+        and (select
+          (select SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto where Codice = <codice_prodotto>) +
+          (select SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', 1) from Prodotto where Codice = <codice_prodotto>) +
+          (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto where Codice = <codice_prodotto>)
+          ) <= SommaMisureMax
+        order by Costo limit 1)
       from (select min(Prezzo) as Prezzo, Fornitore
       	from Catalogo
       	where Prodotto = <codice_prodotto> and InizioValidita < NOW() and FineValidita > NOW()
@@ -430,15 +440,15 @@ select Codice, (select Nome from Cliente where Codice=Destinatario) as Nome, Emi
 	order by Emissione;
 
 -- 37)
-select Codice, Emissione, Scadenza
+select Codice, (select Nome from Fornitore where Codice=Emittente) as Fornitore, Emissione, Scadenza
 	from Fattura
-	where Emittente!='Rimini Service' and NOW() >= Emissione and DataPagamento IS NULL
+	where Destinatario='Rimini Service' and NOW() >= Emissione and DataPagamento IS NULL
 	order by Emissione;
 
 -- 38)
-select Codice, Emissione, Scadenza
+select Codice, (select Nome from Fornitore where Codice=Emittente) as Fornitore, Emissione, Scadenza
 	from Fattura
-	where Emittente!='Rimini Service' and NOW() >= Emissione and DataPagamento IS NULL and DATEDIFF(Scadenza, NOW()) < 3
+	where Destinatario='Rimini Service' and NOW() >= Emissione and DataPagamento IS NULL and DATEDIFF(Scadenza, NOW()) < 3
 	order by Emissione;
 
 -- 39)
@@ -446,7 +456,7 @@ select ((select sum(Importo) from Fattura where Emittente = 'Rimini Service')
 		- (select sum(Importo) from Fattura where Emittente != 'Rimini Service')) as Guadagno;
 
 -- 40)
-select sum(Importo)
+select sum(Importo) as Volume_vendite
 	from Fattura
 	where Emittente = 'Rimini Service' and Emissione >= <inizio_periodo> and Emissione <= <fine_periodo>;
 

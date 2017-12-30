@@ -139,7 +139,7 @@ insert into ElencazioneAssistenza(Contratto, Servizio)
 	values((select max(Codice) from ContrattoAssistenza), '003');
 
 insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
-  values(null, 'Rimini Services', '00356250529', 900, NOW(), adddate(NOW(), 30), null, null);
+  values(null, 'Rimini Service', '00356250529', 900, NOW(), adddate(NOW(), 30), null, null);
 insert into ContrattoAssistenza(Codice, Importo, Cliente, Inizio, Termine, Fattura)
 	values(null, 900, '00356250529', '2018-02-10', '2018-06-10', (select max(Codice) from Fattura));
 insert into ElencazioneAssistenza(Contratto, Servizio)
@@ -288,13 +288,23 @@ update Fattura
 
 /* vendita prodotto */
 insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
-	values(null, 'Rimini Service', '8421935', null, NOW(), adddate(NOW(), 30), null, null);
+	values(null, 'Rimini Service', '4439089234', null, NOW(), adddate(NOW(), 30), null, null);
 insert into Vendita(Fattura, ProdottoServizio, Quantita)
   values((select max(Codice) from Fattura), '24M38A', 2);
 
 update Fattura
   set Importo = (
-    select sum(Quantita*Prezzo*1.1)
+    select sum(Quantita*Prezzo*1.1) + (select Costo
+        from CostoSpedizione
+        where (select Peso
+            from Prodotto
+            where Codice = '24M38A') <= PesoMax
+        and (select
+          (select SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto where Codice = '24M38A') +
+          (select SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', 1) from Prodotto where Codice = '24M38A') +
+          (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto where Codice = '24M38A')
+          ) <= SommaMisureMax
+        order by Costo limit 1)
       from (select min(Prezzo) as Prezzo, Fornitore
       	from Catalogo
       	where Prodotto = '24M38A' and InizioValidita < NOW() and FineValidita > NOW()
@@ -305,13 +315,23 @@ update Fattura
   order by Codice DESC limit 1;
 /* vendita prodotto */
 insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
-	values(null, 'Rimini Service', '274635', null, NOW(), adddate(NOW(), 30), null, null);
+	values(null, 'Rimini Service', '4439089234', null, NOW(), adddate(NOW(), 30), null, null);
 insert into Vendita(Fattura, ProdottoServizio, Quantita)
   values((select max(Codice) from Fattura), 'NIX8080', 4);
 
 update Fattura
   set Importo = (
-    select sum(Quantita*Prezzo*1.1)
+    select sum(Quantita*Prezzo*1.1) + (select Costo
+        from CostoSpedizione
+        where (select Peso
+            from Prodotto
+            where Codice = 'NIX8080') <= PesoMax
+        and (select
+          (select SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto where Codice = 'NIX8080') +
+          (select SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', 1) from Prodotto where Codice = 'NIX8080') +
+          (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto where Codice = 'NIX8080')
+          ) <= SommaMisureMax
+        order by Costo limit 1)
       from (select min(Prezzo) as Prezzo, Fornitore
       	from Catalogo
       	where Prodotto = 'NIX8080' and InizioValidita < NOW() and FineValidita > NOW()
@@ -322,13 +342,23 @@ update Fattura
   order by Codice DESC limit 1;
 /* vendita prodotto */
 insert into Fattura(Codice, Emittente, Destinatario, Importo, Emissione, Scadenza, DataPagamento, Spedizione)
-	values(null, 'Rimini Service', '94432633', null, NOW(), adddate(NOW(), 30), null, null);
+	values(null, 'Rimini Service', '00356250529', null, NOW(), adddate(NOW(), 30), null, null);
 insert into Vendita(Fattura, ProdottoServizio, Quantita)
   values((select max(Codice) from Fattura), 'DK.303.RL', 3);
 
 update Fattura
   set Importo = (
-    select sum(Quantita*Prezzo*1.1)
+    select sum(Quantita*Prezzo*1.1) + (select Costo
+        from CostoSpedizione
+        where (select Peso
+            from Prodotto
+            where Codice = 'DK.303.RL') <= PesoMax
+        and (select
+          (select SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto where Codice = 'DK.303.RL') +
+          (select SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', 1) from Prodotto where Codice = 'DK.303.RL') +
+          (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto where Codice = 'DK.303.RL')
+          ) <= SommaMisureMax
+        order by Costo limit 1)
       from (select min(Prezzo) as Prezzo, Fornitore
       	from Catalogo
       	where Prodotto = 'DK.303.RL' and InizioValidita < NOW() and FineValidita > NOW()

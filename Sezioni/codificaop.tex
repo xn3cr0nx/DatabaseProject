@@ -103,7 +103,20 @@ insert into Vendita(Fattura, ProdottoServizio, Quantita)
   values((select max(Codice) from Fattura), ...)
 update Fattura
   set Importo = (
-    select sum(Quantita*Prezzo*1.1)
+    select sum(Quantita*Prezzo*1.1) + (select Costo
+        from CostoSpedizione
+        where (select Peso
+            from Prodotto
+            where Codice = <codice_prodotto>) <= PesoMax
+        and (select
+          (select SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto
+          where Codice = <codice_prodotto>) +
+          (select SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', 1)
+          from Prodotto where Codice = <codice_prodotto>) +
+          (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto
+          where Codice = <codice_prodotto>)
+          ) <= SommaMisureMax
+        order by Costo limit 1)
       from (select min(Prezzo) as Prezzo, Fornitore
         from Catalogo
         where Prodotto = <codice_prodotto> and InizioValidita < NOW()
@@ -196,7 +209,10 @@ select ContrattoAssistenza.Codice as Contratto, (select Nome from Cliente
   and Fattura.Codice = ContrattoAssistenza.Fattura;
 
 \end{verbatim}
-\vspace{1cm}
+\vspace{0.5cm}
+
+\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op1}}
+\newline\newline
 
 \noindent\textit{Consultazione dati di una gara pubblica (in media cinque volte al giorno)}
 \begin{verbatim}
@@ -232,7 +248,10 @@ select Prodotto.Codice, Produttore, Modello, Processore, RAM, Storage,
   where Prodotto.Codice = PCDesktop.Codice
   and PCDesktop.Codice = <codice_pcdesktop>;
 \end{verbatim}
-\vspace{1cm}
+\vspace{0.5cm}
+
+\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op2}}
+\newline\newline
 
 \noindent\textit{Consultazione prezzo di un prodotto (dieci volte al giorno)}
 \begin{verbatim}
@@ -242,7 +261,10 @@ select min(Prezzo) as Prezzo, Fornitore
   and FineValidita > NOW()
   group by Fornitore;
 \end{verbatim}
-\vspace{1cm}
+\vspace{0.5cm}
+
+\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op3}}
+\newline\newline
 
 \noindent\textit{Consultazione di una fattura (una volta al giorno)}
 \begin{verbatim}
@@ -258,15 +280,20 @@ select Gara.RichiestaMEPA, Aggiudicatario, OffertaVincitore, LimiteSpesa
   and TermineOfferte <= <fine_periodo>
   and Gara.RichiestaMEPA = RichiestaMEPA.Numero
   order by Aggiudicatario = 'Rimini Service' desc;
-
 \end{verbatim}
-\vspace{1cm}
+\vspace{0.5cm}
+
+\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op4}}
+\newline\newline
 
 \noindent\textit{Statistica delle trattative dirette stipulate (una volta al mese)}
 \begin{verbatim}
 select * from Trattativa order by Stipulata = true desc;
 \end{verbatim}
-\vspace{1cm}
+\vspace{0.5cm}
+
+\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op5}}
+\newline\newline
 
 \noindent\textit{Statistica dei prodotti più venduti (una volta al mese)}
 \begin{verbatim}
@@ -275,7 +302,10 @@ select Codice, Quantita, Produttore, Modello
   where Vendita.ProdottoServizio = Codice
   order by Quantita desc;
 \end{verbatim}
-\vspace{1cm}
+\vspace{0.5cm}
+
+\noindent\makebox[\textwidth]{\includegraphics[width=0.7\linewidth]{./immagini/op6}}
+\newline\newline
 
 \noindent\textit{Statistica dei servizi più erogati (una volta al mese)}
 \begin{verbatim}
@@ -284,25 +314,109 @@ select Codice, Quantita, Tipologia
   where Vendita.ProdottoServizio = Codice
   order by Quantita desc;
 \end{verbatim}
-\vspace{1cm}
+% \vspace{0.5cm}
+%
+% \noindent\makebox[\textwidth]{\includegraphics[width=0.7\linewidth]{./immagini/op7}}
+% \newline\newline
 
-\noindent\textit{Inserimento nuova fattura (in media tre volte al giorno)}
+\noindent\textit{Verifica del pagamento delle fatture da parte dei clienti (due volte a settimana)}
 \begin{verbatim}
-insert into utente (
-username, nome, cognome,indirizzo,
-carCredito,password, email)
-values (?);
+select Codice, (select Nome from Cliente where Codice=Destinatario)
+  as Nome, Emissione, Scadenza
+  from Fattura
+  where Emittente='Rimini Service' and NOW() >= Emissione
+  and DataPagamento IS NULL
+  order by Emissione;
 \end{verbatim}
 \vspace{0.5cm}
 
-\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/1}}
+\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op8}}
 \newline\newline
 
-\noindent\textit{Inserimento nuovo personaggio (in media 5 volte al giorno)}
-\begin{verbatim}insert into personaggio(
-nome, razza, classe, livello, esperienza, soldi,
-capelli, colorePelle, barba, volto, puntiVita, puniMana, attacco,
-difesa, forza, destrezza, intelligenza, xPos, yPos, zPos)
-values (?);
-
+\noindent\textit{Verifica di scadenza imminente del pagamento delle fatture da parte dei clienti (tre volte al mese)}
+\begin{verbatim}
+select Codice, (select Nome from Cliente where Codice=Destinatario)
+  as Nome, Emissione, Scadenza
+  from Fattura
+  where Emittente='Rimini Service' and NOW() >= Emissione
+  and DataPagamento IS NULL and DATEDIFF(Scadenza, NOW()) < 3
+  order by Emissione;
 \end{verbatim}
+\vspace{0.5cm}
+
+\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op9}}
+\newline\newline
+
+\noindent\textit{Verifica del pagamento delle fatture da parte dell'azienda (due volte a settimana)}
+\begin{verbatim}
+select Codice, (select Nome from Fornitore where Codice=Emittente)
+  as Fornitore, Emissione, Scadenza
+  from Fattura
+  where Destinatario='Rimini Service'
+  and NOW() >= Emissione and DataPagamento IS NULL
+  order by Emissione;
+\end{verbatim}
+\vspace{0.5cm}
+
+\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op10}}
+\newline\newline
+
+\noindent\textit{Verifica di scadenza imminente del pagamento delle fatture da parte dell'azienda (tre volte al mese)}
+\begin{verbatim}
+select Codice, (select Nome from Fornitore where Codice=Emittente)
+  as Fornitore, Emissione, Scadenza
+  from Fattura
+  where Destinatario='Rimini Service'
+  and NOW() >= Emissione and DataPagamento IS NULL
+  and DATEDIFF(Scadenza, NOW()) < 3
+  order by Emissione;
+\end{verbatim}
+\vspace{0.5cm}
+
+\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op11}}
+\newline\newline
+
+\noindent\textit{Calcolo del guadagno netto ad una certa data (una volta al mese)}
+\begin{verbatim}
+select ((select sum(Importo) from Fattura where Emittente = 'Rimini Service')
+  - (select sum(Importo) from Fattura where Emittente != 'Rimini Service'))
+  as Guadagno;
+\end{verbatim}
+\vspace{0.5cm}
+
+\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op12}}
+\newline\newline
+
+\noindent\textit{Calcolo del volume di vendite in un determinato periodo (una volta al mese)}
+\begin{verbatim}
+select sum(Importo) as Volume_vendite
+  from Fattura
+  where Emittente = 'Rimini Service' and Emissione >= <inizio_periodo>
+  and Emissione <= <fine_periodo>;
+\end{verbatim}
+\vspace{0.5cm}
+
+\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op13}}
+\newline\newline
+
+\noindent\textit{Calcolo dei costi di spedizione di un'acquisto (tre volte al giorno)}
+\begin{verbatim}
+select Costo
+  from CostoSpedizione
+  where (select Peso
+      from Prodotto
+      where Codice = <codice_prodotto>) <= PesoMax
+  and (select
+    (select SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto
+    where Codice = <codice_prodotto>) +
+    (select SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', 1)
+    from Prodotto where Codice = <codice_prodotto>) +
+    (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto
+    where Codice = <codice_prodotto>)
+    ) <= SommaMisureMax
+  order by Costo limit 1;
+\end{verbatim}
+\vspace{0.5cm}
+
+\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op14}}
+\newline\newline
