@@ -10,3 +10,5 @@ Lasciamo le operazioni, e scriviamo una nota su come si dovrebbe fare (con il fl
 -- discorso analogo per la cancellazione di un servizio
 
 - operazioni 8-9 nelle operazioni iniziali sono descritte come inserimento di una nuova tabella, invece abbiamo una tabella unica, nelle query bisogna spiegare il nuovo approccio
+
+- inserire calcolo costi di spedizione anche nella vendita in inserimento fattura
