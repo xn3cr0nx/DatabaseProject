@@ -309,15 +309,15 @@ select Codice, Quantita, Produttore, Modello
 
 \noindent\textit{Statistica dei servizi più erogati (una volta al mese)}
 \begin{verbatim}
-select Codice, Quantita, Tipologia
-  from Vendita, Servizio
-  where Vendita.ProdottoServizio = Codice
-  order by Quantita desc;
+select Servizio, count(*) as Frequenza
+  from ElencazioneAssistenza
+  group by Servizio
+  order by Frequenza desc;
 \end{verbatim}
-% \vspace{0.5cm}
-%
-% \noindent\makebox[\textwidth]{\includegraphics[width=0.7\linewidth]{./immagini/op7}}
-% \newline\newline
+\vspace{0.5cm}
+
+\noindent\makebox[\textwidth]{\includegraphics[width=0.6\linewidth]{./immagini/op7}}
+\newline\newline
 
 \noindent\textit{Verifica del pagamento delle fatture da parte dei clienti (due volte a settimana)}
 \begin{verbatim}

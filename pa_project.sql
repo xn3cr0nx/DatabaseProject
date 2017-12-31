@@ -422,10 +422,10 @@ select Codice, Quantita, Produttore, Modello
 	order by Quantita desc;
 
 -- 34)
-select Codice, Quantita, Tipologia
-	from Vendita, Servizio
-	where Vendita.ProdottoServizio = Codice
-	order by Quantita desc;
+select Servizio, count(*) as Frequenza
+	from ElencazioneAssistenza
+	group by Servizio
+	order by Frequenza desc;
 
 -- 35)
 select Codice, (select Nome from Cliente where Codice=Destinatario) as Nome, Emissione, Scadenza
