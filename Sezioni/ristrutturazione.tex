@@ -88,7 +88,169 @@ Assumiamo un numero di prodotti pari a 3 all'interno della vendita.
 \multicolumn{1}{|l|}{Catalogo}             & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{3}        
 & \multicolumn{1}{l|}{L}             
 			 \\ \hline
-\multicolumn{1}{|l|}{Prodotto o Servizio}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{3}        
+\multicolumn{1}{|l|}{Prodotto}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{3}        
+& \multicolumn{1}{l|}{L}             
+			 \\ \hline
+\multicolumn{1}{|l|}{Costo di Spedizione}     & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{3}      & \multicolumn{1}{l|}{L}             
+			 \\ \hline
+\multicolumn{1}{|l|}{Fattura}
+& \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{S}             \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Operazione 8}
+\begin{tabular}{llll}
+\\ \hline
+\multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
+\multicolumn{1}{|l|}{Catalogo}
+& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{S}             \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Operazione 13}
+\begin{tabular}{llll}
+\\ \hline
+\multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
+\multicolumn{1}{|l|}{Catalogo}
+& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{S}             \\ \hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{Operazione 41}
+\begin{tabular}{llll}
+\\ \hline
+\multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
+\multicolumn{1}{|l|}{Prodotto}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}        
+& \multicolumn{1}{l|}{L}             
+			 \\ \hline
+\multicolumn{1}{|l|}{Spedizione}
+& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{L}             \\ \hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{Costo Operazioni con ridondanza}
+\label{my-label}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{OPERAZIONE}               & \textbf{COSTO} & \textbf{FREQUENZA} & \textbf{TOTALE} \\ \hline
+6                                & 10             & 69              & 690
+\\ \hline
+8                                & 1              & 0.1667          & 0.1667
+\\ \hline
+13                                & 1              & 10             & 10
+\\ \hline
+41                                & 2              & 69             & 138
+\\ \hline
+COSTO OPERAZIONI CON RIDONDANZA & 14        &                    &   \hl{838,1667}             \\ \hline
+\end{tabular}
+}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{Costo Operazioni senza Ridondanza}
+\label{my-label}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{OPERAZIONE}             & \textbf{COSTO} & \textbf{FREQUENZA} & \textbf{TOTALE} \\ \hline
+6                                & 13             & 69             & 897
+\\ \hline
+8                                & 1              & 0.1667		   & 0.1667
+\\ \hline
+13                                & 1              & 10            & 10
+\\ \hline
+41                                & 2              & 69            & 138
+\\ \hline
+COSTO OPERAZIONI SENZA RIDONDANZA & 17        &                    &  \hl{1045,1667}          \\ \hline
+\end{tabular}
+}
+\end{table}
+
+\newline Per l'attributo Dimensioni si ha esattamente la stessa situazione
+
+\centerline{\textbf{ATTRIBUTO DIMENSIONI IN CATALOGO}}
+\newline\newline
+\centerline{\textbf{CON RIDONDANZA}}
+
+\begin{table}[H]
+\centering
+\caption{Operazione 6}
+\begin{tabular}{llll}
+\\ \hline
+\multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
+\multicolumn{1}{|l|}{Stipulazione Vendita}
+& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{3}                & \multicolumn{1}{l|}{S}             \\ \hline
+\multicolumn{1}{|l|}{Catalogo}             & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{3}        
+& \multicolumn{1}{l|}{L}             
+			 \\ \hline
+\multicolumn{1}{|l|}{Costo di Spedizione}     & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{3}      & \multicolumn{1}{l|}{L}             
+			 \\ \hline
+\multicolumn{1}{|l|}{Fattura}
+& \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{S}             \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Operazione 8}
+\begin{tabular}{llll}
+\\ \hline
+\multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
+\multicolumn{1}{|l|}{Catalogo}
+& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{S}             \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Operazione 13}
+\begin{tabular}{llll}
+\\ \hline
+\multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
+\multicolumn{1}{|l|}{Catalogo}
+& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{S}             \\ \hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{Operazione 41}
+\begin{tabular}{llll}
+\\ \hline
+\multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
+\multicolumn{1}{|l|}{Catalogo}
+& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{L}             \\ \hline
+\multicolumn{1}{|l|}{Spedizione}
+& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{L}             \\ \hline
+\end{tabular}
+\end{table}
+
+
+\centerline{\textbf{SENZA RIDONDANZA}}
+
+\begin{table}[H]
+\centering
+\caption{Operazione 6}
+\begin{tabular}{llll}
+\\ \hline
+\multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
+\multicolumn{1}{|l|}{Stipulazione Vendita}
+& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{3}                & \multicolumn{1}{l|}{S}             \\ \hline
+\multicolumn{1}{|l|}{Catalogo}             & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{3}        
 & \multicolumn{1}{l|}{L}             
 			 \\ \hline
 \multicolumn{1}{|l|}{Prodotto}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{3}        
@@ -108,7 +270,7 @@ Assumiamo un numero di prodotti pari a 3 all'interno della vendita.
 \\ \hline
 \multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
 \multicolumn{1}{|l|}{Catalogo}
-& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{0}                & \multicolumn{1}{l|}{S}             \\ \hline
+& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{S}             \\ \hline
 \end{tabular}
 \end{table}
 
@@ -119,7 +281,7 @@ Assumiamo un numero di prodotti pari a 3 all'interno della vendita.
 \\ \hline
 \multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
 \multicolumn{1}{|l|}{Catalogo}
-& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{0}                & \multicolumn{1}{l|}{S}             \\ \hline
+& \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{S}             \\ \hline
 \end{tabular}
 \end{table}
 
@@ -130,10 +292,7 @@ Assumiamo un numero di prodotti pari a 3 all'interno della vendita.
 \begin{tabular}{llll}
 \\ \hline
 \multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
-\multicolumn{1}{|l|}{Prodotto o Servizio}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{3}        
-& \multicolumn{1}{l|}{L}             
-			 \\ \hline
-\multicolumn{1}{|l|}{Prodotto}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{3}        
+\multicolumn{1}{|l|}{Prodotto}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}        
 & \multicolumn{1}{l|}{L}             
 			 \\ \hline
 \multicolumn{1}{|l|}{Spedizione}
@@ -150,15 +309,15 @@ Assumiamo un numero di prodotti pari a 3 all'interno della vendita.
 \begin{tabular}{|l|l|l|l|}
 \hline
 \textbf{OPERAZIONE}               & \textbf{COSTO} & \textbf{FREQUENZA} & \textbf{TOTALE} \\ \hline
-6                                & 10             & 90              & 900
+6                                & 10             & 69              & 690
 \\ \hline
 8                                & 1              & 0.1667          & 0.1667
 \\ \hline
 13                                & 1              & 10             & 10
 \\ \hline
-41                                & 2              & 90             & 180
+41                                & 2              & 69             & 138
 \\ \hline
-COSTO OPERAZIONI CON RIDONDANZA & 14        &                    &   \hl{1090,1667}             \\ \hline
+COSTO OPERAZIONI CON RIDONDANZA & 14        &                    &   \hl{838,1667}             \\ \hline
 \end{tabular}
 }
 \end{table}
@@ -172,19 +331,18 @@ COSTO OPERAZIONI CON RIDONDANZA & 14        &                    &   \hl{1090,16
 \begin{tabular}{|l|l|l|l|}
 \hline
 \textbf{OPERAZIONE}             & \textbf{COSTO} & \textbf{FREQUENZA} & \textbf{TOTALE} \\ \hline
-6                                & 16             & 90             & 1440
+6                                & 13             & 69             & 897
 \\ \hline
-8                                & 0              & 0.1667		   & 0
+8                                & 1              & 0.1667		   & 0.1667
 \\ \hline
-13                                & 0              & 10            & 0
+13                                & 1              & 10            & 10
 \\ \hline
-41                                & 7              & 90            & 630
+41                                & 2              & 69            & 138
 \\ \hline
-COSTO OPERAZIONI SENZA RIDONDANZA & 23        &                    &  \hl{2070}          \\ \hline
+COSTO OPERAZIONI SENZA RIDONDANZA & 17        &                    &  \hl{1045,1667}          \\ \hline
 \end{tabular}
 }
 \end{table}
-
 
 \newpage
 \subsubsection{Eliminazione Delle Gerarchie}
