@@ -13,3 +13,12 @@ Nelle operazioni, è da rivedere l'ultima, la 43. Dobbiamo lasciarla o toglierla
 
 
 - Parte 2
+Scheletro schema E-R: non è semanticamente corretto collegare "PA, Azienda o Persona" a Richiesta sul Mepa, perchè solo le PA hanno una relazione con le richieste sul Mepa.
+E' da rivedere.
+Conseguentemente bisogna modificare anche i testi (pag. 22), che sono adattati allo schema attuale.
+
+Il resto sembra tutto a posto.
+E' stato aggiunto l'attributo "Quantità" alla relazione Descrizione richieste, e sono state apportate le relative modifiche dove opportuno.
+
+
+- Parte 3
