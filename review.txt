@@ -22,3 +22,22 @@ E' stato aggiunto l'attributo "Quantità" alla relazione Descrizione richieste, 
 
 
 - Parte 3
+Nella tavola delle operazioni bisogna decidere cosa fare con l'operazione 43.
+
+Nell'analisi delle ridondanze, ci sono due frasi da rivedere, pagina 40
+
+Nei diagrammi ER v3 e v4 ci sarebbero da rivedere le chiavi uniche su Richiesta Mepa, Gara pubblica, Trattativa diretta   e    ProdottoOServizio, Prodotto, Servizio.
+
+
+- Parte 4
+
+
+
+
+Alla fine di tutto, rivedere gli spazi bianchi tra le sezioni e i paragrafi
+
+
+
+
+
+

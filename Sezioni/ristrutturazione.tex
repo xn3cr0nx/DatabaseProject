@@ -1,21 +1,21 @@
 
 \subsubsection{Analisi Derivazioni e Ridondanze}
-In questa fase viene analizzata la struttura dello schema dal punto di vista delle ridondanze, della loro possibile esclusione e della possibilità di introdurne alcune in modo da ridurre il numero di accessi delle operazioni. \newline 
-Per quanto riguarda l'esclusione delle ridondanze, la strategia costruttiva è stata molto improntata sulla limitazione di questo tipo di dati e ciò a portato alla presenza di un solo attributo che ha necessitato di un'attenta analisi. In questo caso ci riferiamo all'attributo Importo presente sia in fattura che in Contratto di Assistenza on Center. La sua trattazione ha richieste non poche analisi prima di realizzare che esso non è assimilabile ad una ridondanza. Importo nell'entità Fattura è vincolato dalla decisione di non conservare tutti i cataloghi dei fornitori per questioni di spazio. Quindi aggiornando mensilmente i prezzi dei cataloghi si perde la possibilità di andare a cercare il valore di un prodotto in un certo arco temporale se non quello attuale, e questo renderebbe impossibile calcolare l'importo di una fattura a posteriori.\newline
-Questo implica che la presenza o l'assenza di questo attributo nella Fattura non porta allo stesso risultato, dal punto di vista logico, perciò esso non può essere considerato una ridondanza. Sarebbe altrettanto sbagliato considerare l'attributo ridondante quello nel Contratto di Assistenza in quanto esso è logicamente introdotto in un momento precedente alla fattura, e non il contrario.\newline
+In questa fase viene analizzata la struttura dello schema dal punto di vista delle ridondanze, della loro possibile esclusione e della possibilità di introdurne alcune in modo da ridurre il numero di accessi delle operazioni. \newline
+Per quanto riguarda l'esclusione delle ridondanze, \textbf{la strategia costruttiva è stata molto improntata sulla limitazione di questo tipo di dati} e ciò ha portato alla presenza di un solo attributo che ha necessitato di un'attenta analisi. In questo caso ci riferiamo all'attributo Importo presente sia in Fattura che in Contratto di Assistenza on Center. La sua trattazione ha richiesto non poche analisi prima di realizzare che esso non è assimilabile ad una ridondanza. Importo nell'entità Fattura è vincolato dalla decisione di non conservare tutti i cataloghi dei fornitori \textbf{per questioni di spazio}. Quindi aggiornando mensilmente i prezzi dei cataloghi si perde la possibilità di andare a cercare il prezzo di un prodotto in un certo arco temporale se non quello attuale, e questo renderebbe impossibile calcolare l'importo di una fattura a posteriori.\newline
+Questo implica che la presenza o l'assenza di questo attributo nella Fattura non porta allo stesso risultato, dal punto di vista logico, perciò esso non può essere considerato una ridondanza. Sarebbe altrettanto sbagliato considerare l'attributo ridondante quello nel Contratto di Assistenza in quanto esso è logicamente introdotto in un momento precedente alla creazione della fattura, e non il contrario.\newline\newline
 Quindi si è concluso che non sono presenti ridondanze eliminabili, si è pensato allora all'introduzione di una ridondanza che potrebbe essere utile nel ridurre il numero di accessi al database, nel caso di operazioni di tipo statistico. Parliamo dell'aggiunta degli attributi Peso e Dimensioni (operazioni 6, 8, 13, 41) al Catalogo.
-Consideriamo il caso della vendita di un prodotto che implica nella creazione della fattura le operazioni necessarie per il calcolo dei costi di spedizione che prendono in causa proprio questi parametri.
-
-- 6 inserimento nuova fattura
-- 8 inserimento nuovo prodotto in catalogo.
-- 13 aggiornamento prodotto in catalogo
+Consideriamo il caso della vendita di un prodotto che prevede, nella creazione della fattura, alcune operazioni necessarie per il calcolo dei costi di spedizione, che prendono in causa proprio questi parametri.
+\noindent\newline
+- 6 inserimento nuova fattura\newline
+- 8 inserimento nuovo prodotto in catalogo\newline
+- 13 aggiornamento prodotto in catalogo\newline
 - 41 calcolo costi di spedizione
-
+\newline\newline
 Assumiamo un numero di prodotti pari a 3 all'interno della vendita.
-
+\vspace{1cm}
 
 \centerline{\textbf{ATTRIBUTO PESO IN CATALOGO}}
-\newline\newline
+\vspace{1cm}
 \centerline{\textbf{CON RIDONDANZA}}
 
 
@@ -28,10 +28,10 @@ Assumiamo un numero di prodotti pari a 3 all'interno della vendita.
 \multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
 \multicolumn{1}{|l|}{Stipulazione Vendita}
 & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{3}                & \multicolumn{1}{l|}{S}             \\ \hline
-\multicolumn{1}{|l|}{Catalogo}             & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{3}        
-& \multicolumn{1}{l|}{L}             
+\multicolumn{1}{|l|}{Catalogo}             & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{3}
+& \multicolumn{1}{l|}{L}
 			 \\ \hline
-\multicolumn{1}{|l|}{Costo di Spedizione}     & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{3}      & \multicolumn{1}{l|}{L}             
+\multicolumn{1}{|l|}{Costo di Spedizione}     & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{3}      & \multicolumn{1}{l|}{L}
 			 \\ \hline
 \multicolumn{1}{|l|}{Fattura}
 & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{S}             \\ \hline
@@ -74,7 +74,7 @@ Assumiamo un numero di prodotti pari a 3 all'interno della vendita.
 \end{tabular}
 \end{table}
 
-
+\vspace{1cm}
 \centerline{\textbf{SENZA RIDONDANZA}}
 
 \begin{table}[H]
@@ -85,13 +85,13 @@ Assumiamo un numero di prodotti pari a 3 all'interno della vendita.
 \multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
 \multicolumn{1}{|l|}{Stipulazione Vendita}
 & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{3}                & \multicolumn{1}{l|}{S}             \\ \hline
-\multicolumn{1}{|l|}{Catalogo}             & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{3}        
-& \multicolumn{1}{l|}{L}             
+\multicolumn{1}{|l|}{Catalogo}             & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{3}
+& \multicolumn{1}{l|}{L}
 			 \\ \hline
-\multicolumn{1}{|l|}{Prodotto}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{3}        
-& \multicolumn{1}{l|}{L}             
+\multicolumn{1}{|l|}{Prodotto}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{3}
+& \multicolumn{1}{l|}{L}
 			 \\ \hline
-\multicolumn{1}{|l|}{Costo di Spedizione}     & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{3}      & \multicolumn{1}{l|}{L}             
+\multicolumn{1}{|l|}{Costo di Spedizione}     & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{3}      & \multicolumn{1}{l|}{L}
 			 \\ \hline
 \multicolumn{1}{|l|}{Fattura}
 & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{S}             \\ \hline
@@ -127,8 +127,8 @@ Assumiamo un numero di prodotti pari a 3 all'interno della vendita.
 \begin{tabular}{llll}
 \\ \hline
 \multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
-\multicolumn{1}{|l|}{Prodotto}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}        
-& \multicolumn{1}{l|}{L}             
+\multicolumn{1}{|l|}{Prodotto}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}
+& \multicolumn{1}{l|}{L}
 			 \\ \hline
 \multicolumn{1}{|l|}{Spedizione}
 & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{L}             \\ \hline
@@ -152,7 +152,7 @@ Assumiamo un numero di prodotti pari a 3 all'interno della vendita.
 \\ \hline
 41                                & 2              & 69             & 138
 \\ \hline
-COSTO OPERAZIONI CON RIDONDANZA & 14        &                    &   \hl{838,1667}             \\ \hline
+COSTO OPERAZIONI CON RIDONDANZA & 14        &                    &   \hl{838.1667}             \\ \hline
 \end{tabular}
 }
 \end{table}
@@ -160,7 +160,7 @@ COSTO OPERAZIONI CON RIDONDANZA & 14        &                    &   \hl{838,166
 
 \begin{table}[H]
 \centering
-\caption{Costo Operazioni senza Ridondanza}
+\caption{Costo Operazioni senza ridondanza}
 \label{my-label}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|l|l|l|l|}
@@ -174,15 +174,17 @@ COSTO OPERAZIONI CON RIDONDANZA & 14        &                    &   \hl{838,166
 \\ \hline
 41                                & 2              & 69            & 138
 \\ \hline
-COSTO OPERAZIONI SENZA RIDONDANZA & 17        &                    &  \hl{1045,1667}          \\ \hline
+COSTO OPERAZIONI SENZA RIDONDANZA & 17        &                    &  \hl{1045.1667}          \\ \hline
 \end{tabular}
 }
 \end{table}
 
-\newline Per l'attributo Dimensioni si ha esattamente la stessa situazione
+\vspace{1.5cm}
+Per l'attributo Dimensioni si ha esattamente la stessa situazione
+\vspace{1cm}
 
 \centerline{\textbf{ATTRIBUTO DIMENSIONI IN CATALOGO}}
-\newline\newline
+\vspace{1cm}
 \centerline{\textbf{CON RIDONDANZA}}
 
 \begin{table}[H]
@@ -193,10 +195,10 @@ COSTO OPERAZIONI SENZA RIDONDANZA & 17        &                    &  \hl{1045,1
 \multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
 \multicolumn{1}{|l|}{Stipulazione Vendita}
 & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{3}                & \multicolumn{1}{l|}{S}             \\ \hline
-\multicolumn{1}{|l|}{Catalogo}             & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{3}        
-& \multicolumn{1}{l|}{L}             
+\multicolumn{1}{|l|}{Catalogo}             & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{3}
+& \multicolumn{1}{l|}{L}
 			 \\ \hline
-\multicolumn{1}{|l|}{Costo di Spedizione}     & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{3}      & \multicolumn{1}{l|}{L}             
+\multicolumn{1}{|l|}{Costo di Spedizione}     & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{3}      & \multicolumn{1}{l|}{L}
 			 \\ \hline
 \multicolumn{1}{|l|}{Fattura}
 & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{S}             \\ \hline
@@ -239,7 +241,7 @@ COSTO OPERAZIONI SENZA RIDONDANZA & 17        &                    &  \hl{1045,1
 \end{tabular}
 \end{table}
 
-
+\vspace{1cm}
 \centerline{\textbf{SENZA RIDONDANZA}}
 
 \begin{table}[H]
@@ -250,13 +252,13 @@ COSTO OPERAZIONI SENZA RIDONDANZA & 17        &                    &  \hl{1045,1
 \multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
 \multicolumn{1}{|l|}{Stipulazione Vendita}
 & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{3}                & \multicolumn{1}{l|}{S}             \\ \hline
-\multicolumn{1}{|l|}{Catalogo}             & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{3}        
-& \multicolumn{1}{l|}{L}             
+\multicolumn{1}{|l|}{Catalogo}             & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{3}
+& \multicolumn{1}{l|}{L}
 			 \\ \hline
-\multicolumn{1}{|l|}{Prodotto}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{3}        
-& \multicolumn{1}{l|}{L}             
+\multicolumn{1}{|l|}{Prodotto}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{3}
+& \multicolumn{1}{l|}{L}
 			 \\ \hline
-\multicolumn{1}{|l|}{Costo di Spedizione}     & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{3}      & \multicolumn{1}{l|}{L}             
+\multicolumn{1}{|l|}{Costo di Spedizione}     & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{3}      & \multicolumn{1}{l|}{L}
 			 \\ \hline
 \multicolumn{1}{|l|}{Fattura}
 & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{S}             \\ \hline
@@ -292,8 +294,8 @@ COSTO OPERAZIONI SENZA RIDONDANZA & 17        &                    &  \hl{1045,1
 \begin{tabular}{llll}
 \\ \hline
 \multicolumn{1}{|l|}{\textbf{CONCETTO}} & \multicolumn{1}{l|}{\textbf{COSTRUTTO}} & \multicolumn{1}{l|}{\textbf{ACCESSI}} & \multicolumn{1}{l|}{\textbf{TIPO}} \\ \hline
-\multicolumn{1}{|l|}{Prodotto}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}        
-& \multicolumn{1}{l|}{L}             
+\multicolumn{1}{|l|}{Prodotto}             & \multicolumn{1}{l|}{E}                  & \multicolumn{1}{l|}{1}
+& \multicolumn{1}{l|}{L}
 			 \\ \hline
 \multicolumn{1}{|l|}{Spedizione}
 & \multicolumn{1}{l|}{R}                  & \multicolumn{1}{l|}{1}                & \multicolumn{1}{l|}{L}             \\ \hline
@@ -317,7 +319,7 @@ COSTO OPERAZIONI SENZA RIDONDANZA & 17        &                    &  \hl{1045,1
 \\ \hline
 41                                & 2              & 69             & 138
 \\ \hline
-COSTO OPERAZIONI CON RIDONDANZA & 14        &                    &   \hl{838,1667}             \\ \hline
+COSTO OPERAZIONI CON RIDONDANZA & 14        &                    &   \hl{838.1667}             \\ \hline
 \end{tabular}
 }
 \end{table}
@@ -325,7 +327,7 @@ COSTO OPERAZIONI CON RIDONDANZA & 14        &                    &   \hl{838,166
 
 \begin{table}[H]
 \centering
-\caption{Costo Operazioni senza Ridondanza}
+\caption{Costo Operazioni senza ridondanza}
 \label{my-label}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|l|l|l|l|}
@@ -339,7 +341,7 @@ COSTO OPERAZIONI CON RIDONDANZA & 14        &                    &   \hl{838,166
 \\ \hline
 41                                & 2              & 69            & 138
 \\ \hline
-COSTO OPERAZIONI SENZA RIDONDANZA & 17        &                    &  \hl{1045,1667}          \\ \hline
+COSTO OPERAZIONI SENZA RIDONDANZA & 17        &                    &  \hl{1045.1667}          \\ \hline
 \end{tabular}
 }
 \end{table}
@@ -354,7 +356,7 @@ Abbiamo deciso di procedere nel seguente modo:
 \paragraph{PA, Azienda o Persona}
 Per quanto riguarda l'entità PA, Azienda o Persona, abbiamo scelto di accorpare il genitore della generalizzazione nelle entità figlie. Questo perchè i clienti e i fornitori hanno rapporti con l'azienda piuttosto diversi tra loro, quindi la separazione comporta una suddivisione concettuale che migliora la chiarezza dello schema.
 \paragraph{Cliente}
-Per l'entità Cliente si è adottata una soluzione ibrida. Abbiamo optato di mantenere il genitore l'entità figlia Pubblica Amministrazione, mentre l'entità Privato è stata accorpata nel genitore aggiungendo un nuovo attributo "Tipo", che indica appunto se il Cliente è un Privato o una PA. Un eventuale accorpamento del genitore nelle entità figlie avrebbe complicato lo schema, viste le numerose relazioni che ha il genitore.
+Per l'entità Cliente si è adottata una soluzione ibrida. Abbiamo optato di mantenere l'entità figlia Pubblica Amministrazione, mentre l'entità Privato è stata accorpata nel genitore aggiungendo un nuovo attributo "Tipo", che indica appunto se il Cliente è un Privato o una PA. Un eventuale accorpamento del genitore nelle entità figlie avrebbe complicato lo schema, viste le numerose relazioni che ha il genitore.
 \newline
 La relazione tra Cliente e PA è denominata "Specificazione PA".
 \paragraph{Richiesta sul Mepa}
@@ -372,7 +374,7 @@ In seguito all'aggiunta dell'attributo "Tipo" all'entità "Cliente", è necessar
   \item L'attributo "Tipo" relativo all'entità "Cliente" può essere "Privato" oppure "PA".
 \end{itemize}
 \noindent
-\textit{(Facciamo notare che, per non appesantire ulteriormente lo schema, abbiamo scelto di togliere alcuni prodotti e di mantenere solo "Notebook", "Pc Desktop", "Monitor", "Stampante".)}
+\textit{(Facciamo notare che, per non appesantire ulteriormente lo schema, abbiamo scelto di togliere alcuni prodotti e di mantenere solo "Notebook", "Pc Desktop", "Monitor", "Stampante")}
 
 
 
