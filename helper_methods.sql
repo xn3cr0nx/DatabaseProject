@@ -268,7 +268,7 @@ select Costo
   where (select sum(Peso)
       from Prodotto
       where Codice IN ('MF839T/A', '24M38A')) <= PesoMax
-  and (select sum(Dim) from 
+  and (select sum(Dim) from
     (select sum(Dim) as Dim from
     (
       (select @rank1:=@rank1+1 AS rank, SUBSTRING_INDEX(Dimensioni, 'x', 1) as Dim from Prodotto where Codice IN ('MF839T/A', '24M38A'))
@@ -276,6 +276,12 @@ select Costo
       (select @rank2:=@rank2+1 AS rank, SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', -1) as Dim from Prodotto where Codice IN ('MF839T/A', '24M38A'))
     union all
       (select @rank3:=@rank3+1 AS rank, SUBSTRING_INDEX(Dimensioni, 'x', -1) as Dim from Prodotto where Codice IN ('MF839T/A', '24M38A'))
-    ) t 
+    ) t
     group by rank) t) <= SommaMisureMax
   order by Costo limit 1;
+
+-- 42)
+select min(Prezzo) as Prezzo, Prodotto, (select Nome from Fornitore where Codice=Fornitore) as Fornitore
+	from Catalogo
+	where Prodotto IN ('MF839T/A', 'DK.303.RL') and InizioValidita < NOW() and FineValidita > NOW()
+	group by Prodotto;

@@ -468,24 +468,21 @@ select Costo
   from CostoSpedizione
   where (select sum(Peso)
       from Prodotto
-      where Codice IN (<lista_codici_prodotti)) <= PesoMax
-  and (select sum(Dim) from 
+      where Codice IN (<lista_codici_prodotto>)) <= PesoMax
+  and (select sum(Dim) from
     (select sum(Dim) as Dim from
     (
-      (select @rank1:=@rank1+1 AS rank, SUBSTRING_INDEX(Dimensioni, 'x', 1) as Dim from Prodotto where Codice IN (<lista_codici_prodotti))
+      (select @rank1:=@rank1+1 AS rank, SUBSTRING_INDEX(Dimensioni, 'x', 1) as Dim from Prodotto where Codice IN (<lista_codici_prodotto>))
     union all
-      (select @rank2:=@rank2+1 AS rank, SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', -1) as Dim from Prodotto where Codice IN (<lista_codici_prodotti))
+      (select @rank2:=@rank2+1 AS rank, SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', -1) as Dim from Prodotto where Codice IN (<lista_codici_prodotto>))
     union all
-      (select @rank3:=@rank3+1 AS rank, SUBSTRING_INDEX(Dimensioni, 'x', -1) as Dim from Prodotto where Codice IN (<lista_codici_prodotti))
-    ) t 
+      (select @rank3:=@rank3+1 AS rank, SUBSTRING_INDEX(Dimensioni, 'x', -1) as Dim from Prodotto where Codice IN (<lista_codici_prodotto>))
+    ) t
     group by rank) t) <= SommaMisureMax
   order by Costo limit 1;
 
 -- 42)
-select min(Prezzo), Fornitore
+select min(Prezzo) as Prezzo, Prodotto, (select Nome from Fornitore where Codice=Fornitore) as Fornitore
 	from Catalogo
-	where Prodotto = `codice` IN <codici_prodotti> and InizioValidita < NOW() and FineValidita > NOW()
-	group by Fornitore;
-
--- 43)
-select
+	where Prodotto IN <lista_codici_prodotto> and InizioValidita < NOW() and FineValidita > NOW()
+  group by Prodotto;

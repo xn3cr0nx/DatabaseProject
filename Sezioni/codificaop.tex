@@ -401,22 +401,47 @@ select sum(Importo) as Volume_vendite
 
 \noindent\textit{Calcolo dei costi di spedizione di un'acquisto (tre volte al giorno)}
 \begin{verbatim}
+set @rank1:=0;
+set @rank2:=0;
+set @rank3:=0;
 select Costo
   from CostoSpedizione
-  where (select Peso
+  where (select sum(Peso)
       from Prodotto
-      where Codice = <codice_prodotto>) <= PesoMax
-  and (select
-    (select SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto
-    where Codice = <codice_prodotto>) +
-    (select SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', 1)
-    from Prodotto where Codice = <codice_prodotto>) +
-    (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto
-    where Codice = <codice_prodotto>)
-    ) <= SommaMisureMax
+      where Codice IN (<lista_codici_prodotto>)) <= PesoMax
+  and (select sum(Dim) from
+    (select sum(Dim) as Dim from
+    (
+      (select @rank1:=@rank1+1 AS rank,
+      SUBSTRING_INDEX(Dimensioni, 'x', 1) as Dim
+      from Prodotto where Codice IN (<lista_codici_prodotto>))
+    union all
+      (select @rank2:=@rank2+1 AS rank,
+      SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', -1) as Dim
+      from Prodotto where Codice IN (<lista_codici_prodotto>))
+    union all
+      (select @rank3:=@rank3+1 AS rank,
+      SUBSTRING_INDEX(Dimensioni, 'x', -1) as Dim
+      from Prodotto where Codice IN (<lista_codici_prodotto>))
+    ) t
+    group by rank) t) <= SommaMisureMax
   order by Costo limit 1;
 \end{verbatim}
 \vspace{0.5cm}
 
-\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op14}}
+\noindent\makebox[\textwidth]{\includegraphics[width=0.85\linewidth]{./immagini/op14}}
+\newline\newline
+
+\noindent\textit{Selezione della migliore combinazione di prodotti (tre volte al giorno)}
+\begin{verbatim}
+select min(Prezzo) as Prezzo, Prodotto,
+  (select Nome from Fornitore where Codice=Fornitore) as Fornitore
+  from Catalogo
+  where Prodotto IN <lista_codici_prodotto>
+  and InizioValidita < NOW() and FineValidita > NOW()
+  group by Prodotto;
+\end{verbatim}
+\vspace{0.5cm}
+
+\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op15}}
 \newline\newline

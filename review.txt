@@ -1,15 +1,8 @@
-- Prima pagina
-Attualmente, il nome del revisore è Federica Diamantini.
-Prima di tutto lei si chiama Claudia ahah, poi dobbiamo valutare se tenere il suo nome, mettere quello di Potena oppure togliere totalmente la scritta Revisore (io opterei per quest'ultima).
-
-
 - Parte 1
 L'intervista sembra ok.
 
 Nei requisiti espressi nel linguaggio naturale è da rivedere la parte sui servizi (fine di pagina 12). Potrebbe già andare bene ma è meglio ricontrollarla insieme.
 Insieme a questo, guardare anche "Frasi relative ai Servizi" a metà di pagina 17
-
-Nelle operazioni, è da rivedere l'ultima, la 43. Dobbiamo lasciarla o toglierla, a seconda se riusciamo ad implementarla o meno.
 
 
 - Parte 2
@@ -22,15 +15,13 @@ E' stato aggiunto l'attributo "Quantità" alla relazione Descrizione richieste, 
 
 
 - Parte 3
-Nella tavola delle operazioni bisogna decidere cosa fare con l'operazione 43.
-
 Nell'analisi delle ridondanze, ci sono due frasi da rivedere, pagina 40
 
 Nei diagrammi ER v3 e v4 ci sarebbero da rivedere le chiavi uniche su Richiesta Mepa, Gara pubblica, Trattativa diretta   e    ProdottoOServizio, Prodotto, Servizio.
 
 
 - Parte 4
-
+Bisogna aggiungere i vari commenti
 
 
 
