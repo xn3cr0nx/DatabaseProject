@@ -260,41 +260,15 @@ select sum(Importo) as Volume_vendite
   where Emittente = 'Rimini Service' and Emissione >= '2017-11' and Emissione <= '2018';
 
 -- 41)
-select Costo
-  from CostoSpedizione
-  where (select Peso
-      from Prodotto
-      where Codice = 'MF839T/A') <= PesoMax
-  and (select
-    (select SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto where Codice = 'MF839T/A') +
-    (select SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', 1) from Prodotto where Codice = 'MF839T/A') +
-    (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto where Codice = 'MF839T/A')
-    ) <= SommaMisureMax
-  order by Costo limit 1;
-
-
-select sum(Costo)
-  from CostoSpedizione
-  where (select Peso
-      from Prodotto
-      where Codice IN ('MF839T/A', '24M38A')) <= PesoMax
-  and (select
-    (select SUBSTRING_INDEX(Dimensioni, 'x', 1) from Prodotto where Codice IN ('MF839T/A', '24M38A')) +
-    (select SUBSTRING_INDEX(SUBSTRING_INDEX(Dimensioni, 'x', 2), 'x', -1) from Prodotto where Codice IN ('MF839T/A', '24M38A')) +
-    (select SUBSTRING_INDEX(Dimensioni, 'x', -1) from Prodotto where Codice IN ('MF839T/A', '24M38A'))
-    ) <= SommaMisureMax
-  order by Costo limit 1;
-
-
 set @rank1:=0;
 set @rank2:=0;
 set @rank3:=0;
 select Costo
   from CostoSpedizione
-  where (select Peso
+  where (select sum(Peso)
       from Prodotto
       where Codice IN ('MF839T/A', '24M38A')) <= PesoMax
-  and SommaMisureMax >= (select sum(Dim) from 
+  and (select sum(Dim) from 
     (select sum(Dim) as Dim from
     (
       (select @rank1:=@rank1+1 AS rank, SUBSTRING_INDEX(Dimensioni, 'x', 1) as Dim from Prodotto where Codice IN ('MF839T/A', '24M38A'))
@@ -303,5 +277,5 @@ select Costo
     union all
       (select @rank3:=@rank3+1 AS rank, SUBSTRING_INDEX(Dimensioni, 'x', -1) as Dim from Prodotto where Codice IN ('MF839T/A', '24M38A'))
     ) t 
-    group by rank) t)
+    group by rank) t) <= SommaMisureMax
   order by Costo limit 1;
