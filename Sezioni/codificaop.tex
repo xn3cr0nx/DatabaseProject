@@ -174,8 +174,9 @@ delete from Fornitore
 \end{verbatim}
 \vspace{1cm}
 
-\newline
+\noindent
 Qui dobbiamo sottolineare come le operazioni di cancellazione riportate, come quelle non riportate in quanto simili, non siano del tutto corrette. Infatti in tal caso la cancellazione di un Fornitore ad esempio può suscitare problematiche se il Fornitore cancellato faceva parte di altri record, come foreign key, o semplicemente come dato di rilevanza per caratterizzare la riga. In questo caso si è preferito trascurare il problema, in quanto la sua gestione porta a pensare la gestione delle tabelle in maniera diversa. Infatti il modo più corretto per ovviare a questa problematica, come è usato in ambito aziendale, è quello di inserire un campo booleano "deleted" che serve a tenere traccia di quando una riga sarebbe stata cancellata. Nel momento della cancellazione il campo viene messo a true, e in questo modo non si causano ripercussioni a catena sulla base di dati. Per tenere conto di questo campo tutte le consultazioni effettuate sul database devono avere la condizione che il campo deleted sia false, quindi il record è valido e dev'essere considerato. Per semplicità in questo progetto si è trascurato tutto questo meccanismo, che andrebbe risolto come descritto.
+\vspace{1cm}
 
 \noindent\textit{Aggiornamento di un catalogo (dieci volte al mese)}
 \begin{verbatim}

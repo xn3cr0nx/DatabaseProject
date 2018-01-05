@@ -1,7 +1,7 @@
 
 \subsubsection{Analisi Derivazioni e Ridondanze}
 In questa fase viene analizzata la struttura dello schema dal punto di vista delle ridondanze, della loro possibile esclusione e della possibilità di introdurne alcune in modo da ridurre il numero di accessi delle operazioni. \newline
-Per quanto riguarda l'esclusione delle ridondanze, \textbf{la strategia costruttiva è stata molto improntata sulla limitazione di questo tipo di dati} e ciò ha portato alla presenza di un solo attributo che ha necessitato di un'attenta analisi. In questo caso ci riferiamo all'attributo Importo presente sia in Fattura che in Contratto di Assistenza on Center. La sua trattazione ha richiesto non poche analisi prima di realizzare che esso non è assimilabile ad una ridondanza. Importo nell'entità Fattura è vincolato dalla decisione di non conservare tutti i cataloghi dei fornitori \textbf{per questioni di spazio}. Quindi aggiornando mensilmente i prezzi dei cataloghi si perde la possibilità di andare a cercare il prezzo di un prodotto in un certo arco temporale se non quello attuale, e questo renderebbe impossibile calcolare l'importo di una fattura a posteriori.\newline
+Per quanto riguarda l'esclusione delle ridondanze, la strategia di progettazione è stata molto improntata sulla limitazione delle ridondaze e ciò ha portato alla presenza di un solo attributo che ha necessitato di un'attenta analisi. In questo caso ci riferiamo all'attributo Importo presente sia in Fattura che in Contratto di Assistenza on Center. La sua trattazione ha richiesto non poche analisi prima di realizzare che esso non è assimilabile ad una ridondanza. Importo nell'entità Fattura è vincolato dalla decisione di non conservare tutti i cataloghi dei fornitori. Quindi aggiornando mensilmente i prezzi dei cataloghi si perde la possibilità di andare a cercare il prezzo di un prodotto in un certo arco temporale se non quello attuale, e questo renderebbe impossibile calcolare l'importo di una fattura a posteriori.\newline
 Questo implica che la presenza o l'assenza di questo attributo nella Fattura non porta allo stesso risultato, dal punto di vista logico, perciò esso non può essere considerato una ridondanza. Sarebbe altrettanto sbagliato considerare l'attributo ridondante quello nel Contratto di Assistenza in quanto esso è logicamente introdotto in un momento precedente alla creazione della fattura, e non il contrario.\newline\newline
 Quindi si è concluso che non sono presenti ridondanze eliminabili, si è pensato allora all'introduzione di una ridondanza che potrebbe essere utile nel ridurre il numero di accessi al database, nel caso di operazioni di tipo statistico. Parliamo dell'aggiunta degli attributi Peso e Dimensioni (operazioni 6, 8, 13, 41) al Catalogo.
 Consideriamo il caso della vendita di un prodotto che prevede, nella creazione della fattura, alcune operazioni necessarie per il calcolo dei costi di spedizione, che prendono in causa proprio questi parametri.
@@ -346,8 +346,9 @@ COSTO OPERAZIONI SENZA RIDONDANZA & 17        &                    &  \hl{1045.1
 }
 \end{table}
 
-\newline
-Quanto risulta da entrambe le analisi, che sono in realtà la stessa per i due attributi, risulta che il guadagno portato dalla presenza dell'attributo ridondante su catalogo non è particolarmente decisivo sul numero di operazioni che vengono eseguite, infatti non vengono nemmeno dimezzate il numero di operazioni. Con questi risultati si è preferito evitare l'introduzione delle ridondanze nella relazione Catalogo, favorendo, anche se di poco, l'aspetto spaziale, mantenendo quindi lo schema inalterato.  
+\vspace{1cm}
+\noindent
+Quanto risulta da entrambe le analisi, che sono in realtà la stessa per i due attributi, risulta che il guadagno portato dalla presenza dell'attributo ridondante su catalogo non è particolarmente decisivo sul numero di operazioni che vengono eseguite, infatti non vengono nemmeno dimezzate il numero di operazioni. Con questi risultati si è preferito evitare l'introduzione delle ridondanze nella relazione Catalogo, favorendo, anche se di poco, l'aspetto spaziale, mantenendo quindi lo schema inalterato.
 
 
 \newpage
@@ -360,11 +361,11 @@ Abbiamo deciso di procedere nel seguente modo:
 \paragraph{PA, Azienda o Persona}
 Per quanto riguarda l'entità PA, Azienda o Persona, abbiamo scelto di accorpare il genitore della generalizzazione nelle entità figlie. Questo perchè i clienti e i fornitori hanno rapporti con l'azienda piuttosto diversi tra loro, quindi la separazione comporta una suddivisione concettuale che migliora la chiarezza dello schema.
 \paragraph{Cliente}
-Per l'entità Cliente si è adottata una soluzione ibrida. Abbiamo optato di mantenere l'entità figlia Pubblica Amministrazione, mentre l'entità Privato è stata accorpata nel genitore aggiungendo un nuovo attributo "Tipo", che indica appunto se il Cliente è un Privato o una PA. Un eventuale accorpamento del genitore nelle entità figlie avrebbe complicato lo schema, viste le numerose relazioni che ha il genitore.
+Per l'entità Cliente si è adottata una soluzione ibrida. Abbiamo optato per mantenere l'entità figlia Pubblica Amministrazione, mentre l'entità Privato è stata accorpata nel genitore aggiungendo un nuovo attributo "Tipo", che indica appunto se il Cliente è un Privato o una PA. Un eventuale accorpamento del genitore nelle entità figlie avrebbe complicato lo schema, viste le numerose relazioni che ha il genitore.
 \newline
 La relazione tra Cliente e PA è denominata "Specificazione PA".
 \paragraph{Richiesta sul Mepa}
-In merito all'entità Richiesta sul Mepa, si è deciso di sostituire la generalizzazione con delle relazioni. Si avrebbe potuto accorpare le entità figlie nel genitore, utilizzando degli attributi che possono assumere il valore NULL per poter distinguire appunto le due entità, ma ci sembra più opportuno mantenere distinte le entità Gara pubblica e Trattativa diretta in quanto esse sono, nella realtà pratica, due concetti logicamente separati.
+In merito all'entità Richiesta sul Mepa, si è deciso di sostituire la generalizzazione con delle relazioni. Avremmo potuto accorpare le entità figlie nel genitore, utilizzando degli attributi che possono assumere il valore NULL per poter distinguire appunto le due entità, ma ci sembra più opportuno mantenere distinte le entità Gara pubblica e Trattativa diretta in quanto esse sono, nella realtà pratica, due concetti logicamente separati.
 Le nuove relazioni sono denominate "Specificazione gara" e "Specificazione trattativa".
 \paragraph{Prodotto o Servizio}
 Anche con l'entità Prodotto o Servizio abbiamo scelto di mantenere il genitore e le entità figlie, sostituendo la generalizzazione con delle relazioni. Le nuove relazioni sono "Specificazione prodotto" e "Specificazione Servizio".

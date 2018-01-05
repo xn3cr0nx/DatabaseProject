@@ -1,40 +1,16 @@
-- Parte 1
-L'intervista sembra ok.
-
-Nei requisiti espressi nel linguaggio naturale è da rivedere la parte sui servizi (fine di pagina 12). Potrebbe già andare bene ma è meglio ricontrollarla insieme.
-Insieme a questo, guardare anche "Frasi relative ai Servizi" a metà di pagina 17
-
-
 - Parte 2
-Scheletro schema E-R: non è semanticamente corretto collegare "PA, Azienda o Persona" a Richiesta sul Mepa, perchè solo le PA hanno una relazione con le richieste sul Mepa.
-E' da rivedere.
-Conseguentemente bisogna modificare anche i testi (pag. 22), che sono adattati allo schema attuale.
----------> aggiunta spiegazione nel testo, discuterne.
-
-
-Il resto sembra tutto a posto.
-E' stato aggiunto l'attributo "Quantità" alla relazione Descrizione richieste, e sono state apportate le relative modifiche dove opportuno.
-
+Aggiungere PA tra la relazione Partecipazione e l'entità Pa Persona Azienda.
+Eliminare commento aggiunto sotto lo schema.
 
 - Parte 3
-Nell'analisi delle ridondanze, ci sono due frasi da rivedere, pagina 40
-
-Inserimento conclusioni nell'analisi della ridondanza ------> controllarlo
-
-Pagina 47 (optato "di"??, si "avrebbe" potuto)
-
 Nei diagrammi ER v3 e v4 ci sarebbero da rivedere le chiavi uniche su Richiesta Mepa, Gara pubblica, Trattativa diretta e ProdottoOServizio, Prodotto, Servizio.
 
 
 - Parte 4
-Bisogna aggiungere i vari commenti
-
-aggiunto commento sulla cancellazione non inserita per i prodotti fornitori ecc... ---------> discuterla
-
+AGGIUNGERE OPERAZIONE DISTANZA MEDIA DAL LIMITE DI SPESA NELLE OFFERTE E DALL'OFFERTA DEL VINCITORE. (per usare l'operazione AVG())  Specificato in 2.4.1 l'utilità.
+Si può pensare di aggiungere tutte operazioni statistiche simili per mettere in risalto il concetto della gara come argomento principale del progetto, a loro la statistica piace molto, fatta così concentrata potrebbe portare punti in più.
 
 
 Alla fine di tutto, rivedere gli spazi bianchi tra le sezioni e i paragrafi
 
 
-AGGIUNGERE OPERAZIONE DISTANZA MEDIA DAL LIMITE DI SPESA NELLE OFFERTE E DALL'OFFERTA DEL VINCITORE. (per usare l'operazione AVG())  Specificato in 2.4.1 l'utilità.
-Si può pensare di aggiungere tutte operazioni statistiche simili per mettere in risalto il concetto della gara come argomento principale del progetto, a loro la statistica piace molto, fatta così concentrata potrebbe portare punti in più.
