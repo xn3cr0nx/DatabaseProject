@@ -449,3 +449,130 @@ select min(Prezzo) as Prezzo, Prodotto,
 
 \noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op15}}
 \newline\newline
+
+\noindent\textit{Calcolo del margine competitivo dei concorrenti rispetto all’azienda stessa (una volta al mese)}
+\begin{verbatim}
+select round(AVG(OffertaProposta/OffertaVincitore) - 1, 2)
+  as MargineCompetitivo
+  from RichiestaMEPA, Gara
+  where Aggiudicatario != 'Rimini Service' and Numero = RichiestaMEPA;
+\end{verbatim}
+\vspace{0.5cm}
+
+\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op16}}
+\newline\newline
+
+\noindent\textit{Calcolo margine tra le offerte vincenti e i limiti di spesa (una volta al mese)}
+\begin{verbatim}
+select round(AVG(LimiteSpesa/OffertaVincitore) - 1, 2) as Margine
+  from RichiestaMEPA, Gara
+  where Numero = RichiestaMEPA;
+\end{verbatim}
+\vspace{0.5cm}
+
+\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op17}}
+\newline\newline
+
+\noindent\textit{Calcolo margine competitivo dei concorrenti rispetto all’azienda stessa in un dato periodo (una volta al mese)}
+\begin{verbatim}
+select round(AVG(OffertaProposta/OffertaVincitore) - 1, 2) as Margine
+  from RichiestaMEPA, Gara
+  where Aggiudicatario != 'Rimini Service'
+  and Numero = RichiestaMEPA and InizioOfferte >= <data_inizio>
+  and TermineOfferte <= <data_termine>;
+\end{verbatim}
+\vspace{0.5cm}
+
+
+\noindent\textit{Calcolo margine tra le offerte vincenti e i limiti di spesa in un dato periodo (una volta al mese)}
+\begin{verbatim}
+select round(AVG(LimiteSpesa/OffertaVincitore) - 1, 2) as Margine
+  from RichiestaMEPA, Gara
+  where Numero = RichiestaMEPA and InizioOfferte >= <data_inizio>
+  and TermineOfferte <= <data_termine>;
+\end{verbatim}
+\vspace{0.5cm}
+
+
+\noindent\textit{Calcolo margine tra il limite di spesa e l'offerta proposta in caso di gara aggiudicata (una volta al mese)}
+\begin{verbatim}
+select round(AVG(LimiteSpesa/OffertaProposta) - 1, 2) as Margine
+  from RichiestaMEPA, Gara
+  where Aggiudicatario = 'Rimini Service' and Numero = RichiestaMEPA;
+\end{verbatim}
+\vspace{0.5cm}
+
+\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op18}}
+\newline\newline
+
+\noindent\textit{Statistica media delle trattative dirette stipulate sul totale delle ricevute (una volta al mese)}
+\begin{verbatim}
+select Stipulate/Totali
+  from
+  (select COUNT(Numero) as Totali
+    from RichiestaMEPA, Trattativa
+    where Numero = RichiestaMEPA) totali,
+  (select COUNT(Numero) as Stipulate
+    from RichiestaMEPA, Trattativa
+    where Numero = RichiestaMEPA and Stipulata) stipulate;
+\end{verbatim}
+\vspace{0.5cm}
+
+\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op19}}
+\newline\newline
+
+\noindent\textit{Statistica media delle trattative dirette stipulate sul totale delle ricevute in un certo periodo (una volta al mese)}
+\begin{verbatim}
+select Stipulate/Totali
+  from
+  (select COUNT(Numero) as Totali
+    from RichiestaMEPA, Trattativa
+    where Numero = RichiestaMEPA and InizioOfferte >= <data_inizio>
+    and TermineOfferte <= <data_termine>) totali,
+  (select COUNT(Numero) as Stipulate
+    from RichiestaMEPA, Trattativa
+    where Numero = RichiestaMEPA and Stipulata
+    and InizioOfferte >= <data_inizio>
+    and TermineOfferte <= <data_termine>) stipulate;
+\end{verbatim}
+\vspace{0.5cm}
+
+\noindent\textit{Calcolo margine tra l'offerta proposta e il limite di spesa nel caso di trattative stipulate (una volta al mese)}
+\begin{verbatim}
+select round(AVG(LimiteSpesa/OffertaProposta) - 1, 2) as Margine
+  from RichiestaMEPA, Trattativa
+  where Numero = RichiestaMEPA and Stipulata;
+\end{verbatim}
+\vspace{0.5cm}
+
+\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op20}}
+\newline\newline
+
+\noindent\textit{Calcolo margine tra l'offerta proposta e il limite di spesa nel caso di trattative non stipulate (una volta al mese)}
+\begin{verbatim}
+select round(AVG(LimiteSpesa/OffertaProposta) - 1, 2) as Margine
+  from RichiestaMEPA, Trattativa
+  where Numero = RichiestaMEPA and !Stipulata;
+\end{verbatim}
+\vspace{0.5cm}
+
+\noindent\makebox[\textwidth]{\includegraphics[width=\linewidth]{./immagini/op21}}
+\newline\newline
+
+\noindent\textit{Calcolo margine tra l'offerta proposta e il limite di spesa nel caso di trattative stipulate in un dato periodo (una volta al mese)}
+\begin{verbatim}
+select round(AVG(LimiteSpesa/OffertaProposta) - 1, 2) as Margine
+  from RichiestaMEPA, Trattativa
+  where Numero = RichiestaMEPA and Stipulata
+  and InizioOfferte >= <data_inizio> and TermineOfferte <= <data_termine>;
+\end{verbatim}
+\vspace{0.5cm}
+
+\noindent\textit{Calcolo margine tra l'offerta proposta e il limite di spesa nel caso di trattative non stipulate in un dato periodo (una volta al mese)}
+\begin{verbatim}
+select round(AVG(LimiteSpesa/OffertaProposta) - 1, 2) as Margine
+  from RichiestaMEPA, Trattativa
+  where Numero = RichiestaMEPA and !Stipulata
+  and InizioOfferte >= <data_inizio> and TermineOfferte <= <data_termine>;
+\end{verbatim}
+\vspace{0.5cm}

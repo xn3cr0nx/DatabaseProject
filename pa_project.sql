@@ -488,66 +488,66 @@ select min(Prezzo) as Prezzo, Prodotto, (select Nome from Fornitore where Codice
   group by Prodotto;
 
 -- 43)
-select AVG(OffertaProposta - OffertaVincitore) as DifferenzaMedia
+select round(AVG(OffertaProposta/OffertaVincitore) - 1, 2) as MargineCompetitivo
 	from RichiestaMEPA, Gara
 	where Aggiudicatario != 'Rimini Service' and Numero = RichiestaMEPA;
 
 -- 44)
-select AVG(LimiteSpesa - OffertaVincitore) as DifferenzaMedia
+select round(AVG(LimiteSpesa/OffertaVincitore) - 1, 2) as Margine
 	from RichiestaMEPA, Gara
 	where Numero = RichiestaMEPA;
 
 -- 45)
-select AVG(OffertaProposta - OffertaVincitore) as DifferenzaMedia
+select round(AVG(OffertaProposta/OffertaVincitore) - 1, 2) as Margine
 	from RichiestaMEPA, Gara
 	where Aggiudicatario != 'Rimini Service' and Numero = RichiestaMEPA and InizioOfferte >= <data_inizio> and TermineOfferte <= <data_termine>;
 
 -- 46)
-select AVG(LimiteSpesa - OffertaVincitore) as DifferenzaMedia
+select round(AVG(LimiteSpesa/OffertaVincitore) - 1, 2) as Margine
 	from RichiestaMEPA, Gara
 	where Numero = RichiestaMEPA and InizioOfferte >= <data_inizio> and TermineOfferte <= <data_termine>;
 
 -- 47)
-select AVG(LimiteSpesa - OffertaProposta) as DifferenzaMedia
+select round(AVG(LimiteSpesa/OffertaProposta) - 1, 2) as Margine
   from RichiestaMEPA, Gara
   where Aggiudicatario = 'Rimini Service' and Numero = RichiestaMEPA;
 
 -- 48)
-select Stipulate/Totali 
-from 
-(select COUNT(Numero) as Totali
-  from RichiestaMEPA, Trattativa
-  where Numero = RichiestaMEPA) totali, 
-(select COUNT(Numero) as Stipulate
-  from RichiestaMEPA, Trattativa
-  where Numero = RichiestaMEPA and Stipulata) stipulate;
+select Stipulate/Totali
+  from
+  (select COUNT(Numero) as Totali
+    from RichiestaMEPA, Trattativa
+    where Numero = RichiestaMEPA) totali,
+  (select COUNT(Numero) as Stipulate
+    from RichiestaMEPA, Trattativa
+    where Numero = RichiestaMEPA and Stipulata) stipulate;
 
 -- 49)
-select Stipulate/Totali 
-from 
-(select COUNT(Numero) as Totali
-  from RichiestaMEPA, Trattativa
-  where Numero = RichiestaMEPA and InizioOfferte >= <data_inizio> and TermineOfferte <= <data_termine>) totali, 
-(select COUNT(Numero) as Stipulate
-  from RichiestaMEPA, Trattativa
-  where Numero = RichiestaMEPA and Stipulata and InizioOfferte >= <data_inizio> and TermineOfferte <= <data_termine>) stipulate;
+select Stipulate/Totali
+  from
+  (select COUNT(Numero) as Totali
+    from RichiestaMEPA, Trattativa
+    where Numero = RichiestaMEPA and InizioOfferte >= <data_inizio> and TermineOfferte <= <data_termine>) totali,
+  (select COUNT(Numero) as Stipulate
+    from RichiestaMEPA, Trattativa
+    where Numero = RichiestaMEPA and Stipulata and InizioOfferte >= <data_inizio> and TermineOfferte <= <data_termine>) stipulate;
 
 -- 50)
-select AVG(LimiteSpesa - OffertaProposta) as DifferenzaMedia
+select round(AVG(LimiteSpesa/OffertaProposta) - 1, 2) as Margine
   from RichiestaMEPA, Trattativa
   where Numero = RichiestaMEPA and Stipulata;
 
 -- 51)
-select AVG(LimiteSpesa - OffertaProposta) as DifferenzaMedia
+select round(AVG(LimiteSpesa/OffertaProposta) - 1, 2) as Margine
   from RichiestaMEPA, Trattativa
   where Numero = RichiestaMEPA and !Stipulata;
 
 -- 52)
-select AVG(LimiteSpesa - OffertaProposta) as DifferenzaMedia
+select round(AVG(LimiteSpesa/OffertaProposta) - 1, 2) as Margine
   from RichiestaMEPA, Trattativa
   where Numero = RichiestaMEPA and Stipulata and InizioOfferte >= <data_inizio> and TermineOfferte <= <data_termine>;
 
 -- 53)
-select AVG(LimiteSpesa - OffertaProposta) as DifferenzaMedia
+select round(AVG(LimiteSpesa/OffertaProposta) - 1, 2) as Margine
   from RichiestaMEPA, Trattativa
   where Numero = RichiestaMEPA and !Stipulata and InizioOfferte >= <data_inizio> and TermineOfferte <= <data_termine>;
